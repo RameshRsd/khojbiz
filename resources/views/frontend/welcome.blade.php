@@ -2,130 +2,227 @@
 @section('content')
 
     <!-- Main Container -->
-    <main id="main-container">
+    <div class="js-slider slick-nav-hover" data-dots="true" data-autoplay="true" data-arrows="true">
+        @foreach($ads as $advertise)
+            <div class="block">
+                <img class="img-fluid kb_banners" src="{{url('public/uploads/adverts/').'/'.$advertise->image}}" alt="">
+            </div>
+        @endforeach
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="khoj_search_bar" style="margin-top: -250px; z-index: 111;margin-left: 300px;">
+                <div class="row justify-content-center">
+                    <div class="col-md-3">
+                        <img class="img-fluid" src="{{url('public/images/defaultImg/logo_.png')}}" alt="" style="margin-left: -30px;">
+                    </div>
+                </div>
+                <form class="form-inline" action="{{url('search')}}" method="get">
+                    <input class="form-control keyword" type="search" name="keyword" placeholder="Search" style="margin-right: -20px; width: 300px">
+                    <input class="form-control search" type="search" name="location" placeholder="Search By Location" style="width: 200px">
+                    <button class="btn btn-submit" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <main id="container-fluid">
         <!--Category Slider Start-->
         <div class="content">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="js-slider slick-nav-hover" data-dots="true" data-autoplay="true" data-arrows="true">
-                        <div class="block">
-                            <img class="img-fluid" src="{{url('public/frontend')}}/assets/slider/slide3.jpg" alt="">
-                        </div>
-                        <div class="block">
-                            <img class="img-fluid" src="{{url('public/frontend')}}/assets/slider/slider5.jpg" alt="">
-                        </div>
-                        <div class="block">
-                            <img class="img-fluid" src="{{url('public/frontend')}}/assets/slider/slide2.jpg" alt="">
-                        </div>
-                    </div>
-                    <!-- END Slider with multiple images and center mode -->
-                </div>
-                <div class="col-md-12">
                     <div class="all_category">
-                        <b> Category: -</b>
-                        <a href="#">A</a>
-                        <a href="#">B</a>
-                        <a href="#">C</a>
-                        <a href="#">D</a>
-                        <a href="#">E</a>
-                        <a href="#">F</a>
-                        <a href="#">G</a>
-                        <a href="#">H</a>
-                        <a href="#">I</a>
-                        <a href="#">J</a>
-                        <a href="#">K</a>
-                        <a href="#">L</a>
-                        <a href="#">M</a>
-                        <a href="#">N</a>
-                        <a href="#">O</a>
-                        <a href="#">P</a>
-                        <a href="#">Q</a>
-                        <a href="#">R</a>
-                        <a href="#">S</a>
-                        <a href="#">T</a>
-                        <a href="#">U</a>
-                        <a href="#">V</a>
-                        <a href="#">W</a>
-                        <a href="#">X</a>
-                        <a href="#">Y</a>
-                        <a href="#">Z</a>
+                        <b> Search By Alphabetically:-</b>
+                        @php $alphas = \App\Alphabate::orderBy('name')->get(); @endphp
+                        @foreach($alphas as $alpha)
+                        <a href="{{url('browse-by-alphabates').'/list_'.$alpha->name}}">{{$alpha->name}}</a>
+                            @endforeach
+                    </div>
+                </div>
+                <div class="content f_k_b_li">
+                    <div class="p_list">
+                        <div class="row">
+                            @foreach($client as $clients)
+                                <div class="col-md-3">
+                                    <div class="product-item">
+                                        <div class="pi-img-wrapper">
+                                            @if(is_file(public_path('uploads/banners/').'/'.$clients->banner) && file_exists(public_path('uploads/banners/').'/'.$clients->banner))
+                                                <img src="{{url('public/uploads/banners/')}}/{{$clients->banner}}" class="img-responsive" alt="Berry Lace Dress">
+                                            @else
+                                                <img src="{{url('public/images/defaultImg/002.jpg')}}" class="img-responsive" alt="Berry Lace Dress">
+                                            @endif
+                                            <div>
+                                                {{--<a href="#" class="btn">Zoom</a>--}}
+                                                <a href="{{url('').'/'.$ClientOverView = $clients->slug}}" class="btn">View Details</a>
+                                            </div>
+                                        </div>
+                                        <div class="kb_c_name">
+                                            <h2 class="product_title"><a href="{{url('').'/'.$ClientOverView = $clients->slug}}">{{str_limit($clients->company_name,80)}}</a></h2>
+                                            <div class="pi-price"><i class="fa fa-map-marker"></i> {{$clients->company_address}}</div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="sticker sticker-new"></div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <!-- Slider with Multiple Slides/Avatars -->
                     <div class="top_feature">
-                        <h4>Featured Services</h4>
+                        <h4>Featured Category</h4>
                     </div>
                     <div class="block">
-                        <div class="block-content">
-                            <div class="js-slider text-center" data-autoplay="true" data-dots="true" data-arrows="true" data-slides-to-show="3">
-                                <a href="profile.html">
-                                    <div class="py-3">
-                                        <img class="img-avatar" src="{{url('public/frontend')}}/assets/images/03.png" alt="">
-                                        <div class="mt-2 font-w600">Marie Duncan</div>
-                                        <div class="font-size-sm text-muted">Graphic Designer</div>
+                        <div class="">
+                            <div class="js-slider text-center" data-autoplay="true" data-dots="true" data-arrows="true" data-slides-to-show="4">
+                                @foreach($category as $categories)
+                                <a href="{{url('search?cat_id=').$categories->id}}">
+                                    <div class="py-3 category_icon_k">
+                                        @if(is_file(public_path('uploads/icon/').'/'.$categories->icon) && file_exists(public_path('uploads/icon/').'/'.$categories->icon))
+                                            <img class="img-avatar_cat" src="{{url('public/uploads/icon/').'/'.$categories->icon}}" alt="">
+                                        @else
+                                            <img class="img-avatar_cat" src="{{url('public/images/defaultImg/logo.png')}}" alt="">
+                                        @endif
+                                        <div class="mt-2 font-w600 cat_color">{{str_limit($categories->name,15)}}</div>
                                     </div>
                                 </a>
-                                <div class="py-3">
-                                    <img class="img-avatar" src="{{url('public/frontend')}}/assets/images/04.png" alt="">
-                                    <div class="mt-2 font-w600">Lori Grant</div>
-                                    <div class="font-size-sm text-muted">Photographer</div>
-                                </div>
-                                <div class="py-3">
-                                    <img class="img-avatar" src="{{url('public/frontend')}}/assets/images/05.png" alt="">
-                                    <div class="mt-2 font-w600">Barbara Scott</div>
-                                    <div class="font-size-sm text-muted">Web Developer</div>
-                                </div>
-                                <div class="py-3">
-                                    <img class="img-avatar" src="{{url('public/frontend')}}/assets/images/06.png" alt="">
-                                    <div class="mt-2 font-w600">Laura Carr</div>
-                                    <div class="font-size-sm text-muted">Web Designer</div>
-                                </div>
-                                <div class="py-3">
-                                    <img class="img-avatar" src="{{url('public/frontend')}}/assets/images/07.png" alt="">
-                                    <div class="mt-2 font-w600">Lori Grant</div>
-                                    <div class="font-size-sm text-muted">Font Designer</div>
-                                </div>
-                                <div class="py-3">
-                                    <img class="img-avatar" src="{{url('public/frontend')}}/assets/images/08.png" alt="">
-                                    <div class="mt-2 font-w600">Alice Moore</div>
-                                    <div class="font-size-sm text-muted">Artist</div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
-                    <!-- END Slider with Multiple Slides/Avatars -->
+                    {{--Product List--}}
                 </div>
                 <div class="col-md-3">
                     <div class="top_feature">
-                        <h4>Featured Services</h4>
+                        <h4>Featured Ads</h4>
                     </div>
                     <!-- Tiles Slider 3 -->
                     <div class="js-slider slick-nav-hover" data-dots="true" data-autoplay="true" data-arrows="true">
+                        @foreach($side_ads as $ads)
                         <div class="block text-center mb-0">
-                            <div class="block-content py-5">
-                                <img class="img-fluid" src="{{url('public/frontend')}}/assets/images/download.jpg" alt="">
+                            <div class="ads_img_khoj">
+                                <img class="img-fluid" src="{{url('public/uploads/adverts/').'/'.$ads->image}}" alt="">
                             </div>
                         </div>
-                        <div class="block text-center mb-0">
-                            <div class="block-content py-5">
-                                <img class="img-fluid" src="{{url('public/frontend')}}/assets/images/download.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="block text-center bg-white mb-0">
-                            <div class="block-content py-5">
-                                <img class="img-fluid" src="{{url('public/frontend')}}/assets/images/download.jpg" alt="">
-                            </div>
-                        </div>
+                            @endforeach
                     </div>
                     <!-- END Tiles Slider 3 -->
                 </div>
                 <!-- END Slider with Avatars -->
             </div>
         </div>
-        <!-- END Avatar Sliders -->
-        <!-- END Page Content -->
         <!--Category Slider Start-->
+        {{----}}
+        <div class="kb_d_ad">
+           <div class="content kb_d_ad">
+               <div class="row">
+                   <div class="col-md-12">
+                       <!-- Tiles Slider 3 -->
+                       <div class="js-slider slick-nav-hover" data-dots="true" data-autoplay="true" data-arrows="true">
+                           @foreach($side_ads as $ads)
+                               <div class="block text-center mb-0">
+                                   <div class="ads_img_khoj">
+                                       <img class="img-fluid" src="{{url('public/uploads/list_ads/banner_ads.png')}}" alt="">
+                                       {{--<img class="img-fluid" src="{{url('public/uploads/adverts/').'/'.$ads->image}}" alt="">--}}
+                                   </div>
+                               </div>
+                           @endforeach
+                       </div>
+                       <!-- END Tiles Slider 3 -->
+                   </div>
+               </div>
+           </div>
+        </div>
+        {{----}}
+        {{----}}
+        <div class="kb_product_f">
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="kb_f_pro">
+                            <p> <b>Product By Alphabetically</b></p>
+                            @php $alphas = \App\Alphabate::orderBy('name')->get(); @endphp
+                            @foreach($alphas as $alpha)
+                                <a href="{{url('browse-by-alphabates').'/list_'.$alpha->name}}">{{$alpha->name}}</a>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="content f_k_b_li">
+                        <div class="top_feature_heading">
+                            <h3>Featured Manufacture</h3>
+                        </div>
+                        <div class="p_list">
+
+                            <div class="row">
+                                @foreach($client as $clients)
+                                    <div class="col-md-3">
+                                        <div class="product-item">
+                                            <div class="pi-img-wrapper">
+                                                <img src="{{url('public/images/defaultImg/002.jpg')}}" class="img-responsive" alt="Berry Lace Dress">
+                                                <div>
+                                                    {{--<a href="#" class="btn">Zoom</a>--}}
+                                                    <a href="{{url('product')}}" class="btn">View Details</a>
+                                                </div>
+                                            </div>
+                                            <div class="kb_c_name">
+                                                <h2 class="product_title"><a href="{{url('product')}}">{{str_limit($clients->company_name,80)}}</a></h2>
+                                                <div class="pi-price"><i class="fa fa-map-marker"></i> {{$clients->company_address}}</div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="sticker sticker-new"></div>
+                                        </div>
+                                    </div>
+
+                                    {{--<div class="col-md-3">--}}
+                                        {{--<a href="{{url('').'/'.$ClientOverView = $clients->slug}}">--}}
+                                            {{--<div class="p_list_de_im">--}}
+                                                {{--@if(is_file(public_path('uploads/banners/').'/'.$clients->banner) && file_exists(public_path('uploads/banners/').'/'.$clients->banner))--}}
+                                                    {{--<img class="p_list_de img-responsive" style="background-image: url('{{url('public/uploads/banners/')}}/{{$clients->banner}}');">--}}
+                                                {{--@else--}}
+                                                    {{--<img class="p_list_de img-responsive" style="background-image: url('{{url('public/images/defaultImg/default_banner.jpg')}}">--}}
+                                                {{--@endif--}}
+                                                {{--<button type="button" class="btn btn-sm btn-primary btn-block" data-toggle="popover" data-placement="top" title="Location: {{$clients->company_address}}" data-content="Contact Number: {{$clients->mobile}},{{$clients->ofc_tel_no}}">{{$clients->company_name}}</button>--}}
+                                            {{--</div>--}}
+                                        {{--</a>--}}
+                                    {{--</div>--}}
+
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{----}}
+        <div class="t_f_c_lis">
+           <div class="content feature_search_kb">
+               <div class="row">
+                   <div class="col-md-12">
+                       <div class="top_feature">
+                           <h4>Featured Search</h4>
+                       </div>
+                       <div class="block">
+                           <div class="block-content fe_cli_logo_all">
+                               <div class="js-slider text-center" data-autoplay="true" data-dots="true" data-arrows="true" data-slides-to-show="5">
+                                   @foreach($client as $clients)
+                                       <a href="{{url('').'/'.$ClientOverView = $clients->slug}}">
+                                           <div class="py-4 fe_cli_logo">
+                                               @if(is_file(public_path('uploads/logos/').'/'.$clients->logo) && file_exists(public_path('uploads/logos/').'/'.$clients->logo))
+                                                   <img class="img-avatar_cat" src="{{url('public/uploads/logos/').'/'.$clients->logo}}" alt="">
+                                               @else
+                                                   <img class="img-avatar_cat" src="{{url('public/images/defaultImg/logo.png')}}" alt="">
+                                               @endif
+                                               <div class="mt-1 font-w300 client_lo_t">{{str_limit($clients->company_name,26)}}</div>
+                                           </div>
+                                       </a>
+                                   @endforeach
+                               </div>
+                           </div>
+                       </div>
+                       {{--Product List--}}
+                   </div>
+               </div>
+           </div>
+        </div>
     </main>
     <!-- END Main Container -->
 

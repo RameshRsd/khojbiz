@@ -12,4 +12,7 @@ class State extends Model
     public function user(){
         return $this->belongsTo(User::class,'user_id');
     }
+    public function state(){
+        return $this->belongsTo(State::class,'country_id');
+    }
 }

@@ -5,7 +5,7 @@
                 <div class="content py-3">
                     <div class="row font-size-sm">
                         <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-right">
-                            Crafted with <i class="fa fa-heart text-danger"></i> by <a class="font-w600" href="#" target="_blank">Ganesh</a>
+                            {{--Crafted with <i class="fa fa-heart text-danger"></i> by <a class="font-w600" href="#" target="_blank">Ganesh</a>--}}
                         </div>
                         <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
                             <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">Khoj Biz</a> &copy; <span data-toggle="year-copy">2018</span>
@@ -90,7 +90,6 @@
 
     </div>
 <!-- END Page Container -->
--->
 <script src="{{url('public/frontend')}}/assets/js/oneui.core.min.js"></script>
 
 <script src="{{url('public/frontend')}}/assets/js/oneui.app.min.js"></script>

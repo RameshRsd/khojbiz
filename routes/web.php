@@ -12,10 +12,13 @@
 */
 
 Route::get('','HomeController@index');
+Route::get('profile','User\ApplicationController@profile');
+Route::get('search','User\ApplicationController@search');
+Route::get('product','User\ApplicationController@product');
 
 //Auth::routes();
 
-
+//Browse by alphabates //
 
 Route::group(['middleware'=>'guest'],function(){
     Route::get('login','HomeController@getLogin')->name('login');
@@ -24,6 +27,10 @@ Route::group(['middleware'=>'guest'],function(){
     Route::post('register','HomeController@postregister');
 
 });
+Route::get('browse-by-alphabates/list_{alpha}','AlphabateController@index');
+Route::get('browse-by-category/{slug}','AlphabateController@category');
+Route::get('browse-by-category/list/{id}','CategoryController@list_category');
+
 
 Route::any('logout', 'Auth\LoginController@logout')->name('logout');
 
@@ -34,6 +41,14 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     /* ============================== User Managment ========================================= */
     Route::get('users','UserController@index');
     /* ============================== User Managment ========================================= */
+
+    /* ============================== Staff Managment ========================================= */
+    Route::get('staffs','StaffController@index');
+    Route::get('create-staff','StaffController@create');
+    Route::post('create-staff','StaffController@store');
+    Route::get('staff/staff_id={id}/edit','StaffController@edit');
+    Route::post('staff/staff_id={id}/edit','StaffController@update');
+    /* ============================== Staff Managment ========================================= */
 
     /* ============================== Location Managment ========================================= */
     Route::get('countries','CountryController@index');
@@ -58,6 +73,45 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::get('company-nature/nature_id={id}/edit','CompanyNatureController@edit');
     Route::post('company-nature/nature_id={id}/edit','CompanyNatureController@update');
     /* ============================== Company-Natrue ========================================= */
+    /* ============================== Category-========================================= */
+    Route::get('add-category','CategoryController@index');
+    Route::post('add-category','CategoryController@store');
+    Route::get('add-category/nature_id={id}/edit','CategoryController@edit');
+    Route::post('add-category/nature_id={id}/edit','CategoryController@update');
+    /* ============================== Category ========================================= */
+    /* ==============================Sub Category-========================================= */
+    Route::get('add-sub-category','SubCategoryController@index');
+    Route::post('add-sub-category','SubCategoryController@store');
+    Route::get('add-category/nature_id={id}/edit','CategoryController@edit');
+    Route::post('add-category/nature_id={id}/edit','CategoryController@update');
+    /* ==============================Sub Category End========================================= */
+    /* ==============================create-of-manufacturers========================================= */
+    Route::get('list-manufacturers','ManufactureCompany\ManufactureCompanyController@index');
+    Route::get('create-manufacturers','ManufactureCompany\ManufactureCompanyController@create');
+    Route::post('create-manufacturers','ManufactureCompany\ManufactureCompanyController@store');
+    Route::get('add-category-of-manufacturers/menu={id}/edit','ManufactureCompany\ManufactureCategoryController@edit');
+    Route::post('add-category-of-manufacturers/menu={id}/edit','ManufactureCompany\ManufactureCategoryController@update');
+    /* ============================== create-of-manufacturers end========================================= */
+    /* ==============================add-category-of-manufacturers========================================= */
+    Route::get('add-category-of-manufacturers','ManufactureCompany\ManufactureCategoryController@index');
+    Route::post('add-category-of-manufacturers','ManufactureCompany\ManufactureCategoryController@store');
+    Route::get('add-category-of-manufacturers/menu={id}/edit','ManufactureCompany\ManufactureCategoryController@edit');
+    Route::post('add-category-of-manufacturers/menu={id}/edit','ManufactureCompany\ManufactureCategoryController@update');
+    /* ============================== add-category-of-manufacturers ========================================= */
+    /* ==============================Sub category-of-manufacturers-========================================= */
+    Route::get('add-sub-category-of-manufacturers','ManufactureCompany\ManufactureSubCategoryController@index');
+    Route::post('add-sub-category-of-manufacturers','ManufactureCompany\ManufactureSubCategoryController@store');
+    Route::get('add-sub-category-of-manufacturers/menu={id}/edit','ManufactureCompany\ManufactureSubCategoryController@edit');
+    Route::post('add-sub-category-of-manufacturers/menu={id}/edit','ManufactureCompany\ManufactureSubCategoryController@update');
+    /* ==============================Sub Ccategory-of-manufacturers end========================================= */
+    /* ==============================category-wise-manufacturers-========================================= */
+    Route::get('category-wise-manufactures','ManufactureCompany\ManufactureCategoryController@cat_wise_manufacture');
+    Route::post('category-wise-manufactures','ManufactureCompany\ManufactureCategoryController@cat_wise_manufacture_store');
+    /* ==============================category-wise-manufacturers End========================================= */
+    /* ==============================Category Wise ClientController-========================================= */
+    Route::get('category-wise-client','ClientCategory\CategoryWiseClientController@index');
+    Route::post('category-wise-client','ClientCategory\CategoryWiseClientController@store');
+    /* ==============================Sub Category End========================================= */
 
     /* ============================== Client-Section ========================================= */
     Route::get('list-clients','ClientController@index');
@@ -90,11 +144,40 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
 /* ================================================ Admin CONTROL Start============================================================== */
 
 /* ================================================ Client CONTROL Start============================================================== */
-Route::group(['middleware'=>'client','prefix'=>'client','namespace'=>'Client'],function(){
+Route::group(['middleware'=>['client','verified'],'prefix'=>'client','namespace'=>'Client'],function(){
     Route::get('','ClientController@index');
+    Route::get('member-profile','ClientController@profile_p');
 });
 
-/* ================================================ Client CONTROL Start============================================================== */
+/* ================================================ Staff Controller Start============================================================== *//* ================================================ Client CONTROL Start============================================================== */
+Route::group(['middleware'=>['staff','verified'],'prefix'=>'staff','namespace'=>'Staff'],function(){
+    Route::get('','StaffController@index');
+    /* ============================== Client-Section ========================================= */
+    Route::get('list-clients','ClientController@index');
+    Route::get('create-client','ClientController@create');
+    Route::post('create-client','ClientController@store');
+    Route::get('list-clients/client_id={id}/edit','ClientController@edit');
+    Route::post('list-clients/client_id={id}/edit','ClientController@update');
+    /**/
+    Route::get('category-wise-client','ClientController@cat_wise_client');
+    Route::post('category-wise-client','ClientController@cat_wise_client_store');
+    /* ============================== Client-Section ========================================= */
+    /* ============================== Category-========================================= */
+    Route::get('add-category','CategoryController@index');
+    Route::post('add-category','CategoryController@store');
+    Route::get('add-category/nature_id={id}/edit','CategoryController@edit');
+    Route::post('add-category/nature_id={id}/edit','CategoryController@update');
+    /* ============================== Category ========================================= */
+    /* ==============================Sub Category-========================================= */
+    Route::get('add-sub-category','SubCategoryController@index');
+    Route::post('add-sub-category','SubCategoryController@store');
+    Route::get('add-sub-category/sub_cat_id={id}/edit','SubCategoryController@edit');
+    Route::post('add-sub-category/sub_cat_id={id}/edit','SubCategoryController@update');
+    /* ==============================Sub Category End========================================= */
+});
+
+/* ================================================ Staff Controller  end ============================================================= */
 
 
 
+Route::any('{slug}','User\ApplicationController@overview');

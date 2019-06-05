@@ -44,8 +44,19 @@
                         <li><a href="{{url('admin/users')}}"><i class="fa fa-circle-o"></i> All Users</a></li>
                     </ul>
                 </li>
+                <li class="treeview @if(request()->segment('2')=='staffs' || request()->segment('2')=='create-staff') active menu-open @endif">
+                    <a href="#"><i class="fa fa-user"></i> <span>Staff</span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="@if(request()->segment('2')=='staffs') active @endif"><a href="{{url('admin/staffs')}}"><i class="fa fa-circle-o"></i> List Staffs</a></li>
+                        <li class="@if(request()->segment('2')=='create-staff') active @endif"><a href="{{url('admin/create-staff')}}"><i class="fa fa-circle-o"></i> Create Staff</a></li>
+                    </ul>
+                </li>
                 <li class="header">CLIENT/CANDIDATE MANAGEMENT</li>
-                <li class="treeview  <?php if(request()->segment('2') =='list-clients' || request()->segment('2') =='create-client' || request()->segment('2') =='claim-listing' || request()->segment('2') =='company-nature'){ echo 'active menu-open' ;} ?>">
+                <li class="treeview  <?php if(request()->segment('2') =='list-manufacture' || request()->segment('2') =='create-manufacture' || request()->segment('2') =='claim-listing' || request()->segment('2') =='company-nature'|| request()->segment('2') =='add-category'|| request()->segment('2') =='add-sub-category'|| request()->segment('2') =='category-wise-client'){ echo 'active menu-open' ;} ?>">
                     <a href="#"><i class="fa fa-home"></i> <span>Clients</span>
                         <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -56,6 +67,25 @@
                         <li class="<?php if(request()->segment('2') =='create-client'){ echo 'active' ;} ?>"><a href="{{url('admin/create-client')}}"><i class="fa fa-circle-o"></i> Create New Client</a></li>
                         <li class="<?php if(request()->segment('2') =='claim-listing'){ echo 'active' ;} ?>"><a href="{{url('admin/claim-listing')}}"><i class="fa fa-circle-o"></i> Claim Listing <span style="padding:5px; font-size: 10px; color:deepskyblue;">(10)</span></a></li>
                         <li class="<?php if(request()->segment('2') =='company-nature'){ echo 'active' ;} ?>"><a href="{{url('admin/company-nature')}}"><i class="fa fa-circle-o"></i> Company Nature</a></li>
+                        <li class="<?php if(request()->segment('2') =='add-category'){ echo 'active' ;} ?>"><a href="{{url('admin/add-category')}}"><i class="fa fa-circle-o"></i> Add Category</a></li>
+                        <li class="<?php if(request()->segment('2') =='add-sub-category'){ echo 'active' ;} ?>"><a href="{{url('admin/add-sub-category')}}"><i class="fa fa-circle-o"></i> Add Sub Category</a></li>
+                        <li class="<?php if(request()->segment('2') =='category-wise-client'){ echo 'active' ;} ?>"><a href="{{url('admin/category-wise-client')}}"><i class="fa fa-circle-o"></i>Category Wise Client</a></li>
+                    </ul>
+                </li>
+                <li class="treeview  <?php if(request()->segment('2') =='list-manufacturers' || request()->segment('2') =='create-manufacturers' || request()->segment('2') =='claim-manufacturers' || request()->segment('2') =='company-nature-manufacturers'|| request()->segment('2') =='add-category-of-manufacturers'|| request()->segment('2') =='add-sub-category-of-manufacturers'|| request()->segment('2') =='category-wise-manufactures'){ echo 'active menu-open' ;} ?>">
+                    <a href="#"><i class="fa fa-home"></i> <span>Manufacture Clients</span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class=" <?php if(request()->segment('2') =='list-manufacturers'){ echo 'active' ;} ?>"><a href="{{url('admin/list-manufacturers')}}"><i class="fa fa-circle-o"></i> Manufactures Listing</a></li>
+                        <li class="<?php if(request()->segment('2') =='create-manufacturers'){ echo 'active' ;} ?>"><a href="{{url('admin/create-manufacturers')}}"><i class="fa fa-circle-o"></i> Create New Manufacture</a></li>
+                        <li class="<?php if(request()->segment('2') =='claim-manufacturers'){ echo 'active' ;} ?>"><a href="{{url('admin/claim-manufacturers')}}"><i class="fa fa-circle-o"></i> Claim Listing of manufacturers <span style="padding:5px; font-size: 10px; color:deepskyblue;">(10)</span></a></li>
+                        <li class="<?php if(request()->segment('2') =='company-nature-of-manufacturers'){ echo 'active' ;} ?>"><a href="{{url('admin/company-nature-of-manufacturers')}}"><i class="fa fa-circle-o"></i> Company Nature</a></li>
+                        <li class="<?php if(request()->segment('2') =='add-category-of-manufacturers'){ echo 'active' ;} ?>"><a href="{{url('admin/add-category-of-manufacturers')}}"><i class="fa fa-circle-o"></i> Add Category</a></li>
+                        <li class="<?php if(request()->segment('2') =='add-sub-category-of-manufacturers'){ echo 'active' ;} ?>"><a href="{{url('admin/add-sub-category-of-manufacturers')}}"><i class="fa fa-circle-o"></i> Add Sub Category</a></li>
+                        <li class="<?php if(request()->segment('2') =='category-wise-manufactures'){ echo 'active' ;} ?>"><a href="{{url('admin/category-wise-manufactures')}}"><i class="fa fa-circle-o"></i>Category Wise Manufacturers</a></li>
                     </ul>
                 </li>
                 <li class="treeview  <?php if(request()->segment('2') =='list-events' || request()->segment('2') =='event-request'  || request()->segment('2') =='create-event' || request()->segment('2') =='categories'){ echo 'active menu-open' ;} ?>">

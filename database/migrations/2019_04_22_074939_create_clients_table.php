@@ -16,6 +16,7 @@ class CreateClientsTable extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('company_name')->nullable();
+            $table->string('slug')->nullable();
             $table->string('company_address')->nullable();
             $table->string('logo')->nullable();
             $table->string('banner')->nullable();
@@ -23,13 +24,17 @@ class CreateClientsTable extends Migration
             $table->string('office_contact')->nullable();
             $table->string('company_head')->nullable();
             $table->string('mobile')->nullable();
-            $table->enum('client_type',['general','featured','sponser'])->nullable();
-            $table->text('company_profile')->nullable();
+            $table->string('ofc_tel_no')->nullable();
+            $table->enum('client_type',['bronze','silver','gold','diamond','platinum','free_listing'])->nullable();
+            $table->enum('company_nature',['manufacture','business','product'])->nullable();
+            $table->longText('company_profile')->nullable();
             $table->integer('user_id')->nullable();
             $table->integer('district_id')->nullable();
-            $table->integer('company_nature_id')->nullable();
+            $table->integer('cat_id')->nullable();
+            $table->integer('alpha_id')->nullable();
             $table->text('map_link')->nullable();
             $table->string('password')->nullable();
+            $table->integer('entry_by')->nullable();
             $table->timestamps();
         });
     }

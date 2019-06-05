@@ -2,15 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Advertisement;
+use App\Category;
+use App\Client\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
 
-    public function index()
-    {
-        return view('frontend.welcome');
+    public function index(){
+//        $client =Client::where('client_type','diamond')->get();
+        $client =Client::where('client_type','diamond')->limit(8)->get();
+        $ads = Advertisement::where('status','active')->where('type','top')->where('status','active')->get();
+        $side_ads = Advertisement::where('status','active')->where('type','general')->where('status','active')->get();
+        $category =Category::orderBy('name','DESC')->limit(8)->get();
+        return view('frontend.welcome',compact('client','ads','side_ads','category'));
     }
     public function getLogin(){
         return view('auth.login');
@@ -38,6 +45,16 @@ class HomeController extends Controller
             }
         }
         return redirect('login')->withErrors(['email'=>'Invalid credentail'])->withInput(request()->only('email'));
+    }
+
+    public function getregister(Request $request){
+        $this->validate(request(),[
+            'email'=>'required|unique:users,email',
+            'name'=>'required|unique:users,name',
+            'first_name'=>'required',
+            'password'=>'required|confirmed',
+        ]);
+
     }
 
 }

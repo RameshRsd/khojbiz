@@ -2,33 +2,36 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Alphabate;
+use App\Category;
 use App\Client\Client;
-use App\CompanyNature;
 use App\District;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
     public function index(){
         $title = 'Client Listing - Admin-Panel | khojbiz.com';
         $clients = Client::orderBy('company_name','ASC')->get();
-        return view('admin.client.index',compact('title','clients'));
+        $category = Category::orderBy('name','ASC')->get();
+        return view('admin.client.index',compact('title','clients','category'));
 
     }
     public function create(){
         $title = 'Create New Client - Admin-Panel | khojbiz.com';
         $districts = District::orderBy('name','ASC')->get();
-        $natures = CompanyNature::orderBy('name','ASC')->get();
-        return view('admin.client.create',compact('title','districts','natures'));
+        $category = Category::orderBy('name','ASC')->get();
+        $alpha = Alphabate::orderBy('name')->get();
+        return view('admin.client.create',compact('title','districts','category','alpha'));
     }
     public function store(Request $request){
         $this->validate($request, [
             'company_name'=> 'required|unique:clients,company_name',
             'district_id'=> 'required',
             'client_type'=> 'required',
-            'company_nature_id'=> 'required',
             'name'=> 'required|unique:users,name',
             'email'=> 'required|unique:users,email',
             'password' =>'required|confirmed',
@@ -44,15 +47,20 @@ class ClientController extends Controller
             /*=========== Creating Clients ============ */
             $client = New Client();
             $client->company_name = $request->company_name;
+            $client->slug = str_slug($request->company_name);
             $client->company_address = $request->company_address;
             $client->company_head = $request->company_head;
             $client->mobile = $request->mobile;
+            $client->ofc_tel_no = $request->ofc_tel_no;
+            $client->website = $request->website;
+            $client->map_link = $request->map_link;
             $client->client_type = $request->client_type;
             $client->company_profile = $request->company_profile;
             $client->district_id = $request->district_id;
-            $client->company_nature_id = $request->company_nature_id;
+            $client->alpha_id = $request->alpha_id;
             $client->password = $request->password;
             $client->user_id = $user->id;
+            $client->entry_by = Auth::user()->id;
             if ($request->hasFile('logo')){
                 $filename = time().'.'.request()->file('logo')->getClientOriginalExtension();
 
@@ -71,32 +79,34 @@ class ClientController extends Controller
             }
 
             $client->save();
-            return redirect('admin/list-clients')->with('success','Client Created Successfully !');
+            return redirect('admin/category-wise-client')->with('success','Client Created Successfully !');
         }
     }
     public function edit($id){
         $title = 'Edit Client - Admin-Panel | khojbiz.com';
         $districts = District::orderBy('name','ASC')->get();
-        $natures = CompanyNature::orderBy('name','ASC')->get();
+        $alpha = Alphabate::orderBy('name','ASC')->get();
+        $category = Category::orderBy('name','ASC')->get();
         $client = Client::findOrFail($id);
-        return view('admin.client.edit',compact('title','districts','natures','client'));
+        return view('admin.client.edit',compact('title','districts','category','alpha','client'));
     }
     public function update(Request $request, $id){
         $this->validate($request, [
             'company_name'=> 'required',
             'district_id'=> 'required',
             'client_type'=> 'required',
-            'company_nature_id'=> 'required',
         ]);
         $client = Client::findOrFail($id);
         $client->company_name = $request->company_name;
+        $client->slug = str_slug($request->company_name);
         $client->company_address = $request->company_address;
         $client->company_head = $request->company_head;
         $client->mobile = $request->mobile;
+        $client->ofc_tel_no = $request->ofc_tel_no;
         $client->client_type = $request->client_type;
         $client->company_profile = $request->company_profile;
         $client->district_id = $request->district_id;
-        $client->company_nature_id = $request->company_nature_id;
+        $client->alpha_id = $request->alpha_id;
         $client->website = $request->website;
         $client->map_link = $request->map_link;
         $client->office_contact = $request->office_contact;
@@ -126,7 +136,7 @@ class ClientController extends Controller
         }
 
         $client->save();
-        return redirect('admin/list-clients')->with('success','Client Updated Successfully !');
+        return redirect('admin/category-wise-client')->with('success','Client Updated Successfully !');
 
     }
 }
