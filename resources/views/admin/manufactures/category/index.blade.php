@@ -120,7 +120,7 @@
                                         <td>{{$categories->slug}}</td>
                                         <td><img src="{{url('public/uploads/icon/').'/'.$categories->icon}}" alt=""></td>
                                         <td>
-                                            <a href="{{url('admin/add-category-of-manufacturers/menu=').$categories->id.'/edit'}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="{{url('admin/company-nature/nature_id=').$categories->id.'/edit'}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

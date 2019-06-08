@@ -67,7 +67,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="text" name="name" class="form-control" placeholder="User Name">
+                                                        <input type="text" name="name" class="form-control" value="{{old('name')}}" placeholder="User Name">
                                                     </div>
                                                 </div>
                                             </div>
@@ -81,7 +81,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="email" name="email" class="form-control" placeholder="Valid Email">
+                                                        <input type="email" name="email" class="form-control" value="{{old('email')}}" placeholder="Valid Email">
                                                     </div>
                                                 </div>
                                             </div>
@@ -132,7 +132,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <select name="client_type" id="client_type" class="form-control select2" style="width: 100%;">
+                                                        <select name="client_type" id="client_type" value="{{old('client_type')}}" class="form-control select2" style="width: 100%;">
                                                             <option value="bronze">Bronze</option>
                                                             <option value="silver">Silver</option>
                                                             <option value="gold">Gold</option>
@@ -158,7 +158,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="text" name="company_name" class="form-control" placeholder="Full Company Name">
+                                                        <input type="text" name="company_name" class="form-control" value="{{old('company_name')}}" placeholder="Full Company Name">
                                                     </div>
                                                 </div>
                                             </div>
@@ -176,6 +176,25 @@
                                                             <option value="">Choose Alphabate</option>
                                                             @foreach($alpha as $alphabate)
                                                                 <option value="{{$alphabate->id}}">{{$alphabate->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Choose Category</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <select name="cat_id[]" class="form-control select2" multiple="multiple" value="{{old('cat_id')}}" data-placeholder="Select Category"
+                                                                style="width: 100%;">
+                                                            @foreach($category as $categories)
+                                                                <option value="{{$categories->id}}">{{$categories->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>

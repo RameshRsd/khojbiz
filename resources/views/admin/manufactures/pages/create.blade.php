@@ -186,6 +186,25 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
+                                                        <label>Choose Category</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <select name="cat_id[]" class="form-control select2" multiple="multiple" data-placeholder="Select Category"
+                                                                style="width: 100%;">
+                                                            @foreach($categories as $faculties)
+                                                                <option value="{{$faculties->id}}">{{$faculties->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
                                                         <label>Upload Logo</label>
                                                     </div>
                                                 </div>

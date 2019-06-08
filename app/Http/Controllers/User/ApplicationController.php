@@ -51,7 +51,20 @@ class ApplicationController extends Controller
         return view('frontend.listing',compact('title','clients','category'));
     }
 
-    public function overview($slug){
+    public function overview($UserName){
+        $user = User::where('name',$UserName)->firstOrFail();
+        $client =Client::where('user_id',$user->id)->firstOrFail();
+        $ads = Advertisement::where('status','active')->where('type','top')->where('status','active')->get();
+        $side_ads = Advertisement::where('status','active')->where('type','general')->where('status','active')->get();
+        $category =Category::all();
+        $title = $client->company_name.' - Khojbiz.com';
+        $discription = str_limit($client->company_profile,150);
+        if (isset($client->banner)){
+            $image = '/public/uploads/banners'.'/'.$client->banner;
+        }
+        return view('frontend.pages.client.pages.index',compact('title','client','ads','side_ads','category','discription','image'));
+    }
+    public function about_us($slug){
         $client =Client::where('slug',$slug)->firstOrFail();
         $ads = Advertisement::where('status','active')->where('type','top')->where('status','active')->get();
         $side_ads = Advertisement::where('status','active')->where('type','general')->where('status','active')->get();
@@ -61,6 +74,35 @@ class ApplicationController extends Controller
         if (isset($client->banner)){
             $image = '/public/uploads/banners'.'/'.$client->banner;
         }
-        return view('frontend.profile',compact('title','client','ads','side_ads','category','discription','image'));
+        return view('frontend.pages.client.pages.about_us',compact('title','client','ads','side_ads','category','discription','image'));
+    }
+    public function client_profile($slug){
+        $client =Client::where('slug',$slug)->firstOrFail();
+        $ads = Advertisement::where('status','active')->where('type','top')->where('status','active')->get();
+        $side_ads = Advertisement::where('status','active')->where('type','general')->where('status','active')->get();
+        $category =Category::all();
+        $title = $client->company_name.' - Khojbiz.com';
+        $discription = str_limit($client->company_profile,150);
+        if (isset($client->banner)){
+            $image = '/public/uploads/banners'.'/'.$client->banner;
+        }
+        return view('frontend.pages.client.pages.client_profile',compact('title','client','ads','side_ads','category','discription','image'));
+    }
+    public function product_and_service($slug){
+        $client =Client::where('slug',$slug)->firstOrFail();
+        $ads = Advertisement::where('status','active')->where('type','top')->where('status','active')->get();
+        $side_ads = Advertisement::where('status','active')->where('type','general')->where('status','active')->get();
+        $category =Category::all();
+        $title = $client->company_name.' - Khojbiz.com';
+        $discription = str_limit($client->company_profile,150);
+        if (isset($client->banner)){
+            $image = '/public/uploads/banners'.'/'.$client->banner;
+        }
+        return view('frontend.pages.client.pages.product_and_service',compact('title','client','ads','side_ads','category','discription','image'));
+    }
+
+    public function buying_selling(){
+        $title = 'Buying & Selling';
+        return view('frontend.pages.classified.index');
     }
 }

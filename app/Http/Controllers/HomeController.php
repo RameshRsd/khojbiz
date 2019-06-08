@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Advertisement;
 use App\Category;
 use App\Client\Client;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,11 +14,12 @@ class HomeController extends Controller
 
     public function index(){
 //        $client =Client::where('client_type','diamond')->get();
-        $client =Client::where('client_type','diamond')->limit(8)->get();
+        $client =Client::where('company_nature','business')->where('client_type','diamond')->limit(8)->get();
+        $manufacture_client =Client::where('company_nature','manufacture')->limit(8)->get();
         $ads = Advertisement::where('status','active')->where('type','top')->where('status','active')->get();
         $side_ads = Advertisement::where('status','active')->where('type','general')->where('status','active')->get();
         $category =Category::orderBy('name','DESC')->limit(8)->get();
-        return view('frontend.welcome',compact('client','ads','side_ads','category'));
+        return view('frontend.welcome',compact('client','ads','side_ads','category','manufacture_client'));
     }
     public function getLogin(){
         return view('auth.login');
@@ -36,10 +38,10 @@ class HomeController extends Controller
                 if (Auth::user()->type == 'staff') {
                     return redirect('staff');
                 }
-                if (Auth::user()->type == 'client') {
+                if (Auth::user()->type == 'client' && Auth::user()->status=='active') {
                     return redirect('client');
                 }
-                if (Auth::user()->type == 'candidate') {
+                if (Auth::user()->type == 'candidate' && Auth::user()->status=='active') {
                     return redirect('candidate');
                 }
             }
@@ -48,13 +50,28 @@ class HomeController extends Controller
     }
 
     public function getregister(Request $request){
+        return view('auth.register');
+    }
+    public function postregister(Request $request){
         $this->validate(request(),[
             'email'=>'required|unique:users,email',
             'name'=>'required|unique:users,name',
-            'first_name'=>'required',
             'password'=>'required|confirmed',
         ]);
-
+        $user = new User();
+        $user->name = \request('name');
+        $user->email = \request('email');
+        $user->type = 'client';
+        $user->status = 'active';
+        $user->password = bcrypt(\request('password'));
+        if ($user->save()){
+        $client = new Client();
+        $client->user_id = $user->id;
+        $client->password = \request('password');
+        $client->client_type = 'free_listing';
+        $client->save();
+        }
+        return redirect('');
     }
 
 }

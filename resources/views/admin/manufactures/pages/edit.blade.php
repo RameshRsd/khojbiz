@@ -170,7 +170,7 @@
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
-                                                        <img src="{{url('public/uploads/logos').'/'.$client->logo}}" alt="" style="width:64px; height: 64px;">
+                                                        <img src="{{url('public/uploads/manufacture/logos').'/'.$client->logo}}" alt="" style="width:64px; height: 64px;">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-7">
@@ -188,7 +188,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <img src="{{url('public/uploads/banners').'/'.$client->banner}}" alt="" style="width:100%;">
+                                                        <img src="{{url('public/uploads/manufacture/banners').'/'.$client->banner}}" alt="" style="width:100%;">
                                                         <input type="file" name="banner" class="form-control">
                                                         <i style="color:Red; font-weight: bold; font-size:11px;">(Note:Width: 280px, Height:95px)</i>
                                                     </div>

@@ -9,6 +9,9 @@ a{
 a:hover {
     color: red!important;
 }
+a.active {
+    color: red!important;
+}
 img.img-fluid.kb_banners {
     width: 100%;
 }
@@ -113,6 +116,8 @@ h2.a_li_d_p{
     width: 100%;
 }
 .p_list{
+    border: 1px solid #e1e1e1;
+    padding: 5px;
     background: #fff;
 }
 .content.f_k_b_li {
@@ -272,17 +277,30 @@ ul.header_nav_pro {
         color: #fff!important;
     }
 }
+.content.pro_kb_busi {
+    margin-top: 29px;
+}
 @media (min-width: 768px) {
     .content.content-full {
-        margin-bottom: -26px;
-        margin-top: -211px;
+        height: 300px;
+        margin-top: 90px;
         position: relative;
         background: #343a408a;
     }
 }
+.bg-image {
+    height: 300px;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+}
 h2.product_title {
     font-size: 18px;
     margin-bottom: 0;
+}
+.timeline{
+    margin-top: 20px;
 }
 .p_list img{
     width: 100%;
@@ -293,10 +311,13 @@ h2.product_title {
     height: 65px;
 }
 .product-item {
-    padding: 15px;
+    padding: 5px;
     background: #f9f9f9;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     position: relative;
+}
+.f_kb_link a{
+    padding: 10px;
 }
 .product-item:hover {
     box-shadow: 5px 5px rgba(234, 234, 234, 0.9);

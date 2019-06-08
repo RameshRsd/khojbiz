@@ -43,7 +43,7 @@
                         <div class="row">
                             @foreach($client as $clients)
                                 <div class="col-md-3">
-                                    <div class="product-item">
+                                    <div class="product-item" title="{{$clients->company_name}}">
                                         <div class="pi-img-wrapper">
                                             @if(is_file(public_path('uploads/banners/').'/'.$clients->banner) && file_exists(public_path('uploads/banners/').'/'.$clients->banner))
                                                 <img src="{{url('public/uploads/banners/')}}/{{$clients->banner}}" class="img-responsive" alt="Berry Lace Dress">
@@ -52,15 +52,17 @@
                                             @endif
                                             <div>
                                                 {{--<a href="#" class="btn">Zoom</a>--}}
-                                                <a href="{{url('').'/'.$ClientOverView = $clients->slug}}" class="btn">View Details</a>
+                                                <a href="{{url('').'/'.$ClientOverView = $clients->user->name}}" class="btn" title="{{$clients->company_name}}">View Details</a>
                                             </div>
                                         </div>
                                         <div class="kb_c_name">
-                                            <h2 class="product_title"><a href="{{url('').'/'.$ClientOverView = $clients->slug}}">{{str_limit($clients->company_name,80)}}</a></h2>
-                                            <div class="pi-price"><i class="fa fa-map-marker"></i> {{$clients->company_address}}</div>
+                                            <h2 class="product_title" title="{{$clients->company_name}}"><a href="{{url('').'/'.$ClientOverView = $clients->slug}}" title="{{$clients->company_name}}">{{str_limit($clients->company_name,80)}}</a></h2>
+                                            <div class="pi-price" title="{{$clients->company_address}}"><i class="fa fa-map-marker" title="{{$clients->company_address}}"></i> {{$clients->company_address}}</div>
                                             <div class="clearfix"></div>
                                         </div>
+                                        @if(date('Y-m',strtotime($clients->created_at)) == date('Y-m'))
                                         <div class="sticker sticker-new"></div>
+                                            @endif
                                     </div>
                                 </div>
                             @endforeach
@@ -153,22 +155,28 @@
                         <div class="p_list">
 
                             <div class="row">
-                                @foreach($client as $clients)
+                                @foreach($manufacture_client as $clients)
                                     <div class="col-md-3">
                                         <div class="product-item">
                                             <div class="pi-img-wrapper">
-                                                <img src="{{url('public/images/defaultImg/002.jpg')}}" class="img-responsive" alt="Berry Lace Dress">
+                                                @if(is_file(public_path('uploads/manufacture/banners/').'/'.$clients->banner) && file_exists(public_path('uploads/manufacture/banners/').'/'.$clients->banner))
+                                                <img class="p_list_de img-responsive" style="background-image: url('{{url('public/uploads/manufacture/banners/')}}/{{$clients->banner}}');">
+                                                @else
+                                                    <img src="{{url('public/images/defaultImg/002.jpg')}}" class="img-responsive" alt="{{$clients->company_name}}">
+                                                @endif
                                                 <div>
                                                     {{--<a href="#" class="btn">Zoom</a>--}}
-                                                    <a href="{{url('product')}}" class="btn">View Details</a>
+                                                    <a href="{{url('manufacturers').'/'.$ManufactureOverView = $clients->slug}}" class="btn" title="{{$clients->company_name}}">View Details</a>
                                                 </div>
                                             </div>
                                             <div class="kb_c_name">
-                                                <h2 class="product_title"><a href="{{url('product')}}">{{str_limit($clients->company_name,80)}}</a></h2>
-                                                <div class="pi-price"><i class="fa fa-map-marker"></i> {{$clients->company_address}}</div>
+                                                <h2 class="product_title" title="{{$clients->company_name}}"><a href="{{url('manufacturers').'/'.$ManufactureOverView = $clients->slug}}" title="{{$clients->company_name}}">{{str_limit($clients->company_name,80)}}</a></h2>
+                                                <div class="pi-price" title="{{$clients->company_address}}"><i class="fa fa-map-marker" {{$clients->company_address}}></i> {{$clients->company_address}}</div>
                                                 <div class="clearfix"></div>
                                             </div>
-                                            <div class="sticker sticker-new"></div>
+                                            @if(date('Y-m',strtotime($clients->created_at)) == date('Y-m'))
+                                                <div class="sticker sticker-new"></div>
+                                            @endif
                                         </div>
                                     </div>
 
@@ -216,6 +224,39 @@
                                        </a>
                                    @endforeach
                                </div>
+                           </div>
+                       </div>
+                       {{--Product List--}}
+                   </div>
+               </div>
+           </div>
+        </div>
+
+        <div class="t_f_c_lis">
+           <div class="content feature_search_kb">
+               <div class="row">
+                   <div class="col-md-12">
+                       <div class="top_feature">
+                           <h4>Find Location</h4>
+                       </div>
+                       <div class="content">
+                           <div class="block-content block-content-full">
+                               <form action="be_forms_plugins.html" method="POST" onsubmit="return false;">
+                                   <div class="form-group">
+                                       <select class="js-select2 form-control" id="example-select2" name="example-select2" style="width: 100%;" data-placeholder="Choose one..">
+                                           <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                           <option value="1">HTML</option>
+                                           <option value="2">CSS</option>
+                                           <option value="3">JavaScript</option>
+                                           <option value="4">PHP</option>
+                                           <option value="5">MySQL</option>
+                                           <option value="6">Ruby</option>
+                                           <option value="7">Angular</option>
+                                           <option value="8">React</option>
+                                           <option value="9">Vue.js</option>
+                                       </select>
+                                   </div>
+                               </form>
                            </div>
                        </div>
                        {{--Product List--}}

@@ -17,7 +17,7 @@
                         <b> Category: -</b>
                         @php $alphas = \App\Alphabate::orderBy('name')->get(); @endphp
                         @foreach($alphas as $alpha)
-                            <a href="{{url('browse-by-alphabates').'/list_'.$alpha->name}}">{{$alpha->name}}</a>
+                            <a href="{{url('browse-by-alphabates').'/list_'.$alpha->name}}" @if($alpha_id->id == $alpha->id) class="active" @endif>{{$alpha->name}}</a>
                         @endforeach
                     </div>
                 </div>

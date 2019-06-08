@@ -7,8 +7,23 @@
                         <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-right">
                             {{--Crafted with <i class="fa fa-heart text-danger"></i> by <a class="font-w600" href="#" target="_blank">Ganesh</a>--}}
                         </div>
+                        <div class="col-sm-2 order-sm-1 py-1 text-center text-sm-left">
+                            <a class="" href="https://khojbiz.com" target="_blank">Khoj Biz</a> &copy; <span data-toggle="year-copy">2018</span>
+                        </div>
                         <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
-                            <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">Khoj Biz</a> &copy; <span data-toggle="year-copy">2018</span>
+                            <div class="f_kb_link">
+                                <a class="" href="https://khojbiz.com" target="_blank">Emergency Number </a>
+                                <a class="" href="{{url('buying-selling')}}" target="_blank">Buying & Selling</a>
+                                <a class="" href="https://khojbiz.com" target="_blank">E - Catalog</a>
+                                <a class="" href="https://khojbiz.com" target="_blank">Bio-Directory </a>
+                                <a class="" href="https://khojbiz.com" target="_blank">Feedback</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 order-sm-1 py-1 text-center text-sm-left">
+                            <P>follow us:
+                                <a href="#"> <i class="fab fa-facebook-f"></i></a>
+                                <a href="#"> <i class="fab fa-linkedin"></i></a>
+                                <a href="#"> <i class="fab fa-twitter"></i></a></P>
                         </div>
                     </div>
                 </div>
@@ -100,9 +115,11 @@
 <!-- Page JS Code -->
 <script src="{{url('public/frontend')}}/assets/js/pages/be_pages_dashboard.min.js"></script>
 <script src="{{url('public/frontend')}}/assets/js/plugins/slick-carousel/slick.min.js"></script>
+            <script src="{{url('public/frontend/assets/js/plugins/select2/js/select2.full.min.js')}}"></script>
 
 <!-- Page JS Helpers (Slick Slider Plugin) -->
-<script>jQuery(function(){ One.helpers('slick'); });</script>
+<script>jQuery(function(){ One.helpers('slick','select2'); });</script>
+            <script>jQuery(function(){ One.helpers(['datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']); });</script>
 </body>
 </html>
 

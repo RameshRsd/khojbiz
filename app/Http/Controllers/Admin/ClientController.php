@@ -6,6 +6,7 @@ use App\Alphabate;
 use App\Category;
 use App\Client\Client;
 use App\District;
+use App\Menufacture\ManufactureWiseCategory;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -24,6 +25,7 @@ class ClientController extends Controller
         $title = 'Create New Client - Admin-Panel | khojbiz.com';
         $districts = District::orderBy('name','ASC')->get();
         $category = Category::orderBy('name','ASC')->get();
+
         $alpha = Alphabate::orderBy('name')->get();
         return view('admin.client.create',compact('title','districts','category','alpha'));
     }
@@ -38,7 +40,7 @@ class ClientController extends Controller
         ]);
         /*=========== Creating User ============ */
         $user = New User();
-        $user->name = $request->name;
+        $user->name = strtolower($request->name);
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->type = 'client';
@@ -55,6 +57,7 @@ class ClientController extends Controller
             $client->website = $request->website;
             $client->map_link = $request->map_link;
             $client->client_type = $request->client_type;
+            $client->company_nature = 'business';
             $client->company_profile = $request->company_profile;
             $client->district_id = $request->district_id;
             $client->alpha_id = $request->alpha_id;
@@ -79,6 +82,14 @@ class ClientController extends Controller
             }
 
             $client->save();
+            foreach(\request('cat_id') as $key => $value){
+                if ((ManufactureWiseCategory::where('cat_id',$value)->where('client_id',$client->id)->count())==0){
+                    $menu_wise_cat = ManufactureWiseCategory::firstOrNew(['cat_id'=>$value,'client_id'=>$client->id]);
+                    $menu_wise_cat->save();
+                }else{
+                    return redirect()->back()->with('error', 'Already Uses');
+                }
+            }
             return redirect('admin/category-wise-client')->with('success','Client Created Successfully !');
         }
     }
@@ -104,6 +115,7 @@ class ClientController extends Controller
         $client->mobile = $request->mobile;
         $client->ofc_tel_no = $request->ofc_tel_no;
         $client->client_type = $request->client_type;
+        $client->company_nature = 'business';
         $client->company_profile = $request->company_profile;
         $client->district_id = $request->district_id;
         $client->alpha_id = $request->alpha_id;

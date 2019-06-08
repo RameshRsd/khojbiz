@@ -85,7 +85,7 @@
                                         <td>{{$client->password}}</td>
                                         <td>
                                             <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
-                                            <a href="{{url('admin/list-clients/client_id=').$client->id.'/edit'}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="{{url('admin/list-manufacturers/manufacture_id=').$client->id.'/edit'}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

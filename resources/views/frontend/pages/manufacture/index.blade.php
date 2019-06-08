@@ -649,27 +649,27 @@
                     <div class="col-md-8 col-xl-8">
                         <div class="profile_kb_b">
                             <!-- Hero -->
-                            @if(is_file(public_path('uploads/banners/').'/'.$client->banner) && file_exists(public_path('uploads/banners/').'/'.$client->banner))
-                                <div class="bg-image" style="background-image: url('{{url('public/uploads/banners/')}}/{{$client->banner}}');">
-                                    @else
-                                        <div class="bg-image" style="background-image: url('{{url('public/images/defaultImg/default_banner.jpg')}}');">
+                            @if(is_file(public_path('uploads/manufacture/banners/').'/'.$client->banner) && file_exists(public_path('uploads/manufacture/banners/').'/'.$client->banner))
+                                <div class="bg-image" style="background-image: url('{{url('public/uploads/manufacture/banners/')}}/{{$client->banner}}');">
+                            @else
+                                <div class="bg-image" style="background-image: url('{{url('public/images/defaultImg/default_banner.jpg')}}');">
+                            @endif
+                                <div class="bg-black-80">
+                                    <div class="content content-full text-center">
+                                        <div class="my-3">
+                                            @if(is_file(public_path('uploads/manufacture/logos/').'/'.$client->logo) && file_exists(public_path('uploads/manufacture/logos/').'/'.$client->logo))
+                                                <img class="img-avatar img-avatar-thumb" src="{{url('public/uploads/manufacture/logos/').'/'.$client->logo}}" alt="">
+                                            @else
+                                                <img class="img-avatar" src="{{url('public/images/defaultImg/logo.png')}}" alt="">
                                             @endif
-                                            <div class="bg-black-80">
-                                                <div class="content content-full text-center">
-                                                    <div class="my-3">
-                                                        @if(is_file(public_path('uploads/manufacture/logos/').'/'.$client->logo) && file_exists(public_path('uploads/manufacture/logos/').'/'.$client->logo))
-                                                            <img class="img-avatar img-avatar-thumb" src="{{url('public/uploads/manufacture/logos/').'/'.$client->logo}}" alt="">
-                                                        @else
-                                                            <img class="img-avatar" src="{{url('public/images/defaultImg/logo.png')}}" alt="">
-                                                        @endif
-                                                    </div>
-                                                    <h1 class="h2 text-white mb-0" title="{{$client->company_name}}">{{$client->company_name}}</h1>
-                                                    <span class="text-white-75" title="{{$client->company_address}}">{{$client->company_address}}</span>
-                                                </div>
-                                            </div>
                                         </div>
-                                        <!-- END Hero -->
+                                        <h1 class="h2 text-white mb-0" title="{{$client->company_name}}">{{$client->company_name}}</h1>
+                                        <span class="text-white-75" title="{{$client->company_address}}">{{$client->company_address}}</span>
+                                    </div>
                                 </div>
+                            </div>
+                            <!-- END Hero -->
+                          </div>
                         <!-- Updates -->
                         <ul class="timeline timeline-alt py-0">
                             <li class="timeline-event">
@@ -749,6 +749,25 @@
                     <div class="col-md-4 col-xl-4">
                         <!-- Products -->
                         <div class="block">
+                            <div class="block-content">
+                                <div class="media d-flex align-items-center push">
+                                    <div class="mr-3">
+                                            <i class="fa fa-shopping-basket fa-2x"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="font-w600"><p class="product-description">SHARE IT:
+                                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                                <a href="#"><i class="fab fa-twitter"></i></a></p></div>
+                                       <h2>
+                                           <button type="button" class="btn btn-sm btn-primary push" data-toggle="modal" data-target="#modal-block-popin">Order By Phone</button>
+                                       </h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Products -->
+                        <!-- Products -->
+                        <div class="block">
                             <div class="block-header block-header-default">
                                 <h3 class="block-title">
                                     <i class="fa fa-pray text-muted mr-1"></i> Contact
@@ -762,7 +781,7 @@
                             <div class="block-content">
                                 <div class="media d-flex align-items-center push">
                                     <div class="mr-3">
-                                            <i class="si si-control-end fa-1x"></i>
+                                        <i class="si si-control-end fa-1x"></i>
                                     </div>
                                     <div class="media-body">
                                         <div class="font-w600">{{$client->company_name}}</div>
@@ -831,7 +850,70 @@
 
         </main>
         <!-- END Main Container -->
-
+        <!-- Order by Mobile -->
+        <div class="modal fade" id="modal-block-popin" tabindex="-1" role="dialog" aria-labelledby="modal-block-popin" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-popin" role="document">
+                <div class="modal-content">
+                    <div class="block block-themed block-transparent mb-0">
+                        <div class="block-header bg-primary-dark">
+                            <h3 class="block-title">Order by Call - Your information (We will call you back shortly)</h3>
+                            <div class="block-options">
+                                <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                    <i class="fa fa-fw fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="block-content font-size-sm">
+                            <form action="">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <div class="input-group form-group">
+                                            <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        Name
+                                                    </span>
+                                            </div>
+                                            <input type="text" class="form-control" id="example-group1-input1" name="example-group1-input1">
+                                        </div>
+                                        <div class="input-group form-group">
+                                            <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        Email*
+                                                    </span>
+                                            </div>
+                                            <input type="text" class="form-control" id="example-group1-input1" name="example-group1-input1">
+                                        </div>
+                                        <div class="input-group form-group">
+                                            <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        Phone*
+                                                    </span>
+                                            </div>
+                                            <input type="text" class="form-control" id="example-group1-input1" name="example-group1-input1">
+                                        </div>
+                                        <div class="input-group form-group">
+                                            <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                       Note
+                                                    </span>
+                                            </div>
+                                            <textarea name="" id="example-group1-input1" class="form-control" cols="3" rows="1"></textarea>
+                                        </div>
+                                        <div class="input-group form-group">
+                                            <button type="submit" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="block-content block-content-full text-right border-top">
+                            <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Order By Mobile -->
         <!-- Apps Modal -->
         <!-- Opens from the modal toggle button in the header -->
         <div class="modal fade" id="one-modal-apps" tabindex="-1" role="dialog" aria-labelledby="one-modal-apps" aria-hidden="true">

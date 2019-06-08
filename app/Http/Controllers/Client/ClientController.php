@@ -11,7 +11,7 @@ class ClientController extends Controller
 {
    public function index(){
        $client = Client::where('user_id',Auth::user()->id)->firstOrFail();
-       return view('frontend.pages.client.dashboard',compact('client'));
+       return view('frontend.pages.client.profile.index',compact('client'));
    }
 
 }

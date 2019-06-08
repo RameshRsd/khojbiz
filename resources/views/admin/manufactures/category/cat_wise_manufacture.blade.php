@@ -104,21 +104,21 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($client as $clients )
                                         <tr>
-                                            @foreach($client as $clients )
                                             <td>
                                                 {{$clients->company_name}}
                                             </td>
-                                            @endforeach
-                                            @foreach($categories as $category)
-                                            <td>
-                                                {{$category->name}}
-                                            </td>
+                                                <td>
+                                            @foreach($clients->manufacture_wise_category as $category)
+                                                {{$category->category->name}},
                                                 @endforeach
+                                            </td>
                                             <td>
                                                 <button type="submit" class="btn btn-primary btn-sm">Create</button>
                                             </td>
                                         </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
 

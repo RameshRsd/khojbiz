@@ -15,6 +15,7 @@ Route::get('','HomeController@index');
 Route::get('profile','User\ApplicationController@profile');
 Route::get('search','User\ApplicationController@search');
 Route::get('product','User\ApplicationController@product');
+Route::get('buying-selling','User\ApplicationController@buying_selling');
 
 //Auth::routes();
 
@@ -89,6 +90,9 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::get('list-manufacturers','ManufactureCompany\ManufactureCompanyController@index');
     Route::get('create-manufacturers','ManufactureCompany\ManufactureCompanyController@create');
     Route::post('create-manufacturers','ManufactureCompany\ManufactureCompanyController@store');
+    Route::get('list-manufacturers/manufacture_id={id}/edit','ManufactureCompany\ManufactureCompanyController@edit');
+    Route::post('list-manufacturers/manufacture_id={id}/edit','ManufactureCompany\ManufactureCompanyController@update');
+
     Route::get('add-category-of-manufacturers/menu={id}/edit','ManufactureCompany\ManufactureCategoryController@edit');
     Route::post('add-category-of-manufacturers/menu={id}/edit','ManufactureCompany\ManufactureCategoryController@update');
     /* ============================== create-of-manufacturers end========================================= */
@@ -180,4 +184,8 @@ Route::group(['middleware'=>['staff','verified'],'prefix'=>'staff','namespace'=>
 
 
 
-Route::any('{slug}','User\ApplicationController@overview');
+Route::any('{UserName}','User\ApplicationController@overview');
+Route::any('{slug}/about-us','User\ApplicationController@about_us');
+Route::any('{slug}/profile','User\ApplicationController@client_profile');
+Route::any('{slug}/product-and-service','User\ApplicationController@product_and_service');
+Route::any('manufacturers/{slug}','Admin\ManufactureCompany\ManufactureCompanyController@manufacturing');
