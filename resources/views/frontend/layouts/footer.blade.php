@@ -105,7 +105,20 @@
 
     </div>
 <!-- END Page Container -->
-<script src="{{url('public/frontend')}}/assets/js/oneui.core.min.js"></script>
+@yield('script')
+            <script type="text/javascript">
+                $('#place_name').autocomplete({
+                    source:'{{url('place_name')}}',
+                    minlength:1,
+                    autoFocus:true,
+                    select:function(e,ui)
+                    {
+                        $('#place_name').val(ui.item.value);
+                    }
+                });
+            </script>
+
+            <script src="{{url('public/frontend')}}/assets/js/oneui.core.min.js"></script>
 
 <script src="{{url('public/frontend')}}/assets/js/oneui.app.min.js"></script>
 
@@ -115,9 +128,10 @@
 <!-- Page JS Code -->
 <script src="{{url('public/frontend')}}/assets/js/pages/be_pages_dashboard.min.js"></script>
 <script src="{{url('public/frontend')}}/assets/js/plugins/slick-carousel/slick.min.js"></script>
-            <script src="{{url('public/frontend/assets/js/plugins/select2/js/select2.full.min.js')}}"></script>
+<script src="{{url('public/frontend/assets/js/plugins/select2/js/select2.full.min.js')}}"></script>
 
-<!-- Page JS Helpers (Slick Slider Plugin) -->
+
+            <!-- Page JS Helpers (Slick Slider Plugin) -->
 <script>jQuery(function(){ One.helpers('slick','select2'); });</script>
             <script>jQuery(function(){ One.helpers(['datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']); });</script>
 </body>

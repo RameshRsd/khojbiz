@@ -1,15 +1,15 @@
 @section('header')
     <!-- Header -->
-    <header id="page-header">
+    <header id="page-header" style="background-color: #fff;">
         <!-- Header Content -->
         <div class="content-header">
             <!-- Left Section -->
             <div class="d-flex align-items-center">
                 <!-- Toggle Sidebar -->
                 <!-- Apps Modal -->
-                {{--<a href="{{url('')}}">--}}
-                    {{--<img src="{{url('public/images/defaultImg/khojbiz_logo.png')}}" alt="" width="100">--}}
-                {{--</a> &nbsp;--}}
+                <a href="{{url('')}}">
+                    <img src="{{url('public/images/defaultImg/khojbiz_logo.png')}}" alt="" width="100">
+                </a> &nbsp;
                 <!-- Opens the Apps modal found at the bottom of the page, after footer’s markup -->
                 <button type="button" class="btn btn-sm btn-dual mr-2" data-toggle="modal" data-target="#one-modal-apps">
                     <i class="si si-grid"></i>

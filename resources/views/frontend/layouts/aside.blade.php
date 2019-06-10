@@ -44,6 +44,12 @@
 
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+    @yield('style')
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
     <link rel="shortcut icon" href="{{url('public/frontend')}}/assets/media/favicons/favicon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="{{url('public/frontend')}}/assets/media/favicons/favicon-192x192.png">
     <link rel="apple-touch-icon" sizes="180x180" href="{{url('public/frontend')}}/assets/media/favicons/apple-touch-icon-180x180.png">

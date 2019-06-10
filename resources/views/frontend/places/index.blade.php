@@ -53,7 +53,7 @@
                 </button>
                 <!-- END Toggle Sidebar -->
                 <a href="{{url('')}}">
-                    <img src="{{url('public/images/defaultImg/khojbiz_logo.png')}}" alt="" width="100">
+                    <img src="{{url('public/images/defaultImg/khojbiz_logo.png')}}" alt="" width="80">
                 </a> &nbsp;
                 <!-- Apps Modal -->
                 <!-- Opens the Apps modal found at the bottom of the page, after footer’s markup -->
@@ -254,65 +254,98 @@
             <div class="row">
                 <div class="col-md-7 col-xl-8">
                     {{--Search--}}
-                    <form class="example" action="" method="get">
-                        <input type="text" placeholder="Search.." value="{{request('keyword')}}" name="keyword">
-                        <button type="submit"><i class="fa fa-search"></i></button>
+                    <form action="{{url('places')}}" method="get">
+                        <div class="row">
+                            <div class="col-5">
+                                <input type="text" class="form-control" id="place_name" value="{{request('place_name')}}" onchange="javascript:this.form.submit();" name="place_name" placeholder="Type Place Name">
+                            </div>
+                            <div class="col-4">
+                                <select type="text" class="form-control" id="place_category" onchange="javascript:this.form.submit();" name="place_category">
+                                    <option value="">Choose Category..</option>
+                                    @foreach($location_categories as $location_category)
+                                        <option value="{{$location_category->slug}}" @if(request('place_category')==$location_category->slug) selected @endif>{{$location_category->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-3">
+                                <select type="text" class="form-control" id="short_by" onchange="javascript:this.form.submit();" name="short_by">
+                                    <option value="">Short By</option>
+                                    @foreach($alpho_shorts as $alpho_short)
+                                        <option value="{{$alpho_short->name}}" @if(request('short_by')==$alpho_short->name) selected @endif>{{$alpho_short->name}} (Short By)</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </form>
                     <br>
                     {{--Search end--}}
                     <!-- Updates -->
                     <ul class="timeline timeline-alt py-0">
-                        @foreach($clients as $client)
+                        @if(count($places)>0)
+                        @foreach($places as $place)
                         <li class="timeline-event">
                                 <div class="timeline-event-icon bg-modern">
-                                    <i class="fa fa-briefcase"></i>
+                                    <i class="fa fa-map"></i>
                                 </div>
                                 <div class="timeline-event-block block invisible" data-toggle="appear">
                                     <div class="a_li_d">
-                                        <div class="row">
-                                            <div class="col-2 l_a_lo">
-                                                @if(is_file(public_path('uploads/logos/').'/'.$client->logo) && file_exists(public_path('uploads/logos/').'/'.$client->logo))
-                                                    <img class="img-avatar" src="{{url('public/uploads/logos/').'/'.$client->logo}}" alt="">
+                                        <div class="row listing_wrap">
+                                            <div class="col-4">
+                                                @if(is_file(public_path('uploads/location_image/').'/'.$place->image) && file_exists(public_path('uploads/location_image/').'/'.$place->image))
+                                                    <img  src="{{url('public/uploads/location_image/').'/'.$place->image}}" alt="" style="width: 100%;">
                                                 @else
-                                                    <img class="img-avatar" src="{{url('public/images/defaultImg/logo.png')}}" alt="">
+                                                    <img  src="{{url('public/images/defaultImg/logo.png')}}" alt="">
                                                 @endif
 
                                             </div>
-                                            <div class="col-10 l_a_c_l">
+                                            <div class="col-8 l_a_c_l">
                                                 <ul>
                                                     <li><h2 class="a_li_d_p">
-                                                            {{$client->company_name}}
+                                                            <a >{{$place->name}}</a>
                                                         </h2></li>
                                                     <li><i class="fa fa-building"></i>
-                                                        @foreach($client->client_category as $category)
-                                                            <a href="{{url('search?cat=').$category->category->slug}}" class="cat_kb_b">{{$category->category->name}}</a>
-                                                            @endforeach
+                                                    <a href="{{url('places?place_category=').$place->category->slug}}" class="cat_kb_b">{{$place->category->name}}</a>
                                                     </li>
-                                                    <li> <i class="fa fa-user"></i> <b>{{$client->company_head}}, {{$client->mobile}}</b></li>
-                                                    <li><a href="{{url('search?keyword=').$client->company_address}}"><i class="fa fa-map-marker"></i>  {{$client->company_address}}</a></li>
+                                                    <li><a href="{{url('places?place_location=').$place->address}}"><i class="fa fa-map-marker"></i>  {{$place->address}}</a></li>
+                                                    <li><i class="fa fa-phone"></i> {{$place->contact}}</li>
+                                                    <li><a href="{{$place->website}}" target="_blank"><i class="fa fa-globe"></i> {{$place->website}}</a></li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="a_li_d_i_fo_con">
-                                       <h6><b><i class="fa fa-phone"></i> {{$client->ofc_tel_no}}</b>
-                                        <a href="#"><i class="fa fa-envelope"></i> {{$client->user->email}}</a>
-                                        <a href="#"><i class="fa fa-globe"></i> {{$client->website}}</a>
-                                        <a href="{{url('profile')}}"> View Profile</a>
-                                       </h6>
-                                    </div>
                                     <div class="a_li_d_i_bot">
-                                        <a href="#"><i class="fa fa-location-arrow"></i> Like Us</a>
-                                        <a href="#">Claimed</a>
-                                        <a href="#"><i class="fa fa-envelope"></i> Send SMS</a>
-                                        <a href="#">Improve Listing</a>
+                                        <a href="#"><i class="fa fa-thumbsup"></i> Like</a>
+                                        <a href="#"><i class="fa fa-comment"></i> Review</a>
                                         <a href="#"><i class="fa fa-eye"></i> 3232</a>
-                                        <a href="#"><i class="fa fa-search"></i> 858585</a>
+                                    </div>
+                                </div>
+
+                                <div  id="my_detail" style="display: none;">
+                                    <div class="timeline-event-block block invisible" data-toggle="appear">
+                                        <div class="a_li_d">
+                                            <div class="row">
+                                                <div class="col-12 l_a_c_l">
+                                                    <ul>
+                                                        <li><h2 class="a_li_d_p">
+                                                                <a>{{$place->name}}</a>
+                                                            </h2></li>
+                                                        <li><i class="fa fa-building"></i>
+                                                            <a href="{{url('places?place_category=').$place->category->slug}}" class="cat_kb_b">{{$place->category->name}}</a>
+                                                        </li>
+                                                        <li><a href="{{url('places?place_location=').$place->address}}"><i class="fa fa-map-marker"></i>  {{$place->address}}</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
                             @endforeach
-
+                            @else
+                            <li  class="timeline-event" style="text-align: center; color:Red;">
+                                Record Not Found !!
+                            </li>
+                        @endif
                     </ul>
                     <!-- END Updates -->
                 </div>

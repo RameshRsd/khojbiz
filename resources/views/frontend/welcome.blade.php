@@ -237,24 +237,35 @@
                <div class="row">
                    <div class="col-md-12">
                        <div class="top_feature">
-                           <h4>Find Location</h4>
+                           <h4>Find Locations</h4>
                        </div>
-                       <div class="content">
-                           <div class="block-content block-content-full">
-                               <form action="be_forms_plugins.html" method="POST" onsubmit="return false;">
-                                   <div class="form-group">
-                                       <select class="js-select2 form-control" id="example-select2" name="example-select2" style="width: 100%;" data-placeholder="Choose one..">
-                                           <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                           <option value="1">HTML</option>
-                                           <option value="2">CSS</option>
-                                           <option value="3">JavaScript</option>
-                                           <option value="4">PHP</option>
-                                           <option value="5">MySQL</option>
-                                           <option value="6">Ruby</option>
-                                           <option value="7">Angular</option>
-                                           <option value="8">React</option>
-                                           <option value="9">Vue.js</option>
-                                       </select>
+                       <div class="block">
+                           <div class="block-content fe_cli_logo_all">
+                               <form action="{{url('places')}}" method="get">
+                                   <div class="row">
+                                       <div class="col-5">
+                                           <input type="text" class="form-control" id="place_name"  name="place_name" placeholder="Type Place Name">
+                                       </div>
+                                       <div class="col-5">
+                                           <select type="text" class="form-control" id="place_category" name="place_category">
+                                               <option value="">Choose Category..</option>
+                                               @foreach($location_categories as $location_category)
+                                                   <option value="{{$location_category->slug}}">{{$location_category->name}}</option>
+                                                   @endforeach
+                                           </select>
+                                       </div>
+                                       <div class="col-2">
+                                           <button class="btn btn-submit pull-right" type="submit">Search</button>
+                                       </div>
+                                       <div class="col-12" style="margin:20px 0;">
+                                           <div class="all_category">
+                                               <b> OR<br>Short By:-</b>
+                                               @php $alphas = \App\Alphabate::orderBy('name')->get(); @endphp
+                                               @foreach($alphas as $alpha)
+                                                   <a href="{{url('places?short_by=').$alpha->name}}">{{$alpha->name}}</a>
+                                               @endforeach
+                                           </div>
+                                       </div>
                                    </div>
                                </form>
                            </div>
@@ -264,7 +275,22 @@
                </div>
            </div>
         </div>
+
     </main>
     <!-- END Main Container -->
 
     @endsection
+{{--@section('script')--}}
+    {{--<script type="text/javascript">--}}
+        {{--$('#place_name').autocomplete({--}}
+            {{--source:'{{url('place_name')}}',--}}
+            {{--minlength:1,--}}
+            {{--autoFocus:true,--}}
+            {{--select:function(e,ui)--}}
+            {{--{--}}
+                {{--$('#place_name').val(ui.item.value);--}}
+            {{--}--}}
+        {{--});--}}
+    {{--</script>--}}
+
+{{--@endsection--}}
