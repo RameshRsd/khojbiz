@@ -88,6 +88,21 @@
                         <li class="<?php if(request()->segment('2') =='category-wise-manufactures'){ echo 'active' ;} ?>"><a href="{{url('admin/category-wise-manufactures')}}"><i class="fa fa-circle-o"></i>Category Wise Manufacturers</a></li>
                     </ul>
                 </li>
+                <li class="treeview  <?php if(request()->segment('2') =='list-product' || request()->segment('2') =='add-new-product' || request()->segment('2') =='claim-product' || request()->segment('2') =='add-product-category'|| request()->segment('2') =='add-sub-category'|| request()->segment('2') =='category-wise-client'){ echo 'active menu-open' ;} ?>">
+                    <a href="#"><i class="fa fa-home"></i> <span>Product </span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class=" <?php if(request()->segment('2') =='list-product'){ echo 'active' ;} ?>"><a href="{{url('admin/list-product')}}"><i class="fa fa-circle-o"></i> Product Listing</a></li>
+                        <li class="<?php if(request()->segment('2') =='add-new-product'){ echo 'active' ;} ?>"><a href="{{url('admin/add-new-product')}}"><i class="fa fa-circle-o"></i> Add New Product</a></li>
+                        <li class="<?php if(request()->segment('2') =='claim-product'){ echo 'active' ;} ?>"><a href="{{url('admin/claim-product')}}"><i class="fa fa-circle-o"></i> Claim Listing <span style="padding:5px; font-size: 10px; color:deepskyblue;">(10)</span></a></li>
+                        <li class="<?php if(request()->segment('2') =='add-product-category'){ echo 'active' ;} ?>"><a href="{{url('admin/add-product-category')}}"><i class="fa fa-circle-o"></i> Add Category</a></li>
+                        <li class="<?php if(request()->segment('2') =='add-sub-category'){ echo 'active' ;} ?>"><a href="{{url('admin/add-sub-category')}}"><i class="fa fa-circle-o"></i> Add Sub Category</a></li>
+                        <li class="<?php if(request()->segment('2') =='category-wise-client'){ echo 'active' ;} ?>"><a href="{{url('admin/category-wise-client')}}"><i class="fa fa-circle-o"></i>Category Wise Client</a></li>
+                    </ul>
+                </li>
                 <li class="treeview  <?php if(request()->segment('2') =='list-events' || request()->segment('2') =='event-request'  || request()->segment('2') =='create-event' || request()->segment('2') =='categories'){ echo 'active menu-open' ;} ?>">
                     <a href="#"><i class="fa fa-calendar-times-o"></i> <span>Event & Training</span>
                         <span class="pull-right-container">

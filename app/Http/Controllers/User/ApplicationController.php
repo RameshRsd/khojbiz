@@ -76,8 +76,9 @@ class ApplicationController extends Controller
         }
         return view('frontend.pages.client.pages.about_us',compact('title','client','ads','side_ads','category','discription','image'));
     }
-    public function client_profile($slug){
-        $client =Client::where('slug',$slug)->firstOrFail();
+    public function client_profile($UserName){
+        $user = User::where('name',$UserName)->firstOrFail();
+        $client =Client::where('user_id',$user->id)->firstOrFail();
         $ads = Advertisement::where('status','active')->where('type','top')->where('status','active')->get();
         $side_ads = Advertisement::where('status','active')->where('type','general')->where('status','active')->get();
         $category =Category::all();

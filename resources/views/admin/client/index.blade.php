@@ -69,8 +69,20 @@
                                     <tr>
                                         <td>{{++$key}}</td>
                                         <td>{{$client->company_name}}</td>
-                                        <td>{{$client->company_address}}, {{$client->country->name}}</td>
-                                        <td>{{$client->name}}</td>
+                                        <td>{{$client->company_address}}</td>
+                                        <td>
+                                            <div class="input-group-btn btn-sm">
+                                                <button type="button" class="btn btn-warning btn-xs dropdown-toggle" data-toggle="dropdown">Action
+                                                    <span class="fa fa-caret-down"></span></button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="{{url('admin').'/'.$client->user->name.'/edit-about'}}">About Us</a></li>
+                                                    <li><a href="#">Profile</a></li>
+                                                    <li><a href="#">Product & Service</a></li>
+                                                    <li><a href="#">Image Gallery</a></li>
+                                                    <li><a href="{{url('admin/list-clients/client_id=').$client->id.'/edit_contact'}}">Contact Us</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
                                         <td>{{$client->mobile}}</td>
                                         <td>
                                             @if($client->client_type=='sponser')

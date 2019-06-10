@@ -10,7 +10,7 @@
         {{--<!-- Side Header -->--}}
         {{--<div class="content-header border-bottom">--}}
         {{--<!-- User Avatar -->--}}
-        {{--<a class="img-link mr-1" href="javascript:void(0)">--}}
+        {{--<a class="img-link mr-1" href="javascript:void(0)"> q   --}}
         {{--<img class="img-avatar img-avatar32" src="assets/media/avatars/avatar10.jpg" alt="">--}}
         {{--</a>--}}
         {{--<!-- END User Avatar -->--}}
@@ -649,25 +649,6 @@
                         <div class="col-md-8 col-xl-8">
                             <div class="profile_kb_b">
                                 <!-- Hero -->
-                                @if(is_file(public_path('uploads/banners/').'/'.$client->banner) && file_exists(public_path('uploads/banners/').'/'.$client->banner))
-                                    <div class="bg-image" style="background-image: url('{{url('public/uploads/banners/')}}/{{$client->banner}}');">
-                                        @else
-                                            <div class="bg-image" style="background-image: url('{{url('public/images/defaultImg/default_banner.jpg')}}');">
-                                                @endif
-                                                <div class="bg-black-80">
-                                                    <div class="content content-full text-center">
-                                                        <div class="my-3">
-                                                            @if(is_file(public_path('uploads/manufacture/logos/').'/'.$client->logo) && file_exists(public_path('uploads/manufacture/logos/').'/'.$client->logo))
-                                                                <img class="img-avatar img-avatar-thumb" src="{{url('public/uploads/manufacture/logos/').'/'.$client->logo}}" alt="">
-                                                            @else
-                                                                <img class="img-avatar" src="{{url('public/images/defaultImg/logo.png')}}" alt="">
-                                                            @endif
-                                                        </div>
-                                                        <h1 class="h2 text-white mb-0" title="{{$client->company_name}}">{{$client->company_name}}</h1>
-                                                        <span class="text-white-75" title="{{$client->company_address}}">{{$client->company_address}}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <!-- END Hero -->
                                     </div>
                                     <!-- Updates -->
