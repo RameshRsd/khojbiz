@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Advertisement;
 use App\Category;
 use App\Client\Client;
+use App\Place\location;
+use App\Place\locationCategory;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +21,8 @@ class HomeController extends Controller
         $ads = Advertisement::where('status','active')->where('type','top')->where('status','active')->get();
         $side_ads = Advertisement::where('status','active')->where('type','general')->where('status','active')->get();
         $category =Category::orderBy('name','DESC')->limit(8)->get();
-        return view('frontend.welcome',compact('client','ads','side_ads','category','manufacture_client'));
+        $location_categories = locationCategory::orderBy('name')->get();
+        return view('frontend.welcome',compact('client','ads','side_ads','category','manufacture_client','location_categories'));
     }
     public function getLogin(){
         return view('auth.login');
@@ -72,6 +75,24 @@ class HomeController extends Controller
         $client->save();
         }
         return redirect('');
+    }
+    public function place_name(Request $request)
+    {
+        $term = $request->term;
+
+        $queries = location::where('name', 'like', '%'.$term.'%')->orderBy('id','DESC')->get();
+
+        foreach ($queries as $query)
+        {
+            $results[] = ['id' => $query->id, 'value' => $query->name]; //you can take custom values as you want
+        }
+        $resultsCount = $queries->count();
+        if ($resultsCount>0){
+            return response()->json($results);
+        }else{
+            $results[] = ['id' => 1, 'value' => 'Not Found']; //you can take custom values as you want
+            return response()->json($results);
+        }
     }
 
 }

@@ -16,11 +16,11 @@ Route::get('profile','User\ApplicationController@profile');
 Route::get('search','User\ApplicationController@search');
 Route::get('product','User\ApplicationController@product');
 Route::get('buying-selling','User\ApplicationController@buying_selling');
+Route::get('places','Place\LocationController@index');
+Route::get('place_name', array('as' => 'place_name', 'uses'=>'HomeController@place_name'));
 
 //Auth::routes();
-
 //Browse by alphabates //
-
 Route::group(['middleware'=>'guest'],function(){
     Route::get('login','HomeController@getLogin')->name('login');
     Route::post('login','HomeController@postLogin');
@@ -178,6 +178,19 @@ Route::group(['middleware'=>['staff','verified'],'prefix'=>'staff','namespace'=>
     Route::get('add-sub-category/sub_cat_id={id}/edit','SubCategoryController@edit');
     Route::post('add-sub-category/sub_cat_id={id}/edit','SubCategoryController@update');
     /* ==============================Sub Category End========================================= */
+
+
+    /* ==============================Location/Places========================================= */
+    Route::get('locations','LocationController@index');
+    Route::get('create-location','LocationController@create');
+    Route::post('create-location','LocationController@store');
+    Route::get('locations/{id}/edit','LocationController@edit');
+    Route::post('locations/{id}/edit','LocationController@update');
+
+    Route::get('locations-categories','LocationCategoryController@index');
+    Route::post('locations-categories','LocationCategoryController@store');
+    Route::post('location-category-update/{id}','LocationCategoryController@udpate');
+    /* ==============================Location/Places========================================= */
 });
 
 /* ================================================ Staff Controller  end ============================================================= */

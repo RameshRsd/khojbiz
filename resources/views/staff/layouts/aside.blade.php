@@ -72,6 +72,18 @@
                         <li class="<?php if(request()->segment('2') =='category-wise-client'){ echo 'active' ;} ?>"><a href="{{url('staff/category-wise-client')}}"><i class="fa fa-circle-o"></i>Category Wise Client</a></li>
                     </ul>
                 </li>
+                <li class="treeview  <?php if(request()->segment('2') =='locations' || request()->segment('2') =='create-location'){ echo 'active menu-open' ;} ?>">
+                    <a href="#"><i class="fa fa-map"></i> <span>Location/Places</span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class=" <?php if(request()->segment('2') =='locations'){ echo 'active' ;} ?>"><a href="{{url('staff/locations')}}"><i class="fa fa-circle-o"></i> Location/Places</a></li>
+                        <li class="<?php if(request()->segment('2') =='create-location'){ echo 'active' ;} ?>"><a href="{{url('staff/create-location')}}"><i class="fa fa-circle-o"></i> Create New</a></li>
+                        <li class=" <?php if(request()->segment('2') =='location-categories'){ echo 'active' ;} ?>"><a href="{{url('staff/locations-categories')}}"><i class="fa fa-circle-o"></i> Location Categories</a></li>
+                    </ul>
+                </li>
                 <li class="header">CONTACT</li>
                 <li class="treeview  <?php if(request()->segment('2') =='contacts'){ echo 'active menu-open' ;} ?>">
                     <a href="#"><i class="fa fa-envelope"></i> <span>Contacts</span>
