@@ -446,23 +446,7 @@
 
                         <!-- Search Form (visible on larger screens) -->
                         <ul class="header_nav_pro">
-                            <li>
-                                <a class="nav-link d-flex justify-content-between align-items-center active" href="{{url($client->slug.'/'.'about-us')}}">
-                                    About Us
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link d-flex justify-content-between align-items-center" href="{{url($client->user->name.'/'.'profile')}}">Profile </a>
-                            </li>
-                            <li>
-                                <a class="nav-link d-flex justify-content-between align-items-center" href="{{url($client->slug.'/'.'product-and-service')}}">Product & Service</a>
-                            </li>
-                            <li>
-                                <a class="nav-link d-flex justify-content-between align-items-center" href="">Image Gallery </a>
-                            </li>
-                            <li>
-                                <a class="nav-link d-flex justify-content-between align-items-center" href="">Contact Us </a>
-                            </li>
+                           @include('frontend.pages.client.pages.layouts.header')
                         </ul>
                         <!-- END Search Form -->
                     </div>
