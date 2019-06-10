@@ -7,6 +7,8 @@ use App\Category;
 use App\Client\Client;
 use App\Place\location;
 use App\Place\locationCategory;
+use App\Client\ClientAboutUs;
+use App\ClientContactUs;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -73,8 +75,26 @@ class HomeController extends Controller
         $client->password = \request('password');
         $client->client_type = 'free_listing';
         $client->save();
+
+        $client_about_us = new ClientAboutUs();
+        $client_about_us->client_id = $client->id;
+        $client_about_us->save();
         }
         return redirect('');
+    }
+    public function update_about(){
+        $clients = Client::all();
+        foreach ($clients as $client){
+            $client_about = new ClientAboutUs();
+            $client_about->client_id = $client->id;
+            $client_about->save();
+
+//            $client_contact = new ClientContactUs();
+//            $client_contact->client_id = $client->id;
+//            $client_contact->save();
+        }
+        return redirect('');
+
     }
     public function place_name(Request $request)
     {

@@ -19,6 +19,7 @@ Route::get('buying-selling','User\ApplicationController@buying_selling');
 Route::get('places','Place\LocationController@index');
 Route::get('place_name', array('as' => 'place_name', 'uses'=>'HomeController@place_name'));
 
+Route::get('update_client_about','HomeController@update_about');
 //Auth::routes();
 //Browse by alphabates //
 Route::group(['middleware'=>'guest'],function(){
@@ -124,8 +125,14 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::get('list-clients/client_id={id}/edit','ClientController@edit');
     Route::post('list-clients/client_id={id}/edit','ClientController@update');
     /* ============================== Client-Section ========================================= */
+    /* ============================== Client-Profile-Section ========================================= */
+    Route::get('{name}/edit-about','ClientProfile\ClientAboutUsController@edit_about');
+    Route::post('client/{id}/edit-about','ClientProfile\ClientAboutUsController@update_about');
+    Route::post('{name}/edit-profile','ClientProfile\ClientAboutUsController@add_profile');
 
-
+    Route::get('list-clients/client_id={id}/edit_contact','ClientProfile\ClientContactUsController@edit_contact');
+    Route::post('list-clients/client_id={id}/edit_contact','ClientProfile\ClientContactUsController@update_contact');
+    /* ============================== Client-Profile-Section ========================================= */
 
     /* ============================== Ads-Section ========================================= */
     Route::get('list-advets','AdsController@index');
@@ -135,6 +142,27 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::post('list-adverts/advert_id={id}/edit','AdsController@update');
     Route::get('list-adverts/advert_id={id}/delete','AdsController@delete');
     /* ============================== Jobs-Section ========================================= */
+
+    /* ============================== Product Buying Selling  ========================================= */
+    Route::get('list-product','ProductController@index');
+    Route::get('add-new-product','Product\ProductController@index');
+    Route::post('create-client','ClientController@store');
+    Route::get('list-clients/client_id={id}/edit','ClientController@edit');
+    Route::post('list-clients/client_id={id}/edit','ClientController@update');
+
+    /* ============================== Category-========================================= */
+    Route::get('add-product-category','Product\CategoryController@index');
+    Route::post('add-product-category','Product\CategoryController@store');
+    Route::post('add-product-category/cat_id={id}/edit','Product\CategoryController@update');
+
+    /* ============================== Category ========================================= */
+    /* ============================== Sell Automobiles ========================================= */
+    Route::get('sell-automobiles','Product\ProductController@index');
+    Route::get('sell-new-automobiles','Product\Automobiles\AutomobilesController@index');
+    /* ============================== Sell Automobiles ========================================= */
+
+    /* ============================== Product Buying Selling ========================================= */
+
 
     /* ============================== Candidate-Section ========================================= */
     Route::get('list-candidates','CandidateController@index');
@@ -198,7 +226,8 @@ Route::group(['middleware'=>['staff','verified'],'prefix'=>'staff','namespace'=>
 
 
 Route::any('{UserName}','User\ApplicationController@overview');
+Route::any('{UserName}/profile','User\ApplicationController@client_profile');
 Route::any('{slug}/about-us','User\ApplicationController@about_us');
-Route::any('{slug}/profile','User\ApplicationController@client_profile');
 Route::any('{slug}/product-and-service','User\ApplicationController@product_and_service');
 Route::any('manufacturers/{slug}','Admin\ManufactureCompany\ManufactureCompanyController@manufacturing');
+
