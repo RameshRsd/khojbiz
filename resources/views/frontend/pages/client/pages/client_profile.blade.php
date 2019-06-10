@@ -650,7 +650,7 @@
                             <div class="profile_kb_b">
                                 <!-- Hero -->
                                             <!-- END Hero -->
-                                    </div>
+                            </div>
                                     <!-- Updates -->
                                     <ul class="timeline timeline-alt py-0">
                                         <li class="timeline-event">
