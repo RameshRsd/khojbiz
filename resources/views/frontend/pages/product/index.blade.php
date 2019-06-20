@@ -3,73 +3,159 @@
     <link rel="stylesheet"  href="{{url('public/frontend/assets/css/product.css')}}">
     <!-- Main Container -->
     <main id="main-container">
-        <div class="content alfa_li_dd">
+        <div class="content sup_kb_pro_details">
             <div class="row">
-                <div class="card">
-                    <div class="container-fliud">
-                        <div class="wrapper row">
-                            <div class="preview col-md-5">
-
-                                <div class="preview-pic tab-content">
-                                    <div class="tab-pane active" id="pic-1"><img src="http://placekitten.com/400/252" /></div>
-                                    <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
-                                    <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
-                                    <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
-                                    <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+                <div class="col-md-8">
+                   <div class="copany_info_kb_de">
+                       <div class="row">
+                           <div class="col-md-3">
+                               <div class="company_name">
+                                   <div class="view-details-search-head">Company Name</div>
+                               </div>
+                           </div>
+                           <div class="col-md-9">
+                               <div class="company_name_kb">
+                                   <div class="view-details-search-matter">{{$products->product_name}}</div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="copany_info_kb_de">
+                       <div class="row">
+                           <div class="col-md-3">
+                               <div class="company_name">
+                                   <div class="view-details-search-head">Contact Person</div>
+                               </div>
+                           </div>
+                           <div class="col-md-9">
+                               <div class="company_name_kb">
+                                   <div class="view-details-search-matter">{{$products->contact_person}}</div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                    <div class="copany_info_kb_de">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="company_name">
+                                    <div class="view-details-search-head">Contact Number</div>
+                                    <div class="view-details-search-head">E-mail</div>
                                 </div>
-                                <ul class="preview-thumbnail nav nav-tabs">
-                                    <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-                                    <li><a data-target="#pic-2" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-                                    <li><a data-target="#pic-3" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-                                    <li><a data-target="#pic-4" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-                                    <li><a data-target="#pic-5" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-                                </ul>
-
                             </div>
-                            <div class="details col-md-4">
-                                <h3 class="product-title">men's shoes fashion</h3>
-                                <div class="rating">
-                                    <div class="stars">
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
+                            <div class="col-md-9">
+                                <div class="company_name_kb">
+                                    <div class="view-details-search-matter">{{$products->contact_no}}</div>
+                                    @if($products->email == 0)
+                                    <div class="view-details-search-matter">contact@khojbiz.com</div>
+                                    @else
+                                    <div class="view-details-search-matter">{{$products->email}}</div>
+                                        @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                   <div class="copany_info_kb_de">
+                       <div class="row">
+                           <div class="col-md-3">
+                               <div class="company_name">
+                                   <div class="view-details-search-head">Address</div>
+                               </div>
+                           </div>
+                           <div class="col-md-9">
+                               <div class="company_name_kb">
+                                   <div class="view-details-search-matter">{{$products->address}} </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+
+                    <div class="copany_info_kb_de">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="company_name">
+                                    <div class="view-details-search-head">Website</div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="company_name_kb">
+                                    @if($products->website == 0)
+                                    <div class="view-details-search-matter">NA</div>
+                                    @else
+                                    <div class="view-details-search-matter">{{$products->website}}</div>
+                                        @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="copany_info_kb_de">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="company_name">
+                                    <div class="view-details-search-head">Details</div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="company_name_kb">
+                                    <div class="view-details-search-matter">
+                                       {!! $products->product_details !!}
                                     </div>
-                                    <span class="review-no">41 reviews</span>
-                                </div>
-                                <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>
-                                <h4 class="price">current price: <span>$180</span></h4>
-                                <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
-                                <h5 class="sizes">sizes:
-                                    <span class="size" data-toggle="tooltip" title="small">s</span>
-                                    <span class="size" data-toggle="tooltip" title="medium">m</span>
-                                    <span class="size" data-toggle="tooltip" title="large">l</span>
-                                    <span class="size" data-toggle="tooltip" title="xtra large">xl</span>
-                                </h5>
-                                <h5 class="colors">colors:
-                                    <span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
-                                    <span class="color green"></span>
-                                    <span class="color blue"></span>
-                                </h5>
-                                <div class="action">
-                                    <button class="add-to-cart btn btn-default" type="button">add to cart</button>
-                                    <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
                                 </div>
                             </div>
-                            <div class="details col-md-2">
-                                <p class="product-description">SHARE IT:
-                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="#"><i class="fab fa-twitter"></i></a></p>
-                                <button type="button" class="btn btn-sm btn-primary push" data-toggle="modal" data-target="#modal-block-popin">Order By Phone</button>
-                                <h4 class="price">current price: <span>$180</span></h4>
-                                <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
-                                <h5 class="sizes">sizes:
-                                    <span class="size" data-toggle="tooltip" title="small">s</span>
-                                    <span class="size" data-toggle="tooltip" title="medium">m</span>
-                                    <span class="size" data-toggle="tooltip" title="large">l</span>
-                                    <span class="size" data-toggle="tooltip" title="xtra large">xl</span>
-                                </h5>
+                        </div>
+                    </div>
+                    <div class="copany_info_kb_de">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="company_name">
+                                    <div class="view-details-search-head">Our Product</div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="company_name_kb">
+                                    <div class="view-details-search-matter">
+                                        <div class="row">
+                                            @foreach($products->suppliers_product as $products)
+                                                <div class="col-6">
+                                                    <li><i class="fa fa-angle-right"></i> {{$products->category->name}} </li>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="block">
+                        <div class="block-header block-header-default">
+                            <h3 class="block-title">
+                                <i class="fa fa-briefcase text-muted mr-1"></i> Top Products
+                            </h3>
+                            <div class="block-options">
+                                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
+                                    <i class="si si-refresh"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="block-content">
+                            @foreach($top_product as $product)
+                            <div class="media d-flex align-items-center push">
+                                <div class="media-body">
+                                    <div class="font-w600"><a style="color: #0189cc!important;" href="{{url('companyinfo').'/'.$ProductOverView = $product->slug}}">{{$product->product_name}}</a></div>
+                                    <div class="font-size-sm">{{$product->address}}</div>
+                                    <div class="font-size-sm">
+                                        @foreach($product->top_product as $produt)
+                                        <a href="{{url('search_product?cat=').$produt->category->slug}}" class="badge badge-primary" style="color: #fff!important;">{{$produt->category->name}}</a>
+                                        @endforeach
+                                    </div>
+
+                                </div>
+                            </div>
+                            @endforeach
+                            <div class="text-center push">
+                                <button type="button" class="btn btn-sm btn-light"><a href="{{url('search_product?')}}">View More..</a></button>
                             </div>
                         </div>
                     </div>

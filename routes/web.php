@@ -14,6 +14,7 @@
 Route::get('','HomeController@index');
 Route::get('profile','User\ApplicationController@profile');
 Route::get('search','User\ApplicationController@search');
+Route::get('search_product','User\ApplicationController@search_product');
 Route::get('product','User\ApplicationController@product');
 Route::get('buying-selling','User\ApplicationController@buying_selling');
 Route::get('places','Place\LocationController@index');
@@ -30,6 +31,8 @@ Route::group(['middleware'=>'guest'],function(){
 
 });
 Route::get('browse-by-alphabates/list_{alpha}','AlphabateController@index');
+Route::get('product-by-alpha/list_{alpha}','AlphabateController@product_index');
+Route::get('manufacturers-browse-by-alphabet/list_{alpha}','AlphabateController@manufacture_alpha');
 Route::get('browse-by-category/{slug}','AlphabateController@category');
 Route::get('browse-by-category/list/{id}','CategoryController@list_category');
 
@@ -144,17 +147,18 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     /* ============================== Jobs-Section ========================================= */
 
     /* ============================== Product Buying Selling  ========================================= */
-    Route::get('list-product','ProductController@index');
-    Route::get('add-new-product','Product\ProductController@index');
-    Route::post('create-client','ClientController@store');
-    Route::get('list-clients/client_id={id}/edit','ClientController@edit');
-    Route::post('list-clients/client_id={id}/edit','ClientController@update');
+    Route::get('list-suppliers','Product\ProductController@index');
+    Route::get('add-new-suppliers','Product\ProductController@create');
+    Route::post('add-new-suppliers','Product\ProductController@store');
+    Route::get('list-suppliers/suppliers_id={id}/edit','Product\ProductController@edit_product');
+    Route::post('list-suppliers/suppliers_id={id}/edit','Product\ProductController@product_update');
 
     /* ============================== Category-========================================= */
     Route::get('add-product-category','Product\CategoryController@index');
     Route::post('add-product-category','Product\CategoryController@store');
     Route::post('add-product-category/cat_id={id}/edit','Product\CategoryController@update');
-
+    Route::get('product-wise-suppliers','Product\ProductWiseSuppliersController@index');
+    Route::post('product-wise-suppliers','Product\ProductWiseSuppliersController@store');
     /* ============================== Category ========================================= */
     /* ============================== Sell Automobiles ========================================= */
     Route::get('sell-automobiles','Product\ProductController@index');
@@ -162,8 +166,17 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     /* ============================== Sell Automobiles ========================================= */
 
     /* ============================== Product Buying Selling ========================================= */
+    /* ==============================Location/Places========================================= */
+    Route::get('locations','Location\LocationController@index');
+    Route::get('create-location','Location\LocationController@create');
+    Route::post('create-location','Location\LocationController@store');
+    Route::get('locations/{id}/edit','Location\LocationController@edit');
+    Route::post('locations/{id}/edit','Location\LocationController@update');
 
-
+    Route::get('locations-categories','Location\LocationCategoryController@index');
+    Route::post('locations-categories','Location\LocationCategoryController@store');
+    Route::post('location-category-update/{id}','Location\LocationCategoryController@udpate');
+    /* ==============================Location/Places========================================= */
     /* ============================== Candidate-Section ========================================= */
     Route::get('list-candidates','CandidateController@index');
     Route::get('list-candidates/candidate_id={id}/edit','CandidateController@edit');
@@ -177,8 +190,13 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
 
 /* ================================================ Client CONTROL Start============================================================== */
 Route::group(['middleware'=>['client','verified'],'prefix'=>'client','namespace'=>'Client'],function(){
-    Route::get('','ClientController@index');
-    Route::get('member-profile','ClientController@profile_p');
+
+});
+/* ================================================ Client CONTROL Start============================================================== */
+Route::group(['middleware'=>['users','verified'],'prefix'=>'users','namespace'=>'User'],function(){
+    Route::get('','UserController@index');
+
+    Route::get('about-us','UserController@about_us');
 });
 
 /* ================================================ Staff Controller Start============================================================== *//* ================================================ Client CONTROL Start============================================================== */
@@ -219,6 +237,32 @@ Route::group(['middleware'=>['staff','verified'],'prefix'=>'staff','namespace'=>
     Route::post('locations-categories','LocationCategoryController@store');
     Route::post('location-category-update/{id}','LocationCategoryController@udpate');
     /* ==============================Location/Places========================================= */
+    /* ============================== Product   ========================================= */
+    Route::get('list-suppliers','Product\ProductController@index');
+    Route::get('add-new-suppliers','Product\ProductController@create');
+    Route::post('add-new-suppliers','Product\ProductController@store');
+    Route::get('list-suppliers/suppliers_id={id}/edit','Product\ProductController@edit_product');
+    Route::post('list-suppliers/suppliers_id={id}/edit','Product\ProductController@product_update');
+
+    /* ============================== Category-========================================= */
+    Route::get('add-product-category','Product\CategoryController@index');
+    Route::post('add-product-category','Product\CategoryController@store');
+    Route::post('add-product-category/cat_id={id}/edit','Product\CategoryController@update');
+    Route::get('product-wise-suppliers','Product\ProductWiseSuppliersController@index');
+    Route::post('product-wise-suppliers','Product\ProductWiseSuppliersController@store');
+    /* ============================== Category ========================================= */
+    /* ============================== manufacturers ========================================= */
+    Route::get('list-manufacturers','ManufactureCompany\ManufactureCompanyController@index');
+    Route::get('create-manufacture','ManufactureCompany\ManufactureCompanyController@create');
+    Route::post('create-manufacture','ManufactureCompany\ManufactureCompanyController@store');
+    Route::get('list-manufacturers/manufacture_id={id}/edit','ManufactureCompany\ManufactureCompanyController@edit');
+    Route::post('list-manufacturers/manufacture_id={id}/edit','ManufactureCompany\ManufactureCompanyController@update');
+
+    Route::get('add-category-of-manufacturers/menu={id}/edit','ManufactureCompany\ManufactureCategoryController@edit');
+    Route::post('add-category-of-manufacturers/menu={id}/edit','ManufactureCompany\ManufactureCategoryController@update');
+    /* ============================== create-of-manufacturers end========================================= */
+
+
 });
 
 /* ================================================ Staff Controller  end ============================================================= */
@@ -226,8 +270,17 @@ Route::group(['middleware'=>['staff','verified'],'prefix'=>'staff','namespace'=>
 
 
 Route::any('{UserName}','User\ApplicationController@overview');
+Route::any('{UserName}/about-us','User\ApplicationController@about_us');
 Route::any('{UserName}/profile','User\ApplicationController@client_profile');
-Route::any('{slug}/about-us','User\ApplicationController@about_us');
-Route::any('{slug}/product-and-service','User\ApplicationController@product_and_service');
+Route::any('{UserName}/image-gallery','User\ApplicationController@image_gallery');
+Route::any('{UserName}/product-and-service','User\ApplicationController@product_and_service');
+Route::any('{UserName}/contact-us','User\ApplicationController@contact_us');
 Route::any('manufacturers/{slug}','Admin\ManufactureCompany\ManufactureCompanyController@manufacturing');
 
+
+Route::any('companyinfo/{slug}','User\ApplicationController@product_details');
+
+
+/*=====================Manufacture ========================*/
+Route::any('{UserName}','User\ApplicationController@menu_overview');
+/*=====================Manufacture end========================*/

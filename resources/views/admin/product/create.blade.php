@@ -6,11 +6,11 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Create New Client
+                Add New Product
             </h1>
             <ol class="breadcrumb">
-                <li><a href="{{url('admin/list-clients')}}"><i class="fa fa-calendar-times-o"></i>Client List</a></li>
-                <li class="active">Create New Client</li>
+                <li><a href="{{url('admin/list-suppliers')}}"><i class="fa fa-calendar-times-o"></i>Suppliers List</a></li>
+                <li class="active">Add New Product</li>
             </ol>
         </section>
 
@@ -47,118 +47,27 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Create New Client</h3>
-                            <h3 class="box-title pull-right" style="margin-right:5px;"><a href="{{url('admin/list-clients')}}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Client List</a></h3>
+                            <h3 class="box-title">Add New Client</h3>
+                            <h3 class="box-title pull-right" style="margin-right:5px;"><a href="{{url('admin/list-product')}}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Product List</a></h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
                             <form action="" method="post" enctype="multipart/form-data">
                                 {{csrf_field()}}
                             <div class="row">
-                                <div class="col-md-9">
-                                    <label for="" style="border-bottom: 1px solid grey;">Account Details</label>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>User Name</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <div class="form-group">
-                                                        <input type="text" name="name" class="form-control" value="{{old('name')}}" placeholder="User Name">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>Email</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <div class="form-group">
-                                                        <input type="email" name="email" class="form-control" value="{{old('email')}}" placeholder="Valid Email">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>Password</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <div class="form-group">
-                                                        <input type="password" class="form-control" name="password" placeholder="password">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>Re Type</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <div class="form-group">
-                                                        <input type="password" class="form-control" name="password_confirmation" placeholder="Re Type Password">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="" style="border-bottom: 1px solid grey;">Package Details</label>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Choose Package</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <select name="client_type" id="client_type" value="{{old('client_type')}}" class="form-control select2" style="width: 100%;">
-                                                            <option value="bronze">Bronze</option>
-                                                            <option value="silver">Silver</option>
-                                                            <option value="gold">Gold</option>
-                                                            <option value="diamond">Diamond</option>
-                                                            <option value="platinum">Platinum</option>
-                                                            <option value="free_listing">Free Listing</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="col-md-12">
-                                    <label for="" style="border-bottom: 1px solid grey;">Business Details</label>
+                                    <label for="" style="border-bottom: 1px solid grey;">Product Details</label>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Company Name</label>
+                                                        <label>Suppliers Name</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="text" name="company_name" class="form-control" value="{{old('company_name')}}" placeholder="Full Company Name">
+                                                        <input type="text" name="product_name" class="form-control" value="{{old('product_name')}}" placeholder="Full Suppliers  Name">
                                                     </div>
                                                 </div>
                                             </div>
@@ -186,12 +95,12 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Choose Category</label>
+                                                        <label>Choose Product</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <select name="cat_id[]" class="form-control select2" multiple="multiple" value="{{old('cat_id')}}" data-placeholder="Select Category"
+                                                        <select name="cat_id[]" class="form-control select2" multiple="multiple" value="{{old('cat_id')}}" data-placeholder="Select Product"
                                                                 style="width: 100%;">
                                                             @foreach($category as $categories)
                                                                 <option value="{{$categories->id}}">{{$categories->name}}</option>
@@ -205,50 +114,18 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Upload Logo</label>
+                                                        <label>Choose Package</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="file" name="logo" class="form-control">
-                                                        <i style="color:Red; font-weight: bold; font-size:11px;">(Note:Recommonded Size: Square Shape)</i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>Upload Banner</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <div class="form-group">
-                                                        <input type="file" name="banner" class="form-control">
-                                                        <i style="color:Red; font-weight: bold; font-size:11px;">(Note:Width: 280px, Height:95px)</i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <label for="" style="border-bottom: 1px solid grey;">Contact Details</label>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>District</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <div class="form-group">
-                                                        <select name="district_id" class="form-control select2" style="width: 100%;">
-                                                            @foreach($districts as $district)
-                                                                <option value="{{$district->id}}" @if($district->name == 'Kathmandu') selected @endif>{{$district->name}}</option>
-                                                            @endforeach
+                                                        <select name="product_type" id="product_type" value="{{old('product_type')}}" class="form-control select2" style="width: 100%;">
+                                                            <option value="bronze">Bronze</option>
+                                                            <option value="silver">Silver</option>
+                                                            <option value="gold">Gold</option>
+                                                            <option value="diamond">Diamond</option>
+                                                            <option value="platinum">Platinum</option>
+                                                            <option value="free_listing">Free Listing</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -258,12 +135,12 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Address</label>
+                                                        <label>Contact Person</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" name="company_address" placeholder="Company Address">
+                                                        <input type="text" name="contact_person" class="form-control" value="{{old('contact_person')}}" placeholder="Contact Person Name">
                                                     </div>
                                                 </div>
                                             </div>
@@ -272,12 +149,12 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Head Of Company</label>
+                                                        <label>Contact Number</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" name="company_head" placeholder="Name of Company Head">
+                                                        <input type="text" name="contact_no" class="form-control" value="{{old('contact_no')}}" placeholder="98********">
                                                     </div>
                                                 </div>
                                             </div>
@@ -286,26 +163,12 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Mobile No.</label>
+                                                        <label>Suppliers E-mail</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="number" class="form-control" name="mobile" placeholder="Mobile No.">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>Office Tel No.</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <div class="form-group">
-                                                        <input type="number" class="form-control" name="ofc_tel_no" placeholder="Office Tel No.">
+                                                        <input type="email" name="email" class="form-control" value="{{old('email')}}" placeholder="example@gmail.com">
                                                     </div>
                                                 </div>
                                             </div>
@@ -319,7 +182,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="url" class="form-control" name="website" placeholder="Exp: www.khojbiz.com">
+                                                        <input type="url" name="website" class="form-control" value="{{old('website')}}" placeholder="www.example.com">
                                                     </div>
                                                 </div>
                                             </div>
@@ -328,12 +191,27 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Location Map Link</label>
+                                                        <label>Suppliers Address</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" name="map_link" placeholder="Copy Paste Map Embed link">
+                                                        <input type="text" name="address" class="form-control" value="{{old('address')}}" placeholder="address">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Upload Feature Image</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <input type="file" name="feature" class="form-control">
+                                                        <i style="color:Red; font-weight: bold; font-size:11px;">(Note:Width: 280px, Height:95px)</i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -341,21 +219,20 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <label for="" style="border-bottom: 1px solid grey;">Short Description</label>
+                                    <label for="" style="border-bottom: 1px solid grey;">Short Product Description</label>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <textarea name="company_profile" id="editor1" cols="30" rows="10" class="form-control content" placeholder="Describe about company"></textarea>
+                                            <textarea name="product_details" id="editor1" cols="30" rows="10" class="form-control content" placeholder="Describe about company"></textarea>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-sm">Submit</button>
                                     </div>
                                 </div>
                                 </div>
                             </form>
-
                         </div>
                         <!-- /.box-body -->
                     </div>

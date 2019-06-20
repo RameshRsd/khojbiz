@@ -26,7 +26,7 @@
                 @foreach($categories as $category)
                 <div class="col-md-4">
                     <div class="media-body">
-                        <div class="font-w500"><a href="{{url('search?cat=').$category->slug}}">{{$category->name}} <span class="badge badge-pill badge-info">{{count($category->client_cat)}}</span></a></div>
+                        <div class="font-w500"><a href="{{url('search?cat=').$category->slug}}">{{$category->name}} <span class="badge badge-pill badge-info"></span></a></div>
                         {{--@foreach($category->clients as $client)--}}
                             {{--<li>{{$client->company_name}}</li>--}}
                             {{--@endforeach--}}

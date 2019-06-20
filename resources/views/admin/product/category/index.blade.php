@@ -5,7 +5,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Add category of Product Buying & Sell
+                Add New Product
             </h1>
             <ol class="breadcrumb">
                 <li><a href="{{url('admin')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
@@ -45,7 +45,7 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Create Category of Buying & Selling</h3>
+                            <h3 class="box-title">Add New Product</h3>
                             {{--<h3 class="box-title pull-right"><a href="{{url('admin/create-events')}}" class="btn btn-primary btn-xs">Create New Event</a></h3>--}}
                         </div>
                         <!-- /.box-header -->
@@ -53,9 +53,9 @@
                             <table class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>Category Name</th>
+                                    <th>Product Name</th>
                                     <th>Alphabet Name</th>
-                                    <th>Icon</th>
+                                    <th>Product Icon</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -64,7 +64,7 @@
                                     {{csrf_field()}}
                                     <tr>
                                         <td>
-                                            <input type="text" name="name" class="form-control" placeholder="Add category of Manufacturers">
+                                            <input type="text" name="name" class="form-control" placeholder="Product Category name">
                                         </td>
                                         <td>
                                             <div class="form-group">
@@ -95,7 +95,7 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Category Listing</h3>
+                            <h3 class="box-title">Product Listing</h3>
                             {{--<h3 class="box-title pull-right"><a href="{{url('admin/create-events')}}" class="btn btn-primary btn-xs">Create New Event</a></h3>--}}
                         </div>
                         <!-- /.box-header -->
@@ -104,8 +104,8 @@
                                 <thead>
                                 <tr>
                                     <th>SN</th>
-                                    <th>Category Name</th>
-                                    <th>Alphabate</th>
+                                    <th>Product Name</th>
+                                    <th>Alphabet</th>
                                     <th>Slug</th>
                                     <th>Icon</th>
                                     <th>Action</th>
@@ -116,7 +116,7 @@
                                     <tr>
                                         <td>{{++$key}}</td>
                                         <td>{{$categories->name}}</td>
-                                        <td>{{$categories->alpha->name}}</td>
+                                        <td>{{$categories->name}}</td>
                                         <td>{{$categories->slug}}</td>
                                         <td><img src="{{url('public/uploads/buy_sell/icon/').'/'.$categories->icon}}" alt="" width="25"></td>
                                         <td>
@@ -131,12 +131,12 @@
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span></button>
-                                                    <h4 class="modal-title">Edit Category</h4>
+                                                    <h4 class="modal-title">Edit Product</h4>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            <label for=""> Category name</label>
+                                                            <label for=""> Product name</label>
                                                             <input type="text" name="name" class="form-control" value="{{$categories->name}}">
                                                         </div>
                                                         <div class="col-md-6">

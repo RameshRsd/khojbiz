@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-    <title>OneUI - Bootstrap 4 Admin Template &amp; UI Framework</title>
+    <title>Login With Khoj Biz</title>
 
     <meta name="description" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
     <meta name="author" content="pixelcave">
@@ -35,45 +35,6 @@
     <!-- END Stylesheets -->
 </head>
 <body>
-<!-- Page Container -->
-<!--
-    Available classes for #page-container:
-
-GENERIC
-
-    'enable-cookies'                            Remembers active color theme between pages (when set through color theme helper Template._uiHandleTheme())
-
-SIDEBAR & SIDE OVERLAY
-
-    'sidebar-r'                                 Right Sidebar and left Side Overlay (default is left Sidebar and right Side Overlay)
-    'sidebar-mini'                              Mini hoverable Sidebar (screen width > 991px)
-    'sidebar-o'                                 Visible Sidebar by default (screen width > 991px)
-    'sidebar-o-xs'                              Visible Sidebar by default (screen width < 992px)
-    'sidebar-dark'                              Dark themed sidebar
-
-    'side-overlay-hover'                        Hoverable Side Overlay (screen width > 991px)
-    'side-overlay-o'                            Visible Side Overlay by default
-
-    'enable-page-overlay'                       Enables a visible clickable Page Overlay (closes Side Overlay on click) when Side Overlay opens
-
-    'side-scroll'                               Enables custom scrolling on Sidebar and Side Overlay instead of native scrolling (screen width > 991px)
-
-HEADER
-
-    ''                                          Static Header if no class is added
-    'page-header-fixed'                         Fixed Header
-
-HEADER STYLE
-
-    ''                                          Light themed Header
-    'page-header-dark'                          Dark themed Header
-
-MAIN CONTENT LAYOUT
-
-    ''                                          Full width Main Content if no class is added
-    'main-content-boxed'                        Full width Main Content with a specific maximum width (screen width > 1200px)
-    'main-content-narrow'                       Full width Main Content with a percentage width (screen width > 1200px)
--->
 <div id="page-container">
 
     <!-- Main Container -->
@@ -85,6 +46,30 @@ MAIN CONTENT LAYOUT
                 <div class="content">
                     <div class="row justify-content-center">
                         <div class="col-md-8 col-lg-6 col-xl-4">
+                            @if(session('success'))
+                                <div class="col-sm-12">
+                                    <div role="alert" style="background-color:#d4edda; color:#155724; border-radius: 5px;" class="alert  alert-dismissible show">
+                                        <span class="btn btn-success btn-xs">Success</span> {{session('success')}}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div style="clear: both;"></div>
+                            @endif
+                            @if($errors->any())
+                                <div class="col-sm-12">
+                                    <div role="alert" style="background-color:#d4edda; color:#155724; border-radius: 5px;" class="alert  alert-dismissible show">
+                                        @foreach($errors->all() as $error)
+                                            <span class="btn btn-danger btn-xs">Error</span> {{$error}}<br>
+                                        @endforeach
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div style="clear: both;"></div>
+                        @endif
                             <!-- Sign In Block -->
                             <div class="block block-themed block-fx-shadow mb-0">
                                 <div class="block-header">

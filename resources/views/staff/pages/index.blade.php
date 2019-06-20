@@ -73,12 +73,18 @@
                                         <td>{{$client->name}}</td>
                                         <td>{{$client->mobile}}</td>
                                         <td>
-                                            @if($client->client_type=='sponser')
-                                                <button class="btn btn-primary btn-xs">Sponser</button>
-                                                @elseif($client->client_type=='featured')
-                                                <button class="btn btn-success btn-xs">Featured</button>
+                                            @if($client->client_type=='bronze')
+                                                <button class="btn btn-primary btn-xs">Bronze</button>
+                                                @elseif($client->client_type=='silver')
+                                                <button class="btn btn-success btn-xs">Silver</button>
+                                                @elseif($client->client_type=='gold')
+                                                <button class="btn btn-success btn-xs">Gold</button>
+                                                @elseif($client->client_type=='diamond')
+                                                <button class="btn btn-success btn-xs">Diamond</button>
+                                                @elseif($client->client_type=='platinum')
+                                                <button class="btn btn-success btn-xs">Platinum</button>
                                             @else
-                                                <button class="btn btn-warning btn-xs">General</button>
+                                                <button class="btn btn-warning btn-xs">Free Listing</button>
                                             @endif
                                         </td>
                                         <td>{{$client->user->email}}</td>
