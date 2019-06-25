@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Advertisement;
+use App\BuySell\Product;
 use App\Category;
 use App\Client\Client;
+use App\District;
 use App\Place\location;
 use App\Place\locationCategory;
 use App\Client\ClientAboutUs;
@@ -19,12 +21,14 @@ class HomeController extends Controller
     public function index(){
 //        $client =Client::where('client_type','diamond')->get();
         $client =Client::where('company_nature','business')->where('client_type','diamond')->limit(8)->get();
-        $manufacture_client =Client::where('company_nature','manufacture')->limit(8)->get();
+        $manufacture_client =Client::where('company_nature','manufacture')->limit(4)->get();
         $ads = Advertisement::where('status','active')->where('type','top')->where('status','active')->get();
         $side_ads = Advertisement::where('status','active')->where('type','general')->where('status','active')->get();
-        $category =Category::orderBy('name','DESC')->limit(8)->get();
+        $feature_ads = Advertisement::where('status','active')->where('type','feature')->where('status','active')->get();
+        $category =Category::orderBy('id','ASC')->limit(8)->get();
         $location_categories = locationCategory::orderBy('name')->get();
-        return view('frontend.welcome',compact('client','ads','side_ads','category','manufacture_client','location_categories'));
+        $products = Product::where('product_type','diamond')->limit(4)->get();
+        return view('frontend.welcome',compact('client','ads','side_ads','category','manufacture_client','location_categories','feature_ads','products'));
     }
     public function getLogin(){
         return view('auth.login');
@@ -46,6 +50,9 @@ class HomeController extends Controller
                 if (Auth::user()->type == 'client' && Auth::user()->status=='active') {
                     return redirect('client');
                 }
+                if (Auth::user()->type == 'users' && Auth::user()->status=='active') {
+                    return redirect('users');
+                }
                 if (Auth::user()->type == 'candidate' && Auth::user()->status=='active') {
                     return redirect('candidate');
                 }
@@ -62,12 +69,14 @@ class HomeController extends Controller
             'email'=>'required|unique:users,email',
             'name'=>'required|unique:users,name',
             'password'=>'required|confirmed',
+            'terms'=>'required',
         ]);
         $user = new User();
         $user->name = \request('name');
         $user->email = \request('email');
-        $user->type = 'client';
+        $user->type = 'users';
         $user->status = 'active';
+        $user->terms = 'terms';
         $user->password = bcrypt(\request('password'));
         if ($user->save()){
         $client = new Client();
@@ -75,12 +84,11 @@ class HomeController extends Controller
         $client->password = \request('password');
         $client->client_type = 'free_listing';
         $client->save();
-
         $client_about_us = new ClientAboutUs();
         $client_about_us->client_id = $client->id;
         $client_about_us->save();
         }
-        return redirect('');
+        return redirect('login')->with('success','welcome to login pages');
     }
     public function update_about(){
         $clients = Client::all();
@@ -100,7 +108,7 @@ class HomeController extends Controller
     {
         $term = $request->term;
 
-        $queries = location::where('name', 'like', '%'.$term.'%')->orderBy('id','DESC')->get();
+        $queries = District::where('name', 'like', '%'.$term.'%')->orderBy('id','DESC')->get();
 
         foreach ($queries as $query)
         {

@@ -8,7 +8,7 @@
                 <!-- Toggle Sidebar -->
                 <!-- Apps Modal -->
                 <a href="{{url('')}}">
-                    <img src="{{url('public/images/defaultImg/khojbiz_logo.png')}}" alt="" width="100">
+                    <img src="{{url('public/images/defaultImg/logo_khoj.png')}}" alt="" width="100">
                 </a> &nbsp;
                 <!-- Opens the Apps modal found at the bottom of the page, after footer’s markup -->
                 <button type="button" class="btn btn-sm btn-dual mr-2" data-toggle="modal" data-target="#one-modal-apps">
@@ -53,31 +53,31 @@
                             <img class="img-avatar img-avatar48 img-avatar-thumb" src="{{url('public/frontend/assets/media/avatars/avatar10.jpg')}}" alt="">
                         </div>
                         <div class="p-2">
-                            <h5 class="dropdown-header text-uppercase">User Options</h5>
-                            <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_inbox.html">
-                                <span>Inbox</span>
-                                <span>
-                                            <span class="badge badge-pill badge-primary">3</span>
-                                            <i class="si si-envelope-open ml-1"></i>
-                                        </span>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{url('member-profile')}}">
+                            @if(\Illuminate\Support\Facades\Auth::user()->type == 'users')
+                            <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{url('users')}}">
                                 <span>Profile</span>
                                 <span>
-                                            <span class="badge badge-pill badge-success">1</span>
-                                            <i class="si si-user ml-1"></i>
-                                        </span>
+                                <span class="badge badge-pill badge-success">1</span>
+                                <i class="si si-user ml-1"></i>
+                            </span>
                             </a>
-                            <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                <span>Settings</span>
-                                <i class="si si-settings"></i>
-                            </a>
-                            <div role="separator" class="dropdown-divider"></div>
-                            <h5 class="dropdown-header text-uppercase">Actions</h5>
-                            <a class="dropdown-item d-flex align-items-center justify-content-between" href="op_auth_lock.html">
-                                <span>Lock Account</span>
-                                <i class="si si-lock ml-1"></i>
-                            </a>
+                            @elseif(\Illuminate\Support\Facades\Auth::user()->type == 'staff')
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{url('staff')}}" title="{{\Illuminate\Support\Facades\Auth::user()->name}}">
+                                    <span title="{{\Illuminate\Support\Facades\Auth::user()->name}}">Profile</span>
+                                    <span>
+                                <span class="badge badge-pill badge-success">1</span>
+                                <i class="si si-user ml-1"></i>
+                              </span>
+                                </a>
+                                @else
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{url('staff')}}">
+                                    <span>Profile</span>
+                                    <span>
+                                <span class="badge badge-pill badge-success">1</span>
+                                <i class="si si-user ml-1"></i>
+                              </span>
+                                </a>
+                            @endif
                             <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{url('logout')}}">
                                 <span>Log Out</span>
                                 <i class="si si-logout ml-1"></i>

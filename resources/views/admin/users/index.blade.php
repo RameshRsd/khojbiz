@@ -73,6 +73,8 @@
                                                 <button class="btn btn-warning btn-xs">Candidate</button>
                                             @elseif($user->type=='client')
                                                 <button class="btn btn-primary btn-xs">Client</button>
+                                            @elseif($user->type=='users')
+                                                <button class="btn btn-info btn-xs">User</button>
                                                 @else
                                                 <button class="btn btn-secondary btn-xs">Staff</button>
                                             @endif

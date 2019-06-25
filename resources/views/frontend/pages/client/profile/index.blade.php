@@ -446,23 +446,8 @@
 
                         <!-- Search Form (visible on larger screens) -->
                         <ul class="header_nav_pro">
-                            <li>
-                                <a class="nav-link d-flex justify-content-between align-items-center active" href="{{url($client->slug.'/'.'about-us')}}">
-                                    About Us
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link d-flex justify-content-between align-items-center" href="{{url($client->slug.'/'.'profile')}}">Profile </a>
-                            </li>
-                            <li>
-                                <a class="nav-link d-flex justify-content-between align-items-center" href="{{url($client->slug.'/'.'product-and-service')}}">Product & Service</a>
-                            </li>
-                            <li>
-                                <a class="nav-link d-flex justify-content-between align-items-center" href="">Image Gallery </a>
-                            </li>
-                            <li>
-                                <a class="nav-link d-flex justify-content-between align-items-center" href="">Contact Us </a>
-                            </li>
+                       {{----}}
+                       {{----}}
                         </ul>
                         <!-- END Search Form -->
                     </div>
@@ -646,16 +631,11 @@
                 <!-- Page Content -->
                 <div class="content pro_kb_busi">
                     <div class="row">
-                        <div class="col-md-4 col-xl-4">
+                        <div class="col-md-3 col-xl-3">
                             <!-- Profile -->
                             <div class="block">
                                 <div class="block-header block-header-default">
-                                    <h3 class="block-title">Inbox</h3>
-                                    <div class="block-options">
-                                        <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#one-inbox-new-message">
-                                            <i class="fa fa-pencil-alt mr-1"></i> New Message
-                                        </button>
-                                    </div>
+                                    <h3 class="block-title">Update Your Profile</h3>
                                 </div>
                                 <div class="block-content">
                                     <ul class="nav nav-pills flex-column font-size-sm push">
@@ -732,7 +712,7 @@
                             </div>
                             <!-- END Contact US -->
                         </div>
-                        <div class="col-md-8 col-xl-8">
+                        <div class="col-md-6 col-xl-6">
                             <div class="profile_kb_b">
                                 <!-- Hero -->
                                 @if(is_file(public_path('uploads/banners/').'/'.$client->banner) && file_exists(public_path('uploads/banners/').'/'.$client->banner))

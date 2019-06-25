@@ -105,7 +105,6 @@
                                 <tr>
                                     <th>SN</th>
                                     <th>Category Name</th>
-                                    <th>Alphabate</th>
                                     <th>Slug</th>
                                     <th>Icon</th>
                                     <th>Action</th>
@@ -116,7 +115,6 @@
                                     <tr>
                                         <td>{{++$key}}</td>
                                         <td>{{$categories->name}}</td>
-                                        <td>{{$categories->alpha->name}}</td>
                                         <td>{{$categories->slug}}</td>
                                         <td><img src="{{url('public/uploads/icon/').'/'.$categories->icon}}" alt="" width="25"></td>
                                         <td>

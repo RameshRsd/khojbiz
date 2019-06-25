@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
 //        $this->call(DistrictTableSeeder::class);
 //        $this->call(Alphabate::class);
 //        $this->call(CompanyNatureTable::class);
-        $this->call(LocationCategorySeeder::class);
+//        $this->call(LocationCategorySeeder::class);
+//        $this->call(TypeSeederTable::class);
     }
 }

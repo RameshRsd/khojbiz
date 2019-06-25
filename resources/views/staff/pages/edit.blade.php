@@ -83,7 +83,7 @@
                                                         <select name="alpha_id" class="form-control select2" style="width: 100%;">
                                                             <option value="">Choose Alphabate</option>
                                                             @foreach($alpha as $alphabates)
-                                                                <option value="{{$alphabates->id}}" @if($alphabates->id == $client->cat_id)selected @endif>{{$alphabates->name}}</option>
+                                                                <option value="{{$alphabates->id}}" @if($alphabates->id == $client->alpha_id)selected @endif>{{$alphabates->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -168,29 +168,33 @@
                                                         <label>Upload Logo</label>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <img src="{{url('public/uploads/logos').'/'.$client->logo}}" alt="" style="width:64px; height: 64px;">
-                                                    </div>
-                                                </div>
                                                 <div class="col-md-7">
                                                     <div class="form-group">
                                                         <input type="file" name="logo" class="form-control">
                                                         <i style="color:Red; font-weight: bold; font-size:11px;">(Note:Recommonded Size: Square Shape)</i>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <img src="{{url('public/uploads/logos').'/'.$client->logo}}" alt="" style="width:64px; height: 64px;">
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label>Upload Banner</label>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-8">
+                                                <div class="col-md-5">
                                                     <div class="form-group">
-                                                        <img src="{{url('public/uploads/banners').'/'.$client->banner}}" alt="" style="width:100%;">
                                                         <input type="file" name="banner" class="form-control">
                                                         <i style="color:Red; font-weight: bold; font-size:11px;">(Note:Width: 280px, Height:95px)</i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <img src="{{url('public/uploads/banners').'/'.$client->banner}}" alt="" style="width:100%;">
                                                     </div>
                                                 </div>
                                             </div>
@@ -220,18 +224,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
-
-                                        </div>
-                                        <div class="col-md-6">
-
-                                        </div>
-                                        <div class="col-md-6">
-
-                                        </div>
-                                        <div class="col-md-6">
-
                                         </div>
                                         <div class="col-md-6">
                                             <div class="row">
