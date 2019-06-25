@@ -16,7 +16,7 @@ class AlphabateController extends Controller
     public function index($alpha){
         $title = 'Browse By Alphabates - Khojbiz.com';
         $alpha_id = Alphabate::where('name',$alpha)->firstOrFail();
-        $categories= Category::where('alphabate_id',$alpha_id->id)->get();
+        $categories= Category::where('alphabate_id',$alpha_id->id)->where('status','active')->orderBy('name')->get();
         $top_clients= Client::where('client_type','sponser')->get();
         return view('frontend.pages.alpha.category',compact('title','categories','top_clients','alpha_id'));
     }

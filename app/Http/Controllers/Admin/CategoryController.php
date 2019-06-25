@@ -11,7 +11,7 @@ class CategoryController extends Controller
 {
     public function index(){
         $title = 'Company Nature - Admin-Panel | khojbiz.com';
-        $category = Category::orderBy('name','ASC')->get();
+        $category = Category::orderBy('name','ASC')->where('status','active')->get();
         $alpha = Alphabate::orderBy('name','ASC')->get();
         return view('admin.category.index',compact('title','category','alpha'));
     }
@@ -62,4 +62,12 @@ class CategoryController extends Controller
         return redirect('admin/add-category')->with('success','Category Updated Successfully !!');
 
     }
+    public function trash($id){
+        $category = Category::findOrFail($id);
+        $category->status = 'trash';
+        $category->save();
+        return redirect('admin/add-category')->with('success','Company Nature Deleted Successfully !!');
+
+    }
+
 }

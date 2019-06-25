@@ -430,7 +430,7 @@
                         </button>
                         <!-- END Toggle Sidebar -->
                         <a href="{{url('')}}">
-                            <img src="{{url('public/images/defaultImg/khojbiz_logo.png')}}" alt="" width="80">
+                            <img src="{{url('public/images/defaultImg/logo_khoj.png')}}" alt="" width="80">
                         </a> &nbsp;
                         <!-- Apps Modal -->
                         <!-- Opens the Apps modal found at the bottom of the page, after footer’s markup -->

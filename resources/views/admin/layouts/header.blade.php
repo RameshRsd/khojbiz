@@ -62,7 +62,7 @@
     <header class="main-header">
 
         <!-- Logo -->
-        <a href="{{url('login')}}" class="logo">
+        <a href="{{url('')}}" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <!-- logo for regular state and mobile devices -->
             <span class="logo-lg"><b>Khoj </b>Biz</span>
