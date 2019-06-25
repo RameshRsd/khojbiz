@@ -129,6 +129,7 @@
                                             </td>
                                            @endif
                                     </tr>
+                                    @if($categories->status == 'draft')
                                     <div class="modal modal-success fade" id="modal-success{{$categories->id}}">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -176,6 +177,7 @@
                                         </div>
                                         <!-- /.modal-dialog -->
                                     </div>
+                                    @endif
                                     <!-- /.modal -->
                                 @endforeach
                                 </tbody>

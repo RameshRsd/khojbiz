@@ -53,7 +53,7 @@
                 </button>
                 <!-- END Toggle Sidebar -->
                 <a href="{{url('')}}">
-                    <img src="{{url('public/images/defaultImg/khojbiz_logo.png')}}" alt="" width="100">
+                    <img src="{{url('public/images/defaultImg/logo_khoj.png')}}" alt="" width="100">
                 </a> &nbsp;
                 <!-- Apps Modal -->
                 <!-- Opens the Apps modal found at the bottom of the page, after footer’s markup -->
@@ -297,8 +297,8 @@
                                     <div class="a_li_d_i_fo_con">
                                        <h6><b><i class="fa fa-phone"></i> {{$client->ofc_tel_no}}</b>
                                         <a href="#"><i class="fa fa-envelope"></i> {{$client->user->email}}</a>
-                                        <a href="#"><i class="fa fa-globe"></i> {{$client->website}}</a>
-                                        <a href="{{url('profile')}}"> View Profile</a>
+                                        <a href="{{$client->website}}"><i class="fa fa-globe"></i> Visit site </a>
+                                        <a href="{{url('').'/'.$ClientOverView = $client->user->name}}"> View Profile</a>
                                        </h6>
                                     </div>
                                     <div class="a_li_d_i_bot">
@@ -306,8 +306,7 @@
                                         <a href="#">Claimed</a>
                                         <a href="#"><i class="fa fa-envelope"></i> Send SMS</a>
                                         <a href="#">Improve Listing</a>
-                                        <a href="#"><i class="fa fa-eye"></i> 3232</a>
-                                        <a href="#"><i class="fa fa-search"></i> 858585</a>
+                                        <a href="#"><i class="fa fa-eye"></i> </a>
                                     </div>
                                 </div>
                             </li>

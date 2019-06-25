@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="kb_f_pro">
-                        <b> <p>Search By Alphabetically:-</p></b>
+                        <b> <p>Business Search by Alphabetically</p></b>
                         @php $alphas = \App\Alphabate::orderBy('name')->get(); @endphp
                         @foreach($alphas as $alpha)
                         <a href="{{url('browse-by-alphabates').'/list_'.$alpha->name}}">{{$alpha->name}}</a>
@@ -54,12 +54,11 @@
                                                 <img src="{{url('public/images/defaultImg/default_banner.jpg')}}" class="img-responsive" alt="Berry Lace Dress">
                                             @endif
                                             <div>
-                                                {{--<a href="#" class="btn">Zoom</a>--}}
                                                 <a href="{{url('').'/'.$ClientOverView = $clients->user->name}}" class="btn" title="{{$clients->company_name}}">View Details</a>
                                             </div>
                                         </div>
                                         <div class="kb_c_name">
-                                            <h2 class="product_title" title="{{$clients->company_name}}"><a href="{{url('').'/'.$ClientOverView = $clients->slug}}" title="{{$clients->company_name}}">{{str_limit($clients->company_name,80)}}</a></h2>
+                                            <h2 class="product_title" title="{{$clients->company_name}}"><a href="{{url('').'/'.$ClientOverView = $clients->user->name}}" title="{{$clients->company_name}}">{{str_limit($clients->company_name,80)}}</a></h2>
                                             <div class="pi-price" title="{{$clients->company_address}}"><i class="fa fa-map-marker" title="{{$clients->company_address}}"></i> {{$clients->company_address}}</div>
                                             <div class="clearfix"></div>
                                         </div>
@@ -88,7 +87,7 @@
                         <div class="">
                             <div class="js-slider text-center" data-autoplay="true" data-dots="true" data-arrows="true" data-slides-to-show="4">
                                 @foreach($category as $categories)
-                                    <a href="{{url('search?cat_id=').$categories->id}}">
+                                    <a href="{{url('search?cat=').$categories->slug}}">
                                         <div class="py-3 category_icon_k">
                                             @if(is_file(public_path('uploads/icon/').'/'.$categories->icon) && file_exists(public_path('uploads/icon/').'/'.$categories->icon))
                                                 <img class="img-avatar_cat" src="{{url('public/uploads/icon/').'/'.$categories->icon}}" alt="">
@@ -133,7 +132,7 @@
                         <div class="js-slider slick-nav-hover" data-dots="true" data-autoplay="true" data-arrows="true">
                             @foreach($feature_ads as $ads)
                                 <div class="block text-center mb-0">
-                                    <div class="ads_img_khoj">
+                                    <div class="ads_img_khoj_full">
                                         <img class="img-fluid" src="{{url('public/uploads/adverts/').'/'.$ads->image}}" alt="">
                                         {{--<img class="img-fluid" src="{{url('public/uploads/adverts/').'/'.$ads->image}}" alt="">--}}
                                     </div>
@@ -290,7 +289,7 @@
                                        </div>
                                        <div class="col-md-12">
                                            <div class="kb_f_pro" style="margin-top: 10px; margin-bottom: -10px;">
-                                               <b><p><strong style="color: dodgerblue">OR</strong> Short By:-</p> </b>
+                                               <b><p><strong style="color: dodgerblue">OR</strong> Short By</p> </b>
                                                @php $alphas = \App\Alphabate::orderBy('name')->get(); @endphp
                                                @foreach($alphas as $alpha)
                                                    <a href="{{url('places?short_by=').$alpha->name}}">{{$alpha->name}}</a>
@@ -310,26 +309,26 @@
                        <div class="p_list">
 
                            <div class="row">
-                               @foreach($manufacture_client as $clients)
+                               @foreach($locations as $location)
                                    <div class="col-md-3">
                                        <div class="product-item">
                                            <div class="pi-img-wrapper">
-                                               @if(is_file(public_path('uploads/manufacture/banners/').'/'.$clients->banner) && file_exists(public_path('uploads/manufacture/banners/').'/'.$clients->banner))
-                                                   <img class="p_list_de img-responsive" style="background-image: url('{{url('public/uploads/manufacture/banners/')}}/{{$clients->banner}}');">
+                                               @if(is_file(public_path('uploads/location_image/').'/'.$location->image) && file_exists(public_path('uploads/location_image/').'/'.$location->image))
+                                                   <img class="p_list_de img-responsive" style="background-image: url('{{url('public/uploads/location_image/')}}/{{$location->image}}');">
                                                @else
-                                                   <img src="{{url('public/images/defaultImg/002.jpg')}}" class="img-responsive" alt="{{$clients->company_name}}">
+                                                   <img src="{{url('public/images/defaultImg/002.jpg')}}" class="img-responsive" alt="{{$location->name}}">
                                                @endif
                                                <div>
                                                    {{--<a href="#" class="btn">Zoom</a>--}}
-                                                   <a href="{{url('manufacturers').'/'.$ManufactureOverView = $clients->slug}}" class="btn" title="{{$clients->company_name}}">View Details</a>
+                                                   <a href="{{url('top-location').'/'.$LocationOverView = $location->slug}}" class="btn" title="{{$location->company_name}}">View Details</a>
                                                </div>
                                            </div>
                                            <div class="kb_c_name">
-                                               <h2 class="product_title" title="{{$clients->company_name}}"><a href="{{url('manufacturers').'/'.$ManufactureOverView = $clients->slug}}" title="{{$clients->company_name}}">{{str_limit($clients->company_name,80)}}</a></h2>
-                                               <div class="pi-price" title="{{$clients->company_address}}"><i class="fa fa-map-marker" {{$clients->company_address}}></i> {{$clients->company_address}}</div>
+                                               <h2 class="product_title" title="{{$location->name}}"><a href="{{url('top-location').'/'.$locationOverView = $location->slug}}" title="{{$location->name}}">{{str_limit($location->name,80)}}</a></h2>
+                                               <div class="pi-price" title="{{$location->address}}"><i class="fa fa-map-marker" {{$location->address}}></i> {{$location->address}}</div>
                                                <div class="clearfix"></div>
                                            </div>
-                                           @if(date('Y-m',strtotime($clients->created_at)) == date('Y-m'))
+                                           @if(date('Y-m',strtotime($location->created_at)) == date('Y-m'))
                                                <div class="sticker sticker-new"></div>
                                            @endif
                                        </div>

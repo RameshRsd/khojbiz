@@ -27,8 +27,9 @@ class HomeController extends Controller
         $feature_ads = Advertisement::where('status','active')->where('type','feature')->where('status','active')->get();
         $category =Category::orderBy('id','ASC')->limit(8)->get();
         $location_categories = locationCategory::orderBy('name')->get();
+        $locations = location::orderBy('id','ASC')->limit(4)->get();
         $products = Product::where('product_type','diamond')->limit(4)->get();
-        return view('frontend.welcome',compact('client','ads','side_ads','category','manufacture_client','location_categories','feature_ads','products'));
+        return view('frontend.welcome',compact('client','ads','side_ads','category','manufacture_client','location_categories','feature_ads','products','locations'));
     }
     public function getLogin(){
         return view('auth.login');
@@ -53,6 +54,15 @@ class HomeController extends Controller
                 if (Auth::user()->type == 'users' && Auth::user()->status=='active') {
                     return redirect('users');
                 }
+                if (Auth::user()->type == 'business' && Auth::user()->status=='active') {
+                    return redirect('business');
+                }
+                if (Auth::user()->type == 'manufacture' && Auth::user()->status=='active') {
+                    return redirect('manufacture');
+                }
+                if (Auth::user()->type == 'product' && Auth::user()->status=='active') {
+                    return redirect('product');
+                }
                 if (Auth::user()->type == 'candidate' && Auth::user()->status=='active') {
                     return redirect('candidate');
                 }
@@ -64,29 +74,67 @@ class HomeController extends Controller
     public function getregister(Request $request){
         return view('auth.register');
     }
-    public function postregister(Request $request){
+    public function get_business_register(Request $request){
+        $category = Category::orderBy('name','ASC')->get();
+        return view('auth.business.register',compact('category'));
+
+    }
+    public function get_manufacture_register(Request $request){
+        $category = Category::orderBy('name','ASC')->get();
+        return view('auth.manufacture.register',compact('category'));
+
+    }
+    public function post_business_register(Request $request){
         $this->validate(request(),[
             'email'=>'required|unique:users,email',
-            'name'=>'required|unique:users,name',
+            'username'=>'required|unique:users,name',
             'password'=>'required|confirmed',
-            'terms'=>'required',
         ]);
         $user = new User();
-        $user->name = \request('name');
+        $user->name = \request('username');
         $user->email = \request('email');
-        $user->type = 'users';
+        $user->type = 'business';
         $user->status = 'active';
-        $user->terms = 'terms';
         $user->password = bcrypt(\request('password'));
         if ($user->save()){
         $client = new Client();
         $client->user_id = $user->id;
+        $client->company_name = $request->company_name;
+        $client->slug = $request->company_name;
+        $client->ofc_tel_no = $request->ofc_tel_no;
         $client->password = \request('password');
-        $client->client_type = 'free_listing';
+        $client->company_nature = 'business';
         $client->save();
         $client_about_us = new ClientAboutUs();
         $client_about_us->client_id = $client->id;
         $client_about_us->save();
+        }
+        return redirect('login')->with('success','welcome to login pages');
+    }
+    public function post_manufacture_register(Request $request){
+        $this->validate(request(),[
+            'username'=>'required|unique:users,name',
+            'email'=>'required|unique:users,email',
+            'password'=>'required|confirmed',
+        ]);
+        $user = new User();
+        $user->name = \request('username');
+        $user->email = \request('email');
+        $user->type = 'manufacture';
+        $user->status = 'active';
+        $user->password = bcrypt(\request('password'));
+        if ($user->save()){
+            $client = new Client();
+            $client->user_id = $user->id;
+            $client->company_name = $request->company_name;
+            $client->slug = $request->company_name;
+            $client->ofc_tel_no = $request->ofc_tel_no;
+            $client->password = \request('password');
+            $client->company_nature = 'manufacture';
+            $client->save();
+            $client_about_us = new ClientAboutUs();
+            $client_about_us->client_id = $client->id;
+            $client_about_us->save();
         }
         return redirect('login')->with('success','welcome to login pages');
     }
