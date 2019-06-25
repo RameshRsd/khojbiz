@@ -84,10 +84,6 @@
                             <i class="si si-grid"></i>
                         </button>
                         <!-- END Apps Modal -->
-
-                        <!-- Open Search Section (visible on smaller screens) -->
-                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-
                         <!-- END Open Search Section -->
 
                         <!-- Search Form (visible on larger screens) -->
