@@ -70,7 +70,7 @@
                               </span>
                                 </a>
                                 @else
-                                <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{url('staff')}}">
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{url('login')}}">
                                     <span>Profile</span>
                                     <span>
                                 <span class="badge badge-pill badge-success">1</span>

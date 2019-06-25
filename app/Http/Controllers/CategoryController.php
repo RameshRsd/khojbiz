@@ -11,7 +11,7 @@ class CategoryController extends Controller
 {
     public function list_category($id){
         $title = 'Browse By Alphabates - Khojbiz.com';
-        $category = Category::all();
+        $category = Category::where('status','active')->orderBy('name')->get();
         $client =Client::all();
         return view('frontend.pages.category.index',compact('title','category','client'));
     }

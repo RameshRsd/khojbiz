@@ -25,7 +25,7 @@ class HomeController extends Controller
         $ads = Advertisement::where('status','active')->where('type','top')->where('status','active')->get();
         $side_ads = Advertisement::where('status','active')->where('type','general')->where('status','active')->get();
         $feature_ads = Advertisement::where('status','active')->where('type','feature')->where('status','active')->get();
-        $category =Category::orderBy('id','ASC')->limit(8)->get();
+        $category =Category::orderBy('name','ASC')->where('status','active')->limit(8)->get();
         $location_categories = locationCategory::orderBy('name')->get();
         $products = Product::where('product_type','diamond')->limit(4)->get();
         return view('frontend.welcome',compact('client','ads','side_ads','category','manufacture_client','location_categories','feature_ads','products'));

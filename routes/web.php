@@ -77,12 +77,14 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::post('company-nature','CompanyNatureController@store');
     Route::get('company-nature/nature_id={id}/edit','CompanyNatureController@edit');
     Route::post('company-nature/nature_id={id}/edit','CompanyNatureController@update');
+
     /* ============================== Company-Natrue ========================================= */
     /* ============================== Category-========================================= */
     Route::get('add-category','CategoryController@index');
     Route::post('add-category','CategoryController@store');
     Route::get('add-category/nature_id={id}/edit','CategoryController@edit');
     Route::post('add-category/nature_id={id}/edit','CategoryController@update');
+    Route::get('company-nature/nature_id={id}/trash','CategoryController@trash');
     /* ============================== Category ========================================= */
     /* ==============================Sub Category-========================================= */
     Route::get('add-sub-category','SubCategoryController@index');
@@ -190,7 +192,7 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
 
 /* ================================================ Client CONTROL Start============================================================== */
 Route::group(['middleware'=>['client','verified'],'prefix'=>'client','namespace'=>'Client'],function(){
-
+    Route::get('','ClientController@index');
 });
 /* ================================================ Client CONTROL Start============================================================== */
 Route::group(['middleware'=>['users','verified'],'prefix'=>'users','namespace'=>'User'],function(){

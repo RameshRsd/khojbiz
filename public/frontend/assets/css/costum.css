@@ -14,15 +14,11 @@ a{
     background-color: #019688;
 }
  a.active {
-    color: white!important;
+    color: white;
     background-color: #019688;
 }
 img.img-fluid.kb_banners {
     width: 100%;
-}
-.slick-slider.slick-dotted {
-    border: .5px solid #ddd;
-    margin-bottom: 0;
 }
 
 .all_category a {
@@ -99,6 +95,10 @@ h2.sup_kb_c {
 .ads_img_khoj img{
     width: 100%;
     height: 147px;
+}
+.ads_img_khoj_full img{
+    width: 100%;
+    height: 100%;
 }
 .fe_cli_logo{
     background: #fff;
@@ -261,6 +261,12 @@ ul.header_nav_pro {
         font-size: 12px;
         margin-bottom: 1px;
         line-height: 1;
+    }
+    .content.kb_d_ad {
+        width: 100%;
+        margin: 0 auto;
+        padding: 5px 16px;
+        overflow-x: visible;
     }
     .img-avatar_cat {
         display: inline-block!important;
