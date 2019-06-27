@@ -19,4 +19,11 @@ class Category extends Model
     public function client_cat(){
         return $this->hasMany(CategoryWiseClient::class,'cat_id');
     }
+    public function clientsId(){
+        return $this->belongsToMany(Client::class,'category_wise_clients','cat_id','client_id');
+    }
+    public function getClientIds()
+    {
+        return $this->clientsId()->allRelatedIds();
+    }
 }

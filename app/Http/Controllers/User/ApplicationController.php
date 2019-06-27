@@ -31,11 +31,8 @@ class ApplicationController extends Controller
         $clients =Client::orderBy('id','DESC');
         if (\request('cat')){
             $categories = Category::where('slug',\request('cat'))->firstOrFail();
-            $title =$categories->name;
-            $client_wise_cats = CategoryWiseClient::where('cat_id',$categories->id)->get();
-            foreach ($client_wise_cats as $category){
-                $clients->orWhere('id',$category->client_id);
-            }
+            $title =$categories->name.' - Khojbiz.com';
+                $clients->whereIn('id',$categories->getClientIds());
         }
         if (\request('keyword') || \request('location')){
             $disticts = District::where('name',\request('keyword'))->orWhere('name',\request('location'))->get();
