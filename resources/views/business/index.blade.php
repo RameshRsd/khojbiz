@@ -1,12 +1,12 @@
 @extends('frontend.layouts.master')
 @section('content')
-    <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="{{url('public/frontend')}}/assets/js/plugins/magnific-popup/magnific-popup.css">
     <div class="profile_khoj_biz">
         <div class="profile_page">
 
         </div>
         <div id="page-container" class="page-header-fixed">
+            <!-- Side Overlay-->
+        <!-- Sidebar -->
 
             <nav id="sidebar" aria-label="Main Navigation">
                 <!-- Side Header -->
@@ -19,11 +19,8 @@
                     </span>
                     </a>
                     <!-- END Logo -->
-
                     <!-- Options -->
                     <div>
-
-                        <!-- Close Sidebar, Visible only on mobile screens -->
                         <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
                         <a class="d-lg-none text-dual ml-3" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0)">
                             <i class="fa fa-times"></i>
@@ -37,23 +34,7 @@
                 <!-- Side Navigation -->
                 <div class="content-side content-side-full">
                     <ul class="nav-main">
-                        <li>
-                            <a class="nav-link d-flex justify-content-between align-items-center active" href="">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link d-flex justify-content-between align-items-center" href="">Profile </a>
-                        </li>
-                        <li>
-                            <a class="nav-link d-flex justify-content-between align-items-center" href="">Product & Service</a>
-                        </li>
-                        <li>
-                            <a class="nav-link d-flex justify-content-between align-items-center" href="">Image Gallery </a>
-                        </li>
-                        <li>
-                            <a class="nav-link d-flex justify-content-between align-items-center" href="">Contact Us </a>
-                        </li>
+                       @include('business.layouts.header')
                     </ul>
                 </div>
                 <!-- END Side Navigation -->
@@ -81,9 +62,16 @@
                             <i class="si si-grid"></i>
                         </button>
                         <!-- END Apps Modal -->
+
+                        <!-- Open Search Section (visible on smaller screens) -->
+                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+
+                        <!-- END Open Search Section -->
+
                         <!-- Search Form (visible on larger screens) -->
                         <ul class="header_nav_pro">
-                            @include('frontend.pages.client.pages.layouts.header')
+                            {{----}}
+                            {{----}}
                         </ul>
                         <!-- END Search Form -->
                     </div>
@@ -267,65 +255,35 @@
                 <!-- Page Content -->
                 <div class="content pro_kb_busi">
                     <div class="row">
-                        <div class="col-md-8 col-xl-8">
+                        <div class="col-md-3 col-xl-3">
+                           @include('business.layouts.aside')
+                        </div>
+                        <div class="col-md-6 col-xl-6">
                             <div class="profile_kb_b">
                                 <!-- Hero -->
+                                @if(is_file(public_path('uploads/banners/').'/'.$client->banner) && file_exists(public_path('uploads/banners/').'/'.$client->banner))
+                                    <div class="bg-image" style="background-image: url('{{url('public/uploads/banners/')}}/{{$client->banner}}');">
+                                        @else
+                                            <div class="bg-image" style="background-image: url('{{url('public/images/defaultImg/default_banner.jpg')}}');">
+                                                @endif
+                                                <div class="bg-black-80">
+                                                    <div class="content content-full text-center">
+                                                        <div class="my-3">
+                                                            @if(is_file(public_path('uploads/manufacture/logos/').'/'.$client->logo) && file_exists(public_path('uploads/manufacture/logos/').'/'.$client->logo))
+                                                                <img class="img-avatar img-avatar-thumb" src="{{url('public/uploads/manufacture/logos/').'/'.$client->logo}}" alt="">
+                                                            @else
+                                                                <img class="img-avatar" src="{{url('public/images/defaultImg/logo.png')}}" alt="">
+                                                            @endif
+                                                        </div>
+                                                        <h1 class="h2 text-white mb-0" title="{{$client->company_name}}">{{$client->company_name}}</h1>
+                                                        <span class="text-white-75" title="{{$client->company_address}}">{{$client->company_address}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <!-- END Hero -->
-                            </div>
+                                    </div>
                                     <!-- Updates -->
                                     <ul class="timeline timeline-alt py-0">
-                                        <li class="timeline-event">
-                                            <div class="timeline-event-icon bg-smooth">
-                                                <i class="fa fa-database"></i>
-                                            </div>
-                                            <div class="timeline-event-block block invisible" data-toggle="appear">
-                                                <div class="block-header">
-                                                    <h3 class="block-title">Image Gallery</h3>
-                                                    <div class="block-options">
-                                                        <div class="timeline-event-time block-options-item font-size-sm">
-                                                            1 day ago
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="block-content">
-                                                    <!-- Simple Gallery -->
-                                                    <h2 class="content-heading">Our Gallery</h2>
-                                                    <div class="row items-push js-gallery img-fluid-100">
-                                                        <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-                                                            <a class="img-link img-link-zoom-in img-thumb img-lightbox" href="{{url('public/images/defaultImg/002.jpg')}}">
-                                                                <img class="img-fluid" src="{{url('public/images/defaultImg/002.jpg')}}" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-                                                            <a class="img-link img-link-zoom-in img-thumb img-lightbox" href="{{url('public/images/defaultImg/ad4.jpg')}}">
-                                                                <img class="img-fluid" src="{{url('public/images/defaultImg/ad4.jpg')}}" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-                                                            <a class="img-link img-link-zoom-in img-thumb img-lightbox" href="{{url('public/images/defaultImg/ad2.jpg')}}">
-                                                                <img class="img-fluid" src="{{url('public/images/defaultImg/ad2.jpg')}}" alt="">
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <!-- END Simple Gallery -->
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="timeline-event">
-                                            <div class="timeline-event-icon bg-modern">
-                                                <i class="fa fa-briefcase"></i>
-                                            </div>
-                                            <div class="timeline-event-block block invisible" data-toggle="appear">
-                                                <div class="block-header">
-                                                    <h3 class="block-title">Profile</h3>
-                                                </div>
-                                                <div class="block-content block-content-full">
-                                                    <p>
-                                                      N/A
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
                                         <li class="timeline-event">
                                             <div class="timeline-event-icon bg-default">
                                                 <i class="fa fa-database"></i>
@@ -342,6 +300,21 @@
                                             </div>
                                         </li>
                                         <li class="timeline-event">
+                                            <div class="timeline-event-icon bg-modern">
+                                                <i class="fa fa-briefcase"></i>
+                                            </div>
+                                            <div class="timeline-event-block block invisible" data-toggle="appear">
+                                                <div class="block-header">
+                                                    <h3 class="block-title">Profile</h3>
+                                                </div>
+                                                <div class="block-content block-content-full">
+                                                    <p class="font-w600 mb-2">
+                                                        3 New Products were added!
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="timeline-event">
                                             <div class="timeline-event-icon bg-info">
                                                 <i class="fab fa-twitter"></i>
                                             </div>
@@ -350,8 +323,11 @@
                                                     <h3 class="block-title">Product And Service</h3>
                                                 </div>
                                                 <div class="block-content">
+                                                    <p class="font-w600 mb-2">
+                                                        + 1150 Followers
+                                                    </p>
                                                     <p>
-                                                       N/A
+                                                        You’re getting more and more followers, keep it up!
                                                     </p>
                                                 </div>
                                             </div>
@@ -362,7 +338,7 @@
                                             </div>
                                             <div class="timeline-event-block block invisible" data-toggle="appear">
                                                 <div class="block-header">
-                                                    <h3 class="block-title">Contact Us</h3>
+                                                    <h3 class="block-title">Image Gallery</h3>
                                                     <div class="block-options">
                                                         <div class="timeline-event-time block-options-item font-size-sm">
                                                             1 day ago
@@ -370,53 +346,18 @@
                                                     </div>
                                                 </div>
                                                 <div class="block-content">
-                                                    <form action="be_forms_elements.html" method="POST" enctype="multipart/form-data" onsubmit="return false;">
-                                                        <div class="row push">
-                                                            <div class="col-md-12 col-xl-12">
-                                                                <div class="row">
-                                                                    <div class="col-md-2">
-                                                                        <div class="form-group">
-                                                                            <label for="example-text-input">Name</label>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-10">
-                                                                        <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="entry your name">
-                                                                    </div>
-                                                                    <div class="col-md-2">
-                                                                        <div class="form-group">
-                                                                            <label for="example-email-input">Email</label>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-10">
-                                                                        <input type="email" class="form-control" id="example-email-input" name="example-email-input" placeholder="your@gmail.com">
-                                                                    </div>
-                                                                    <div class="col-md-2">
-                                                                        <div class="form-group">
-                                                                            <label for="example-textarea-input">Message</label>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-10">
-                                                                        <textarea class="form-control" id="example-textarea-input" name="example-textarea-input" rows="4" placeholder="Message.."></textarea>
-                                                                    </div>
-                                                                    <div class="col-md-2 col-md-3 ml-auto">
-                                                                        <div class="form-group">
-                                                                            <br>
-                                                                            <button type="submit" class="btn btn-success btn-sm">Submit</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </form>
+                                                    <p class="font-w600 mb-2">
+                                                        Database backup completed!
+                                                    </p>
+                                                    <p>
+                                                        Download the <a href="javascript:void(0)">latest backup</a>.
+                                                    </p>
                                                 </div>
                                             </div>
                                         </li>
                                     </ul>
                                     <!-- END Updates -->
                             </div>
-
-                        @include('frontend.pages.client.pages.layouts.contact_location')
                         </div>
                     </div>
                     <!-- END Page Content -->
@@ -429,7 +370,8 @@
                                     <a href="#">Claimed</a>
                                     <a href="#"><i class="fa fa-envelope"></i> Send SMS</a>
                                     <a href="#">Improve Listing</a>
-                                    <a href="#"><i class="fa fa-eye"></i> </a>
+                                    <a href="#"><i class="fa fa-eye"></i> 3232</a>
+                                    <a href="#"><i class="fa fa-search"></i> 858585</a>
                                 </div>
                             </div>
                         </div>
@@ -512,5 +454,4 @@
             <!-- END Apps Modal -->
         </div>
     </div>
-
 @endsection

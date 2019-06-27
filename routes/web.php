@@ -26,8 +26,14 @@ Route::get('update_client_about','HomeController@update_about');
 Route::group(['middleware'=>'guest'],function(){
     Route::get('login','HomeController@getLogin')->name('login');
     Route::post('login','HomeController@postLogin');
-    Route::get('register','HomeController@getregister')->name('register');
-    Route::post('register','HomeController@postregister');
+    Route::get('business/register','HomeController@get_business_register');
+    Route::post('business/register','HomeController@post_business_register');
+    /*manufacture*/
+    Route::get('manufacture/register','HomeController@get_manufacture_register');
+    Route::post('manufacture/register','HomeController@post_manufacture_register');
+
+//    Route::get('register','HomeController@getregister')->name('register');
+//    Route::post('register','HomeController@postregister');
 
 });
 Route::get('browse-by-alphabates/list_{alpha}','AlphabateController@index');
@@ -179,6 +185,12 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::post('locations-categories','Location\LocationCategoryController@store');
     Route::post('location-category-update/{id}','Location\LocationCategoryController@udpate');
     /* ==============================Location/Places========================================= */
+    /* ==============================Web site listing ========================================= */
+    Route::get('list-website','Website\WebsiteController@index');
+    Route::get('add-website','Website\WebsiteController@create');
+    Route::post('add-website','Website\WebsiteController@store');
+    /* ==============================Web site listing ========================================= */
+
     /* ============================== Candidate-Section ========================================= */
     Route::get('list-candidates','CandidateController@index');
     Route::get('list-candidates/candidate_id={id}/edit','CandidateController@edit');
@@ -197,6 +209,19 @@ Route::group(['middleware'=>['client','verified'],'prefix'=>'client','namespace'
 /* ================================================ Client CONTROL Start============================================================== */
 Route::group(['middleware'=>['users','verified'],'prefix'=>'users','namespace'=>'User'],function(){
     Route::get('','UserController@index');
+
+    Route::get('about-us','UserController@about_us');
+});
+
+/* ================================================ Business CONTROL Start============================================================== */
+Route::group(['middleware'=>['business','verified'],'prefix'=>'business','namespace'=>'Business'],function(){
+    Route::get('','BusinessController@index');
+
+    Route::get('about-us','UserController@about_us');
+});
+/* ================================================ Manufacture CONTROL Start============================================================== */
+Route::group(['middleware'=>['manufacture','verified'],'prefix'=>'manufacture','namespace'=>'Manufacture'],function(){
+    Route::get('','ManufactureController@index');
 
     Route::get('about-us','UserController@about_us');
 });
@@ -286,3 +311,6 @@ Route::any('companyinfo/{slug}','User\ApplicationController@product_details');
 /*=====================Manufacture ========================*/
 Route::any('{UserName}','User\ApplicationController@menu_overview');
 /*=====================Manufacture end========================*/
+/*===================== Product  ========================*/
+Route::any('top-location/{slug}','User\ApplicationController@location_details');
+/*===================== Product end========================*/

@@ -1,0 +1,3 @@
+@extends('business.index')
+
+@endsection

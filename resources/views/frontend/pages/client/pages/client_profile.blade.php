@@ -5,7 +5,10 @@
 
         </div>
         <div id="page-container" class="page-header-fixed">
+<<<<<<< HEAD
+=======
 
+>>>>>>> eb77e19655e3284dfd3ef20d5a150a6a92c4f974
 
             <nav id="sidebar" aria-label="Main Navigation">
                 <!-- Side Header -->
@@ -288,8 +291,8 @@
                                                     <h3 class="block-title">Profile</h3>
                                                 </div>
                                                 <div class="block-content block-content-full">
-                                                    <p class="font-w600 mb-2">
-                                                        3 New Products were added!
+                                                    <p>
+                                                       N/A
                                                     </p>
                                                 </div>
                                             </div>
@@ -318,11 +321,8 @@
                                                     <h3 class="block-title">Product And Service</h3>
                                                 </div>
                                                 <div class="block-content">
-                                                    <p class="font-w600 mb-2">
-                                                        + 1150 Followers
-                                                    </p>
                                                     <p>
-                                                        You’re getting more and more followers, keep it up!
+                                                       N/A
                                                     </p>
                                                 </div>
                                             </div>
@@ -336,16 +336,13 @@
                                                     <h3 class="block-title">Image Gallery</h3>
                                                     <div class="block-options">
                                                         <div class="timeline-event-time block-options-item font-size-sm">
-                                                            1 day ago
+
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="block-content">
-                                                    <p class="font-w600 mb-2">
-                                                        Database backup completed!
-                                                    </p>
                                                     <p>
-                                                        Download the <a href="javascript:void(0)">latest backup</a>.
+                                                        N/A
                                                     </p>
                                                 </div>
                                             </div>
@@ -359,7 +356,7 @@
                                                     <h3 class="block-title">Contact Us</h3>
                                                     <div class="block-options">
                                                         <div class="timeline-event-time block-options-item font-size-sm">
-                                                            1 day ago
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -424,8 +421,7 @@
                                     <a href="#">Claimed</a>
                                     <a href="#"><i class="fa fa-envelope"></i> Send SMS</a>
                                     <a href="#">Improve Listing</a>
-                                    <a href="#"><i class="fa fa-eye"></i> 3232</a>
-                                    <a href="#"><i class="fa fa-search"></i> 858585</a>
+                                    <a href="#"><i class="fa fa-eye"></i> </a>
                                 </div>
                             </div>
                         </div>

@@ -10,6 +10,7 @@ use App\Category;
 use App\CategoryWiseClient;
 use App\Client\Client;
 use App\District;
+use App\Place\location;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -155,6 +156,7 @@ class ApplicationController extends Controller
         }
         return view('frontend.pages.client.pages.product_and_service',compact('title','client','ads','side_ads','category','discription','image'));
     }
+
     public function product_details($slug){
         $products =Product::where('slug',$slug)->firstOrFail();
         $title =  $products->product_name.' - Khojbiz.com';
@@ -165,6 +167,16 @@ class ApplicationController extends Controller
         }
         return view('frontend.pages.product.index',compact('title','client','ads','side_ads','category','discription','image','products','top_product'));
     }
+    public function location_details($slug){
+        $locations =location::where('slug',$slug)->firstOrFail();
+        $title =  $locations->name.' - Khojbiz.com';
+        $discription = str_limit($locations->details,155);
+        if (isset($client->banner)){
+            $image = '/public/uploads/location_image'.'/'.$locations->image;
+        }
+        return view('frontend.pages.location.index',compact('title','client','ads','side_ads','category','discription','image','products','locations'));
+    }
+
 
     public function buying_selling(){
         $title = 'Buying & Selling';

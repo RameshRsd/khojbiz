@@ -93,8 +93,7 @@
                                         <a href="#">Claimed</a>
                                         <a href="#"><i class="fa fa-envelope"></i> Send SMS</a>
                                         <a href="#">Improve Listing</a>
-                                        <a href="#"><i class="fa fa-eye"></i> 3232</a>
-                                        <a href="#"><i class="fa fa-search"></i> 858585</a>
+                                        <a href="#"><i class="fa fa-eye"></i> </a>
                                     </div>
                                 </div>
                             </li>

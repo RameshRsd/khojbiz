@@ -57,12 +57,20 @@
                             <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{url('users')}}">
                                 <span>Profile</span>
                                 <span>
-                                <span class="badge badge-pill badge-success">1</span>
+                                <span class="badge badge-pill badge-success"></span>
                                 <i class="si si-user ml-1"></i>
                             </span>
                             </a>
                             @elseif(\Illuminate\Support\Facades\Auth::user()->type == 'staff')
                                 <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{url('staff')}}" title="{{\Illuminate\Support\Facades\Auth::user()->name}}">
+                                    <span title="{{\Illuminate\Support\Facades\Auth::user()->name}}">Profile</span>
+                                    <span>
+                                <span class="badge badge-pill badge-success">1</span>
+                                <i class="si si-user ml-1"></i>
+                              </span>
+                                </a>
+                            @elseif(\Illuminate\Support\Facades\Auth::user()->type == 'business')
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{url('business')}}" title="{{\Illuminate\Support\Facades\Auth::user()->name}}">
                                     <span title="{{\Illuminate\Support\Facades\Auth::user()->name}}">Profile</span>
                                     <span>
                                 <span class="badge badge-pill badge-success">1</span>
@@ -178,16 +186,14 @@
                                 <img class="rounded" src="{{url('public/frontend/assets/media/avatars/avatar10.jpg')}}" alt="Khoj Biz" style="width: 18px;">
                                 <span class="d-none d-sm-inline-block ml-1">Login</span>
                             </a>
-                            <a href="{{url('register')}}" class="btn btn-sm btn-dual">
-                                <img class="rounded" src="{{url('public/frontend/assets/media/avatars/avatar10.jpg')}}" alt="Khoj Biz" style="width: 18px;">  <span class="d-none d-sm-inline-block ml-1">Register</span>
-                            </a>
                         <!-- END User Dropdown -->
+                        <button type="button" class="btn btn-sm btn-dual ml-2" data-toggle="layout" data-action="side_overlay_toggle">
+                            <i class="fa fa-registered"></i> Register
+                        </button>
                 @endif
                 <!-- Toggle Side Overlay -->
                 <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                <button type="button" class="btn btn-sm btn-dual ml-2" data-toggle="layout" data-action="side_overlay_toggle">
-                    <i class="fa fa-fw fa-list-ul fa-flip-horizontal"></i>
-                </button>
+
                 <!-- END Toggle Side Overlay -->
             </div>
             <!-- END Right Section -->

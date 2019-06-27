@@ -114,6 +114,18 @@
                         <li class=" <?php if(request()->segment('2') =='location-categories'){ echo 'active' ;} ?>"><a href="{{url('admin/locations-categories')}}"><i class="fa fa-circle-o"></i> Location Categories</a></li>
                     </ul>
                 </li>
+                <li class="treeview  <?php if(request()->segment('2') =='list-website' || request()->segment('2') =='create-location'|| request()->segment('2') =='locations-categories'){ echo 'active menu-open' ;} ?>">
+                    <a href="#"><i class="fa fa-map"></i> <span>Web site </span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class=" <?php if(request()->segment('2') =='list-website'){ echo 'active' ;} ?>"><a href="{{url('admin/list-website')}}"><i class="fa fa-circle-o"></i>List Website</a></li>
+                        <li class="<?php if(request()->segment('2') =='add-website'){ echo 'active' ;} ?>"><a href="{{url('admin/add-website')}}"><i class="fa fa-circle-o"></i>Add New Website</a></li>
+                        <li class=" <?php if(request()->segment('2') =='location-categories'){ echo 'active' ;} ?>"><a href="{{url('admin/add-categories')}}"><i class="fa fa-circle-o"></i>Web Site Categories</a></li>
+                    </ul>
+                </li>
                 <li class="treeview  <?php if(request()->segment('2') =='list-events' || request()->segment('2') =='event-request'  || request()->segment('2') =='create-event' || request()->segment('2') =='categories'){ echo 'active menu-open' ;} ?>">
                     <a href="#"><i class="fa fa-calendar-times-o"></i> <span>Event & Training</span>
                         <span class="pull-right-container">
