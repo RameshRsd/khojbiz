@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="kb_f_pro">
-                        <b> <p>Business Search by Alphabetically</p></b>
+                        <b> <p>Business Category by Alphabetically</p></b>
                         @php $alphas = \App\Alphabate::orderBy('name')->get(); @endphp
                         @foreach($alphas as $alpha)
                         <a href="{{url('browse-by-alphabates').'/list_'.$alpha->name}}">{{$alpha->name}}</a>

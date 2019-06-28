@@ -262,6 +262,12 @@ ul.header_nav_pro {
         margin-bottom: 1px;
         line-height: 1;
     }
+    .timeline-event-icon{
+        display: none!important;
+    }
+    .timeline-event-block{
+        margin-left: 0!important;
+    }
     .content.kb_d_ad {
         width: 100%;
         margin: 0 auto;
