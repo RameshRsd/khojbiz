@@ -17,6 +17,9 @@ class Client extends Model
     public function user(){
         return $this->belongsTo(User::class,'user_id');
     }
+    public function staff(){
+        return $this->belongsTo(User::class,'entry_by');
+    }
     public function category(){
         return $this->belongsTo(CategoryWiseClient::class,'cat_id');
     }

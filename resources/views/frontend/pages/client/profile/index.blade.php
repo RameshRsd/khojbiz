@@ -6,362 +6,6 @@
         </div>
         <div id="page-container" class="page-header-fixed">
             <!-- Side Overlay-->
-        {{--<aside id="side-overlay" class="font-size-sm">--}}
-        {{--<!-- Side Header -->--}}
-        {{--<div class="content-header border-bottom">--}}
-        {{--<!-- User Avatar -->--}}
-        {{--<a class="img-link mr-1" href="javascript:void(0)">--}}
-        {{--<img class="img-avatar img-avatar32" src="assets/media/avatars/avatar10.jpg" alt="">--}}
-        {{--</a>--}}
-        {{--<!-- END User Avatar -->--}}
-
-        {{--<!-- User Info -->--}}
-        {{--<div class="ml-2">--}}
-        {{--<a class="link-fx text-dark font-w600" href="javascript:void(0)">Adam McCoy</a>--}}
-        {{--</div>--}}
-        {{--<!-- END User Info -->--}}
-
-        {{--<!-- Close Side Overlay -->--}}
-        {{--<!-- Layout API, functionality initialized in Template._uiApiLayout() -->--}}
-        {{--<a class="ml-auto btn btn-sm btn-dual" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_close">--}}
-        {{--<i class="fa fa-fw fa-times text-danger"></i>--}}
-        {{--</a>--}}
-        {{--<!-- END Close Side Overlay -->--}}
-        {{--</div>--}}
-        {{--<!-- END Side Header -->--}}
-
-        {{--<!-- Side Content -->--}}
-        {{--<div class="content-side">--}}
-        {{--<!-- Side Overlay Tabs -->--}}
-        {{--<div class="block block-transparent pull-x pull-t">--}}
-        {{--<ul class="nav nav-tabs nav-tabs-alt nav-justified" data-toggle="tabs" role="tablist">--}}
-        {{--<li class="nav-item">--}}
-        {{--<a class="nav-link active" href="#so-overview">--}}
-        {{--<i class="fa fa-fw fa-coffee text-gray mr-1"></i> Overview--}}
-        {{--</a>--}}
-        {{--</li>--}}
-        {{--<li class="nav-item">--}}
-        {{--<a class="nav-link" href="#so-sales">--}}
-        {{--<i class="fa fa-fw fa-chart-line text-gray mr-1"></i> Sales--}}
-        {{--</a>--}}
-        {{--</li>--}}
-        {{--</ul>--}}
-        {{--<div class="block-content tab-content overflow-hidden">--}}
-        {{--<!-- Overview Tab -->--}}
-        {{--<div class="tab-pane pull-x fade fade-left show active" id="so-overview" role="tabpanel">--}}
-        {{--<!-- Activity -->--}}
-        {{--<div class="block">--}}
-        {{--<div class="block-header block-header-default">--}}
-        {{--<h3 class="block-title">Recent Activity</h3>--}}
-        {{--<div class="block-options">--}}
-        {{--<button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">--}}
-        {{--<i class="si si-refresh"></i>--}}
-        {{--</button>--}}
-        {{--<button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<div class="block-content">--}}
-        {{--<!-- Activity List -->--}}
-        {{--<ul class="nav-items mb-0">--}}
-        {{--<li>--}}
-        {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-        {{--<div class="mr-3 ml-2">--}}
-        {{--<i class="si si-wallet text-success"></i>--}}
-        {{--</div>--}}
-        {{--<div class="media-body">--}}
-        {{--<div class="font-w600">New sale ($15)</div>--}}
-        {{--<div class="text-success">Admin Template</div>--}}
-        {{--<small class="text-muted">3 min ago</small>--}}
-        {{--</div>--}}
-        {{--</a>--}}
-        {{--</li>--}}
-        {{--<li>--}}
-        {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-        {{--<div class="mr-3 ml-2">--}}
-        {{--<i class="si si-pencil text-info"></i>--}}
-        {{--</div>--}}
-        {{--<div class="media-body">--}}
-        {{--<div class="font-w600">You edited the file</div>--}}
-        {{--<div class="text-info">--}}
-        {{--<i class="fa fa-file-text"></i> Documentation.doc--}}
-        {{--</div>--}}
-        {{--<small class="text-muted">15 min ago</small>--}}
-        {{--</div>--}}
-        {{--</a>--}}
-        {{--</li>--}}
-        {{--<li>--}}
-        {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-        {{--<div class="mr-3 ml-2">--}}
-        {{--<i class="si si-close text-danger"></i>--}}
-        {{--</div>--}}
-        {{--<div class="media-body">--}}
-        {{--<div class="font-w600">Project deleted</div>--}}
-        {{--<div class="text-danger">Line Icon Set</div>--}}
-        {{--<small class="text-muted">4 hours ago</small>--}}
-        {{--</div>--}}
-        {{--</a>--}}
-        {{--</li>--}}
-        {{--</ul>--}}
-        {{--<!-- END Activity List -->--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<!-- END Activity -->--}}
-
-        {{--<!-- Online Friends -->--}}
-        {{--<!-- END Online Friends -->--}}
-
-        {{--<!-- Quick Settings -->--}}
-        {{--<div class="block mb-0">--}}
-        {{--<div class="block-header block-header-default">--}}
-        {{--<h3 class="block-title">Quick Settings</h3>--}}
-        {{--<div class="block-options">--}}
-        {{--<button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<div class="block-content">--}}
-        {{--<!-- Quick Settings Form -->--}}
-        {{--<form action="be_pages_dashboard.html" method="POST" onsubmit="return false;">--}}
-        {{--<div class="form-group">--}}
-        {{--<p class="font-w600 mb-2">--}}
-        {{--Online Status--}}
-        {{--</p>--}}
-        {{--<div class="custom-control custom-switch mb-1">--}}
-        {{--<input type="checkbox" class="custom-control-input" id="so-settings-check1" name="so-settings-check1" checked>--}}
-        {{--<label class="custom-control-label" for="so-settings-check1">Show your status to all</label>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<hr>--}}
-        {{--<div class="form-group">--}}
-        {{--<p class="font-w600 mb-2">--}}
-        {{--Auto Updates--}}
-        {{--</p>--}}
-        {{--<div class="custom-control custom-switch mb-1">--}}
-        {{--<input type="checkbox" class="custom-control-input" id="so-settings-check2" name="so-settings-check2" checked>--}}
-        {{--<label class="custom-control-label" for="so-settings-check2">Keep up to date</label>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<hr>--}}
-        {{--<div class="form-group">--}}
-        {{--<p class="font-w600 mb-1">--}}
-        {{--Application Alerts--}}
-        {{--</p>--}}
-        {{--<div class="custom-control custom-switch mb-1">--}}
-        {{--<input type="checkbox" class="custom-control-input" id="so-settings-check3" name="so-settings-check3" checked>--}}
-        {{--<label class="custom-control-label" for="so-settings-check3">Email Notifications</label>--}}
-        {{--</div>--}}
-        {{--<div class="custom-control custom-switch mb-1">--}}
-        {{--<input type="checkbox" class="custom-control-input" id="so-settings-check4" name="so-settings-check4" checked>--}}
-        {{--<label class="custom-control-label" for="so-settings-check4">SMS Notifications</label>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<hr>--}}
-        {{--<div class="form-group">--}}
-        {{--<p class="font-w600 mb-1">--}}
-        {{--API--}}
-        {{--</p>--}}
-        {{--<div class="custom-control custom-switch mb-1">--}}
-        {{--<input type="checkbox" class="custom-control-input" id="so-settings-check5" name="so-settings-check5" checked>--}}
-        {{--<label class="custom-control-label" for="so-settings-check5">Enable access</label>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</form>--}}
-        {{--<!-- END Quick Settings Form -->--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<!-- END Quick Settings -->--}}
-        {{--</div>--}}
-        {{--<!-- END Overview Tab -->--}}
-
-        {{--<!-- Sales Tab -->--}}
-        {{--<div class="tab-pane pull-x fade fade-right" id="so-sales" role="tabpanel">--}}
-        {{--<div class="block mb-0">--}}
-        {{--<!-- Stats -->--}}
-        {{--<div class="block-content">--}}
-        {{--<div class="row items-push pull-t">--}}
-        {{--<div class="col-6">--}}
-        {{--<div class="font-w700 text-uppercase">Sales</div>--}}
-        {{--<a class="link-fx font-size-h3 font-w300" href="javascript:void(0)">22.030</a>--}}
-        {{--</div>--}}
-        {{--<div class="col-6">--}}
-        {{--<div class="font-w700 text-uppercase">Balance</div>--}}
-        {{--<a class="link-fx font-size-h3 font-w300" href="javascript:void(0)">$4.589,00</a>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<!-- END Stats -->--}}
-
-        {{--<!-- Today -->--}}
-        {{--<div class="block-content block-content-full block-content-sm bg-body-light">--}}
-        {{--<div class="row">--}}
-        {{--<div class="col-6">--}}
-        {{--<span class="font-w600 text-uppercase">Today</span>--}}
-        {{--</div>--}}
-        {{--<div class="col-6 text-right">--}}
-        {{--<span class="ext-muted">$996</span>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<div class="block-content">--}}
-        {{--<ul class="nav-items push">--}}
-        {{--<li>--}}
-        {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-        {{--<div class="mr-3 ml-2">--}}
-        {{--<i class="fa fa-fw fa-circle text-success"></i>--}}
-        {{--</div>--}}
-        {{--<div class="media-body">--}}
-        {{--<div class="font-w600">New sale! + $249</div>--}}
-        {{--<small class="text-muted">3 min ago</small>--}}
-        {{--</div>--}}
-        {{--</a>--}}
-        {{--</li>--}}
-        {{--<li>--}}
-        {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-        {{--<div class="mr-3 ml-2">--}}
-        {{--<i class="fa fa-fw fa-circle text-success"></i>--}}
-        {{--</div>--}}
-        {{--<div class="media-body">--}}
-        {{--<div class="font-w600">New sale! + $129</div>--}}
-        {{--<small class="text-muted">50 min ago</small>--}}
-        {{--</div>--}}
-        {{--</a>--}}
-        {{--</li>--}}
-        {{--<li>--}}
-        {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-        {{--<div class="mr-3 ml-2">--}}
-        {{--<i class="fa fa-fw fa-circle text-success"></i>--}}
-        {{--</div>--}}
-        {{--<div class="media-body">--}}
-        {{--<div class="font-w600">New sale! + $119</div>--}}
-        {{--<small class="text-muted">2 hours ago</small>--}}
-        {{--</div>--}}
-        {{--</a>--}}
-        {{--</li>--}}
-        {{--<li>--}}
-        {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-        {{--<div class="mr-3 ml-2">--}}
-        {{--<i class="fa fa-fw fa-circle text-success"></i>--}}
-        {{--</div>--}}
-        {{--<div class="media-body">--}}
-        {{--<div class="font-w600">New sale! + $499</div>--}}
-        {{--<small class="text-muted">3 hours ago</small>--}}
-        {{--</div>--}}
-        {{--</a>--}}
-        {{--</li>--}}
-        {{--</ul>--}}
-        {{--</div>--}}
-        {{--<!-- END Today -->--}}
-
-        {{--<!-- Yesterday -->--}}
-        {{--<div class="block-content block-content-full block-content-sm bg-body-light">--}}
-        {{--<div class="row">--}}
-        {{--<div class="col-6">--}}
-        {{--<span class="font-w600 text-uppercase">Yesterday</span>--}}
-        {{--</div>--}}
-        {{--<div class="col-6 text-right">--}}
-        {{--<span class="text-muted">$765</span>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<div class="block-content">--}}
-        {{--<ul class="nav-items push">--}}
-        {{--<li>--}}
-        {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-        {{--<div class="mr-3 ml-2">--}}
-        {{--<i class="fa fa-fw fa-circle text-success"></i>--}}
-        {{--</div>--}}
-        {{--<div class="media-body">--}}
-        {{--<div class="font-w600">New sale! + $249</div>--}}
-        {{--<small class="text-muted">26 hours ago</small>--}}
-        {{--</div>--}}
-        {{--</a>--}}
-        {{--</li>--}}
-        {{--<li>--}}
-        {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-        {{--<div class="mr-3 ml-2">--}}
-        {{--<i class="fa fa-fw fa-circle text-danger"></i>--}}
-        {{--</div>--}}
-        {{--<div class="media-body">--}}
-        {{--<div class="font-w600">Product Purchase - $50</div>--}}
-        {{--<small class="text-muted">28 hours ago</small>--}}
-        {{--</div>--}}
-        {{--</a>--}}
-        {{--</li>--}}
-        {{--<li>--}}
-        {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-        {{--<div class="mr-3 ml-2">--}}
-        {{--<i class="fa fa-fw fa-circle text-success"></i>--}}
-        {{--</div>--}}
-        {{--<div class="media-body">--}}
-        {{--<div class="font-w600">New sale! + $119</div>--}}
-        {{--<small class="text-muted">29 hours ago</small>--}}
-        {{--</div>--}}
-        {{--</a>--}}
-        {{--</li>--}}
-        {{--<li>--}}
-        {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-        {{--<div class="mr-3 ml-2">--}}
-        {{--<i class="fa fa-fw fa-circle text-danger"></i>--}}
-        {{--</div>--}}
-        {{--<div class="media-body">--}}
-        {{--<div class="font-w600">Paypal Withdrawal - $300</div>--}}
-        {{--<small class="text-muted">37 hours ago</small>--}}
-        {{--</div>--}}
-        {{--</a>--}}
-        {{--</li>--}}
-        {{--<li>--}}
-        {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-        {{--<div class="mr-3 ml-2">--}}
-        {{--<i class="fa fa-fw fa-circle text-success"></i>--}}
-        {{--</div>--}}
-        {{--<div class="media-body">--}}
-        {{--<div class="font-w600">New sale! + $129</div>--}}
-        {{--<small class="text-muted">39 hours ago</small>--}}
-        {{--</div>--}}
-        {{--</a>--}}
-        {{--</li>--}}
-        {{--<li>--}}
-        {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-        {{--<div class="mr-3 ml-2">--}}
-        {{--<i class="fa fa-fw fa-circle text-success"></i>--}}
-        {{--</div>--}}
-        {{--<div class="media-body">--}}
-        {{--<div class="font-w600">New sale! + $119</div>--}}
-        {{--<small class="text-muted">45 hours ago</small>--}}
-        {{--</div>--}}
-        {{--</a>--}}
-        {{--</li>--}}
-        {{--<li>--}}
-        {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-        {{--<div class="mr-3 ml-2">--}}
-        {{--<i class="fa fa-fw fa-circle text-success"></i>--}}
-        {{--</div>--}}
-        {{--<div class="media-body">--}}
-        {{--<div class="font-w600">New sale! + $499</div>--}}
-        {{--<small class="text-muted">46 hours ago</small>--}}
-        {{--</div>--}}
-        {{--</a>--}}
-        {{--</li>--}}
-        {{--</ul>--}}
-
-        {{--<!-- More -->--}}
-        {{--<div class="text-center">--}}
-        {{--<a class="btn btn-sm btn-light" href="javascript:void(0)">--}}
-        {{--<i class="fa fa-arrow-down mr-1"></i> Load More..--}}
-        {{--</a>--}}
-        {{--</div>--}}
-        {{--<!-- END More -->--}}
-        {{--</div>--}}
-        {{--<!-- END Yesterday -->--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<!-- END Sales Tab -->--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<!-- END Side Overlay Tabs -->--}}
-        {{--</div>--}}
-        {{--<!-- END Side Content -->--}}
-        {{--</aside>--}}
-        {{--<!-- END Side Overlay -->--}}
 
         <!-- Sidebar -->
 
@@ -472,30 +116,30 @@
                                     </div>
                                     <div class="p-2">
                                         <h5 class="dropdown-header text-uppercase">User Options</h5>
-                                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_inbox.html">
-                                            <span>Inbox</span>
-                                            <span>
-                                            <span class="badge badge-pill badge-primary">3</span>
-                                            <i class="si si-envelope-open ml-1"></i>
-                                        </span>
-                                        </a>
-                                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_profile.html">
-                                            <span>Profile</span>
-                                            <span>
-                                            <span class="badge badge-pill badge-success">1</span>
-                                            <i class="si si-user ml-1"></i>
-                                        </span>
-                                        </a>
-                                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                            <span>Settings</span>
-                                            <i class="si si-settings"></i>
-                                        </a>
-                                        <div role="separator" class="dropdown-divider"></div>
-                                        <h5 class="dropdown-header text-uppercase">Actions</h5>
-                                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="op_auth_lock.html">
-                                            <span>Lock Account</span>
-                                            <i class="si si-lock ml-1"></i>
-                                        </a>
+                                        {{--<a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_inbox.html">--}}
+                                            {{--<span>Inbox</span>--}}
+                                            {{--<span>--}}
+                                            {{--<span class="badge badge-pill badge-primary">3</span>--}}
+                                            {{--<i class="si si-envelope-open ml-1"></i>--}}
+                                        {{--</span>--}}
+                                        {{--</a>--}}
+                                        {{--<a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_profile.html">--}}
+                                            {{--<span>Profile</span>--}}
+                                            {{--<span>--}}
+                                            {{--<span class="badge badge-pill badge-success">1</span>--}}
+                                            {{--<i class="si si-user ml-1"></i>--}}
+                                        {{--</span>--}}
+                                        {{--</a>--}}
+                                        {{--<a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">--}}
+                                            {{--<span>Settings</span>--}}
+                                            {{--<i class="si si-settings"></i>--}}
+                                        {{--</a>--}}
+                                        {{--<div role="separator" class="dropdown-divider"></div>--}}
+                                        {{--<h5 class="dropdown-header text-uppercase">Actions</h5>--}}
+                                        {{--<a class="dropdown-item d-flex align-items-center justify-content-between" href="op_auth_lock.html">--}}
+                                            {{--<span>Lock Account</span>--}}
+                                            {{--<i class="si si-lock ml-1"></i>--}}
+                                        {{--</a>--}}
                                         <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{url('logout')}}">
                                             <span>Log Out</span>
                                             <i class="si si-logout ml-1"></i>
@@ -508,80 +152,80 @@
                             <div class="dropdown d-inline-block ml-2">
                                 <button type="button" class="btn btn-sm btn-dual" id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="si si-bell"></i>
-                                    <span class="badge badge-primary badge-pill">6</span>
+                                    <span class="badge badge-primary badge-pill">0</span>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-notifications-dropdown">
                                     <div class="p-2 bg-primary text-center">
                                         <h5 class="dropdown-header text-uppercase text-white">Notifications</h5>
                                     </div>
-                                    <ul class="nav-items mb-0">
-                                        <li>
-                                            <a class="text-dark media py-2" href="javascript:void(0)">
-                                                <div class="mr-2 ml-3">
-                                                    <i class="fa fa-fw fa-check-circle text-success"></i>
-                                                </div>
-                                                <div class="media-body pr-2">
-                                                    <div class="font-w600">You have a new follower</div>
-                                                    <small class="text-muted">15 min ago</small>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="text-dark media py-2" href="javascript:void(0)">
-                                                <div class="mr-2 ml-3">
-                                                    <i class="fa fa-fw fa-plus-circle text-info"></i>
-                                                </div>
-                                                <div class="media-body pr-2">
-                                                    <div class="font-w600">1 new sale, keep it up</div>
-                                                    <small class="text-muted">22 min ago</small>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="text-dark media py-2" href="javascript:void(0)">
-                                                <div class="mr-2 ml-3">
-                                                    <i class="fa fa-fw fa-times-circle text-danger"></i>
-                                                </div>
-                                                <div class="media-body pr-2">
-                                                    <div class="font-w600">Update failed, restart server</div>
-                                                    <small class="text-muted">26 min ago</small>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="text-dark media py-2" href="javascript:void(0)">
-                                                <div class="mr-2 ml-3">
-                                                    <i class="fa fa-fw fa-plus-circle text-info"></i>
-                                                </div>
-                                                <div class="media-body pr-2">
-                                                    <div class="font-w600">2 new sales, keep it up</div>
-                                                    <small class="text-muted">33 min ago</small>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="text-dark media py-2" href="javascript:void(0)">
-                                                <div class="mr-2 ml-3">
-                                                    <i class="fa fa-fw fa-user-plus text-success"></i>
-                                                </div>
-                                                <div class="media-body pr-2">
-                                                    <div class="font-w600">You have a new subscriber</div>
-                                                    <small class="text-muted">41 min ago</small>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="text-dark media py-2" href="javascript:void(0)">
-                                                <div class="mr-2 ml-3">
-                                                    <i class="fa fa-fw fa-check-circle text-success"></i>
-                                                </div>
-                                                <div class="media-body pr-2">
-                                                    <div class="font-w600">You have a new follower</div>
-                                                    <small class="text-muted">42 min ago</small>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    {{--<ul class="nav-items mb-0">--}}
+                                        {{--<li>--}}
+                                            {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
+                                                {{--<div class="mr-2 ml-3">--}}
+                                                    {{--<i class="fa fa-fw fa-check-circle text-success"></i>--}}
+                                                {{--</div>--}}
+                                                {{--<div class="media-body pr-2">--}}
+                                                    {{--<div class="font-w600">You have a new follower</div>--}}
+                                                    {{--<small class="text-muted">15 min ago</small>--}}
+                                                {{--</div>--}}
+                                            {{--</a>--}}
+                                        {{--</li>--}}
+                                        {{--<li>--}}
+                                            {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
+                                                {{--<div class="mr-2 ml-3">--}}
+                                                    {{--<i class="fa fa-fw fa-plus-circle text-info"></i>--}}
+                                                {{--</div>--}}
+                                                {{--<div class="media-body pr-2">--}}
+                                                    {{--<div class="font-w600">1 new sale, keep it up</div>--}}
+                                                    {{--<small class="text-muted">22 min ago</small>--}}
+                                                {{--</div>--}}
+                                            {{--</a>--}}
+                                        {{--</li>--}}
+                                        {{--<li>--}}
+                                            {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
+                                                {{--<div class="mr-2 ml-3">--}}
+                                                    {{--<i class="fa fa-fw fa-times-circle text-danger"></i>--}}
+                                                {{--</div>--}}
+                                                {{--<div class="media-body pr-2">--}}
+                                                    {{--<div class="font-w600">Update failed, restart server</div>--}}
+                                                    {{--<small class="text-muted">26 min ago</small>--}}
+                                                {{--</div>--}}
+                                            {{--</a>--}}
+                                        {{--</li>--}}
+                                        {{--<li>--}}
+                                            {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
+                                                {{--<div class="mr-2 ml-3">--}}
+                                                    {{--<i class="fa fa-fw fa-plus-circle text-info"></i>--}}
+                                                {{--</div>--}}
+                                                {{--<div class="media-body pr-2">--}}
+                                                    {{--<div class="font-w600">2 new sales, keep it up</div>--}}
+                                                    {{--<small class="text-muted">33 min ago</small>--}}
+                                                {{--</div>--}}
+                                            {{--</a>--}}
+                                        {{--</li>--}}
+                                        {{--<li>--}}
+                                            {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
+                                                {{--<div class="mr-2 ml-3">--}}
+                                                    {{--<i class="fa fa-fw fa-user-plus text-success"></i>--}}
+                                                {{--</div>--}}
+                                                {{--<div class="media-body pr-2">--}}
+                                                    {{--<div class="font-w600">You have a new subscriber</div>--}}
+                                                    {{--<small class="text-muted">41 min ago</small>--}}
+                                                {{--</div>--}}
+                                            {{--</a>--}}
+                                        {{--</li>--}}
+                                        {{--<li>--}}
+                                            {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
+                                                {{--<div class="mr-2 ml-3">--}}
+                                                    {{--<i class="fa fa-fw fa-check-circle text-success"></i>--}}
+                                                {{--</div>--}}
+                                                {{--<div class="media-body pr-2">--}}
+                                                    {{--<div class="font-w600">You have a new follower</div>--}}
+                                                    {{--<small class="text-muted">42 min ago</small>--}}
+                                                {{--</div>--}}
+                                            {{--</a>--}}
+                                        {{--</li>--}}
+                                    {{--</ul>--}}
                                     <div class="p-2 border-top">
                                         <a class="btn btn-sm btn-light btn-block text-center" href="javascript:void(0)">
                                             <i class="fa fa-fw fa-arrow-down mr-1"></i> Load More..
@@ -644,7 +288,7 @@
                                                     <span>
                                                         <i class="fa fa-fw fa-inbox mr-1"></i> About Us
                                                     </span>
-                                                <span class="badge badge-pill badge-secondary">3</span>
+                                                <span class="badge badge-pill badge-secondary">0    </span>
                                             </a>
                                         </li>
                                         <li class="nav-item my-1">
@@ -652,7 +296,7 @@
                                                     <span>
                                                         <i class="fa fa-fw fa-star mr-1"></i> Profile
                                                     </span>
-                                                <span class="badge badge-pill badge-secondary">48</span>
+                                                <span class="badge badge-pill badge-secondary">0</span>
                                             </a>
                                         </li>
                                         <li class="nav-item my-1">
@@ -660,7 +304,7 @@
                                                     <span>
                                                         <i class="fa fa-fw fa-paper-plane mr-1"></i> Product & Service
                                                     </span>
-                                                <span class="badge badge-pill badge-secondary">1480</span>
+                                                <span class="badge badge-pill badge-secondary">0</span>
                                             </a>
                                         </li>
                                         <li class="nav-item my-1">
@@ -668,7 +312,7 @@
                                                     <span>
                                                         <i class="fa fa-fw fa-pencil-alt mr-1"></i> Add Your Image
                                                     </span>
-                                                <span class="badge badge-pill badge-secondary">2</span>
+                                                <span class="badge badge-pill badge-secondary">0</span>
                                             </a>
                                         </li>
                                         <li class="nav-item my-1">
@@ -676,7 +320,7 @@
                                                     <span>
                                                         <i class="fa fa-fw fa-folder mr-1"></i> Contact Details
                                                     </span>
-                                                <span class="badge badge-pill badge-secondary">1987</span>
+                                                <span class="badge badge-pill badge-secondary">0</span>
                                             </a>
                                         </li>
                                         <li class="nav-item my-1">
@@ -684,7 +328,7 @@
                                                     <span>
                                                         <i class="fa fa-fw fa-trash-alt mr-1"></i> Trash
                                                     </span>
-                                                <span class="badge badge-pill badge-secondary">10</span>
+                                                <span class="badge badge-pill badge-secondary">0</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -704,15 +348,25 @@
                                     </div>
                                 </div>
                                 <div class="block-content">
+
+                                    @if(isset($client->map_link))
+                                        <style>
+                                            iframe{
+                                                width:100%;
+                                            }
+                                        </style>
+                                        {!! $client->map_link !!}
+                                        @else
                                     <iframe src="https://www.google.com/maps/embed?pb=!1m21!1m12!1m3!1d111989.57931510158!2d80.82299563646195!3d28.69938636764138!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m6!3e6!4m0!4m3!3m2!1d28.6977528!2d80.89298939999999!5e0!3m2!1sen!2snp!4v1557245584772!5m2!1sen!2snp" width="100%" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
                                     <div class="text-center push">
                                         <button type="button" class="btn btn-sm btn-light">View More..</button>
                                     </div>
+                                        @endif
                                 </div>
                             </div>
                             <!-- END Contact US -->
                         </div>
-                        <div class="col-md-6 col-xl-6">
+                        <div class="col-md-9 col-xl-9">
                             <div class="profile_kb_b">
                                 <!-- Hero -->
                                 @if(is_file(public_path('uploads/banners/').'/'.$client->banner) && file_exists(public_path('uploads/banners/').'/'.$client->banner))
@@ -763,7 +417,7 @@
                                                 </div>
                                                 <div class="block-content block-content-full">
                                                     <p class="font-w600 mb-2">
-                                                        3 New Products were added!
+
                                                     </p>
                                                 </div>
                                             </div>
@@ -778,10 +432,10 @@
                                                 </div>
                                                 <div class="block-content">
                                                     <p class="font-w600 mb-2">
-                                                        + 1150 Followers
+
                                                     </p>
                                                     <p>
-                                                        You’re getting more and more followers, keep it up!
+
                                                     </p>
                                                 </div>
                                             </div>
@@ -801,10 +455,10 @@
                                                 </div>
                                                 <div class="block-content">
                                                     <p class="font-w600 mb-2">
-                                                        Database backup completed!
+
                                                     </p>
                                                     <p>
-                                                        Download the <a href="javascript:void(0)">latest backup</a>.
+
                                                     </p>
                                                 </div>
                                             </div>
@@ -816,20 +470,22 @@
                     </div>
                     <!-- END Page Content -->
                     <!-- Stats -->
-                    <div class="bg-white border-bottom">
-                        <div class="content content-boxed">
-                            <div class="row items-push text-center">
-                                <div class="pro_kd_a">
-                                    <a href="#"><i class="fa fa-location-arrow"></i> Like Us</a>
-                                    <a href="#">Claimed</a>
-                                    <a href="#"><i class="fa fa-envelope"></i> Send SMS</a>
-                                    <a href="#">Improve Listing</a>
-                                    <a href="#"><i class="fa fa-eye"></i> 3232</a>
-                                    <a href="#"><i class="fa fa-search"></i> 858585</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                    {{--<div class="bg-white border-bottom">--}}
+                        {{--<div class="content content-boxed">--}}
+                            {{--<div class="row items-push text-center">--}}
+                                {{--<div class="pro_kd_a">--}}
+                                    {{--<a href="#"><i class="fa fa-location-arrow"></i> Like Us</a>--}}
+                                    {{--<a href="#">Claimed</a>--}}
+                                    {{--<a href="#"><i class="fa fa-envelope"></i> Send SMS</a>--}}
+                                    {{--<a href="#">Improve Listing</a>--}}
+                                    {{--<a href="#"><i class="fa fa-eye"></i> 3232</a>--}}
+                                    {{--<a href="#"><i class="fa fa-search"></i> 858585</a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+
                     <!-- END Stats -->
 
             </main>

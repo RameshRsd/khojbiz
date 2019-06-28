@@ -6,10 +6,7 @@
         </div>
         <div id="page-container" class="page-header-fixed">
 
-<<<<<<< HEAD
-=======
         <!-- Sidebar -->
->>>>>>> eb77e19655e3284dfd3ef20d5a150a6a92c4f974
 
             <nav id="sidebar" aria-label="Main Navigation">
                 <!-- Side Header -->
@@ -377,21 +374,6 @@
                     </div>
                     <!-- END Page Content -->
                     <!-- Stats -->
-<<<<<<< HEAD
-                    <div class="bg-white border-bottom">
-                        <div class="content content-boxed">
-                            <div class="row items-push text-center">
-                                <div class="pro_kd_a">
-                                    <a href="#"><i class="fa fa-location-arrow"></i> Like Us</a>
-                                    <a href="#">Claimed</a>
-                                    <a href="#"><i class="fa fa-envelope"></i> Send SMS</a>
-                                    <a href="#">Improve Listing</a>
-                                    <a href="#"><i class="fa fa-eye"></i> </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-=======
 
                     {{--<div class="bg-white border-bottom">--}}
                         {{--<div class="content content-boxed">--}}
@@ -408,7 +390,6 @@
                         {{--</div>--}}
                     {{--</div>--}}
 
->>>>>>> eb77e19655e3284dfd3ef20d5a150a6a92c4f974
                     <!-- END Stats -->
 
             </main>

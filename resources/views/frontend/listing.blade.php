@@ -262,6 +262,7 @@
                     {{--Search end--}}
                     <!-- Updates -->
                     <ul class="timeline timeline-alt py-0">
+                        @if(count($clients)>0)
                         @foreach($clients as $client)
                         <li class="timeline-event">
                                 <div class="timeline-event-icon bg-modern">
@@ -281,7 +282,7 @@
                                             <div class="col-10 l_a_c_l">
                                                 <ul>
                                                     <li><h2 class="a_li_d_p">
-                                                            {{$client->company_name}}
+                                                            <a href="{{url('').'/'.$ClientOverView = $client->user->name}}">{{$client->company_name}}</a>
                                                         </h2></li>
                                                     <li><i class="fa fa-building"></i>
                                                         @foreach($client->client_category as $category)
@@ -311,7 +312,9 @@
                                 </div>
                             </li>
                             @endforeach
-
+                        @else
+                        <li class="timeline-event"><button class="btn btn-warning btn-xs">Listing not found !</button></li>
+                            @endif
                     </ul>
                     <!-- END Updates -->
                 </div>
