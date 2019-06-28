@@ -35,17 +35,19 @@ class ApplicationController extends Controller
             $title =$categories->name.' - Khojbiz.com';
                 $clients->whereIn('id',$categories->getClientIds());
         }
-        if (\request('keyword') || \request('location')){
+        if (\request('keyword')){
+            $clients->where('company_name','like','%'.\request('keyword').'%');
+        }
+        if (\request('location')){
             $disticts = District::where('name',\request('keyword'))->orWhere('name',\request('location'))->get();
-            $clients->where('company_name','like','%'.\request('keyword').'%')
-            ->orWhere('company_address',\request('keyword'))->orWhere('company_address',\request('location'));
-            if (count($disticts)>0){
-                foreach ($disticts as $distict){
-                    $clients->orWhere('district_id',$distict->id);
-                }
+            if (count($disticts)>0)
+            {
+                $distict = District::where('name',\request('keyword'))->orWhere('name',\request('location'))->first();
+                $clients->where('district_id',$distict->id);
             }else{
-                $clients->orWhere('district_id',\request('keyword'));
+                $clients->where('district_id',\request('location'));
             }
+
         }
         $clients =$clients->get();
         $category =Category::orderBy('id','DESC');
