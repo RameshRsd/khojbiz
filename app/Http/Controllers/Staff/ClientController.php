@@ -80,7 +80,15 @@ class ClientController extends Controller
             }
 
             $client->save();
-            return redirect('admin/category-wise-client')->with('success','Client Created Successfully !');
+            foreach(\request('cat_id') as $key => $value){
+                if ((ManufactureWiseCategory::where('cat_id',$value)->where('client_id',$client->id)->count())==0){
+                    $menu_wise_cat = ManufactureWiseCategory::firstOrNew(['cat_id'=>$value,'client_id'=>$client->id]);
+                    $menu_wise_cat->save();
+                }else{
+                    return redirect()->back()->with('error', 'Already Uses');
+                }
+            }
+            return redirect('admin/list-clients')->with('success','Client Created Successfully !');
         }
     }
     public function edit($id){

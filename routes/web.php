@@ -205,6 +205,8 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
 /* ================================================ Client CONTROL Start============================================================== */
 Route::group(['middleware'=>['client','verified'],'prefix'=>'client','namespace'=>'Client'],function(){
     Route::get('','ClientController@index');
+    Route::get('profile','ClientController@profile');
+    Route::get('contact','ClientController@contact');
 });
 /* ================================================ Client CONTROL Start============================================================== */
 Route::group(['middleware'=>['users','verified'],'prefix'=>'users','namespace'=>'User'],function(){

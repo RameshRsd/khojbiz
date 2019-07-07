@@ -7,6 +7,7 @@ use App\Category;
 use App\Client\Client;
 use App\District;
 use App\Menufacture\ManufactureWiseCategory;
+use App\Staff;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -27,7 +28,8 @@ class ClientController extends Controller
         $category = Category::orderBy('name','ASC')->get();
 
         $alpha = Alphabate::orderBy('name')->get();
-        return view('admin.client.create',compact('title','districts','category','alpha'));
+        $staffs = Staff::all();
+        return view('admin.client.create',compact('title','districts','category','alpha','staffs'));
     }
     public function store(Request $request){
         $this->validate($request, [
@@ -63,12 +65,10 @@ class ClientController extends Controller
             $client->alpha_id = $request->alpha_id;
             $client->password = $request->password;
             $client->user_id = $user->id;
-            $client->entry_by = Auth::user()->id;
+            $client->entry_by = $request->entry_by;
             if ($request->hasFile('logo')){
                 $filename = time().'.'.request()->file('logo')->getClientOriginalExtension();
-
                 $filename = md5(microtime()) . '.' . $filename;
-
                 request()->file('logo')->move('public/uploads/logos/',$filename);
                 $client->logo =$filename;
             }
@@ -90,7 +90,7 @@ class ClientController extends Controller
                     return redirect()->back()->with('error', 'Already Uses');
                 }
             }
-            return redirect('admin/category-wise-client')->with('success','Client Created Successfully !');
+            return redirect('admin/list-clients')->with('success','Client Created Successfully !');
         }
     }
     public function edit($id){

@@ -292,7 +292,7 @@
                                             </a>
                                         </li>
                                         <li class="nav-item my-1">
-                                            <a class="nav-link d-flex justify-content-between align-items-center" href="javascript:void(0)">
+                                            <a class="nav-link d-flex justify-content-between align-items-center" href="{{url('client/profile')}}">
                                                     <span>
                                                         <i class="fa fa-fw fa-star mr-1"></i> Profile
                                                     </span>

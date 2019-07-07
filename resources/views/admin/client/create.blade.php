@@ -167,6 +167,25 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
+                                                        <label>Data Collect By:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <select name="entry_by" class="form-control select2" style="width: 100%;">
+                                                            <option value="">Select Staff Name</option>
+                                                            @foreach($staffs as $staff)
+                                                                <option value="{{$staff->user_id}}">{{$staff->f_name}} {{$staff->m_name}} {{$staff->l_name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
                                                         <label>Alphabate Name</label>
                                                     </div>
                                                 </div>

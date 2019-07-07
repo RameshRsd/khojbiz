@@ -19,7 +19,7 @@
                     @endif
                 </div>
                 <div class="pull-left info">
-                    <p>{{$photo->f_name}} {{$photo->l_name}} ddd</p>
+                    <p>{{$photo->f_name}} {{$photo->l_name}} </p>
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>

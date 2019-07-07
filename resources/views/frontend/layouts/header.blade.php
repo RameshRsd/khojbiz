@@ -125,7 +125,7 @@
                                 <i class="fa fa-fw fa-times-circle"></i>
                             </button>
                         </div>
-                        <input type="submit" class="form-control" placeholder="Search or hit ESC.." id="page-header-search-input" name="page-header-search-input">
+                        <input type="submit" class="form-control" placeholder="Search or hit ESC.." name="keyword">
                     </div>
                 </form>
             </div>

@@ -204,7 +204,7 @@
 
                                 <p>
                                     {{\Illuminate\Support\Facades\Auth::user()->name}} - khojbiz.com
-                                    <small>Member since Nov. 2012</small>
+                                    <small>Member since Nov. 2019</small>
                                 </p>
                             </li>
                             <!-- Menu Body -->
@@ -214,7 +214,7 @@
                                         <a href="#">Followers</a>
                                     </div>
                                     <div class="col-xs-4 text-center">
-                                        <a href="#">Sales</a>
+                                        <a href="#">Client</a>
                                     </div>
                                     <div class="col-xs-4 text-center">
                                         <a href="#">Friends</a>

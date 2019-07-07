@@ -13,5 +13,13 @@ class ClientController extends Controller
        $client = Client::where('user_id',Auth::user()->id)->firstOrFail();
        return view('frontend.pages.client.profile.index',compact('client'));
    }
+   public function profile(){
+       $client = Client::where('user_id',Auth::user()->id)->firstOrFail();
+       return view('frontend.pages.client.profile.client_profile',compact('client'));
+   }
+   public function contact(){
+       $client = Client::where('user_id',Auth::user()->id)->firstOrFail();
+       return view('frontend.pages.client.profile.client_profile',compact('client'));
+   }
 
 }
