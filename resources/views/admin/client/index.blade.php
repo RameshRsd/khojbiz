@@ -55,8 +55,7 @@
                                 <tr>
                                     <th>SN</th>
                                     <th>Name</th>
-                                    <th>Address</th>
-                                    {{--<th>Nature</th>--}}
+                                    <th style="width:100px;">Status</th>
                                     <td>Post By</td>
                                     <th>Contact</th>
                                     <th>Type</th>
@@ -67,24 +66,75 @@
                                 </thead>
                                 <tbody>
                                 @foreach($clients as $key=>$client)
-                                    <tr>
+                                    <tr >
                                         <td>{{++$key}}</td>
-                                        <td>{{$client->company_name}}</td>
-                                        <td>{{$client->company_address}}</td>
-                                        {{--<td>--}}
-                                            {{--<div class="input-group-btn btn-sm">--}}
-                                                {{--<button type="button" class="btn btn-warning btn-xs dropdown-toggle" data-toggle="dropdown">Action--}}
-                                                    {{--<span class="fa fa-caret-down"></span></button>--}}
-                                                {{--<ul class="dropdown-menu">--}}
-                                                    {{--<li><a href="{{url('admin').'/'.$client->user->name.'/edit-about'}}">About Us</a></li>--}}
-                                                    {{--<li><a href="#">Profile</a></li>--}}
-                                                    {{--<li><a href="#">Product & Service</a></li>--}}
-                                                    {{--<li><a href="#">Image Gallery</a></li>--}}
-                                                    {{--<li><a href="{{url('admin/list-clients/client_id=').$client->id.'/edit_contact'}}">Contact Us</a></li>--}}
-                                                {{--</ul>--}}
-                                            {{--</div>--}}
-                                        {{--</td>--}}
-                                        <td>@if($client->staff->name) {{$client->staff->name}} @else admin @endif</td>
+                                        <td title="@if(isset($client->district->name)) {{$client->district->name}}, @endif{{$client->company_address}}">{{$client->company_name}}
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                @if($client->status=='Paid')
+                                                    <small class="btn btn-success btn-xs">Paid</small>
+                                                @elseif($client->status=='Unpaid')
+                                                    <small class="btn btn-danger btn-xs">Unpaid</small>
+                                                @else
+                                                    <small class="btn btn-warning btn-xs">Pending</small>
+                                                @endif
+
+                                                <button type="button" class="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown">
+                                                    <span class="caret"></span>
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <ul class="dropdown-menu payment-status" role="menu">
+                                                    @if($client->status=='Paid')
+                                                        <li>
+                                                            <form action="{{url('admin/update_payment').'/'.$client->id}}" method="post">
+                                                                {{csrf_field()}}
+                                                                <input type="hidden" name="status" value="Unpaid">
+                                                                <button type="submit" class="btn btn-danger btn-xs">Unpaid</button>
+                                                            </form>
+                                                        </li>
+                                                        <li>
+                                                            <form action="{{url('admin/update_payment').'/'.$client->id}}" method="post">
+                                                                {{csrf_field()}}
+                                                                <input type="hidden" name="status" value="Pending">
+                                                                <button type="submit" class="btn btn-warning btn-xs">Pending</button>
+                                                            </form>
+                                                        </li>
+                                                    @elseif($client->status=='Unpaid')
+                                                        <li>
+                                                            <form action="{{url('admin/update_payment').'/'.$client->id}}" method="post">
+                                                                {{csrf_field()}}
+                                                                <input type="hidden" name="status" value="Paid">
+                                                                <button type="submit" class="btn btn-success btn-xs">Paid</button>
+                                                            </form>
+                                                        </li>
+                                                        <li>
+                                                            <form action="{{url('admin/update_payment').'/'.$client->id}}" method="post">
+                                                                {{csrf_field()}}
+                                                                <input type="hidden" name="status" value="Pending">
+                                                                <button type="submit" class="btn btn-warning btn-xs">Pending</button>
+                                                            </form>
+                                                        </li>
+                                                    @else
+                                                        <li>
+                                                            <form action="{{url('admin/update_payment').'/'.$client->id}}" method="post">
+                                                                {{csrf_field()}}
+                                                                <input type="hidden" name="status" value="Paid">
+                                                                <button type="submit" class="btn btn-success btn-xs">Paid</button>
+                                                            </form>
+                                                        </li>
+                                                        <li>
+                                                            <form action="{{url('admin/update_payment').'/'.$client->id}}" method="post">
+                                                                {{csrf_field()}}
+                                                                <input type="hidden" name="status" value="Unpaid">
+                                                                <button type="submit" class="btn btn-warning btn-xs">Unpaid</button>
+                                                            </form>
+                                                        </li>
+                                                    @endif
+                                                </ul>
+                                            </div>
+                                        </td>
+                                        <td>@if(isset($client->staff->name)) {{$client->staff->name}} @else admin @endif</td>
                                         <td>{{$client->mobile}}</td>
                                         <td>
                                             @if($client->client_type=='sponser')
@@ -105,6 +155,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                            {{$clients->links()}}
                         </div>
                         <!-- /.box-body -->
                     </div>

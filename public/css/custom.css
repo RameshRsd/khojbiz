@@ -1,0 +1,266 @@
+body{
+    background-color: #f8f9fa !important;
+}
+.header-section .bg-light{
+    /*background-color: #ececec!important;*/
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fcfff4+51,e9e9ce+100 */
+    background: #fcfff4; /* Old browsers */
+    background: -moz-linear-gradient(top,  #fcfff4 51%, #e9e9ce 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #fcfff4 51%,#e9e9ce 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #fcfff4 51%,#e9e9ce 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#e9e9ce',GradientType=0 ); /* IE6-9 */
+
+}
+
+.only-for-none-auth{
+    padding-left:55%;
+}
+
+nav.navbar.navbar-expand-lg.navbar-light.bg-light.fixed-top {
+    padding: 0 15px;
+    height: 60px;
+}
+.overview-navbar li a{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.dropdown-menu.show {
+    width: 250px;
+    padding:10px;
+}
+.dropdown-menu.show h6{
+    text-align: center;
+}
+.content-section{
+    background-color: #f8f9fa;
+    margin:55px 0 0;
+    padding-bottom:20px;
+
+}
+.banner-section{
+    margin-bottom:20px;
+}
+.content-wrapp{
+    margin-top: 15px;
+    margin-bottom:10px;
+    border: 1px solid rgba(0,0,0,.125);
+    background-color: #fff;
+    padding:10px;
+}
+.site-banner{
+    position: relative;
+}
+.search-controller{
+    position: absolute;
+    top: 150px;
+    width: 80%;
+    padding: 40px;
+    background-color: #0000004d;
+    left: 120px;
+}
+.content-wrapp .content-covered .content-header{
+    text-align: center;
+}
+.overview-wraped{
+    background-color: #e6e0e0;
+}
+.overview-wraped .logo-img img{
+    padding:5px;
+    text-align: center;
+}
+.overview-wraped .logo-img{
+    text-align: center;
+}
+
+/*.content-wrapp .content-covered .content-main{*/
+    /*padding:10px;*/
+/*}*/
+.content-header .alphabate-heading{
+    text-transform: uppercase;
+    font-size: 20px;
+}
+.content-header .overview-heading{
+    text-transform: uppercase;
+    font-size: 15px;
+    background-color: #2a9631;
+    padding:10px;
+    color:#fff;
+    border-radius: 5px;
+}
+.content-header .overview-heading.left{
+    text-align: left;
+}
+
+.content-wrapp .alphabate {
+    padding: 5px 10px;
+    font-weight: bold;
+    color: #3db946;
+    border: 1px solid lightgrey;
+    text-decoration: none;
+}
+.content-wrapp .content-main li {
+    margin: 10px 0.36%;
+}
+.content-wrapp .alphabate:hover{
+    background-color: #3db946;
+    color:#fff;
+}.content-wrapp .alphabate.active{
+    background-color: #3db946;
+    color:#fff;
+}
+.content-wrapp .content-main li{
+    display: inline-block;
+    line-height: 1.2;
+}
+.content-wrapp .content-main .content-manage-section{
+    margin-bottom:20px;
+    border: 1px solid lightgrey;
+}
+.content-wrapp .content-main .content-manage-section:hover{
+     -webkit-box-shadow: 1px 1px 10px 1px #26FFB7;
+     box-shadow: 1px 1px 10px 1px #26FFB7;
+}
+.content-wrapp .content-main .content-manage-section .content-image-thumbnail{
+    height: 150px;
+    overflow: hidden;
+    border-bottom: 1px solid lightgrey;
+    padding:0;
+}
+.content-wrapp .content-main .content-manage-section .content-image-thumbnail img{
+    height: 150px;
+}
+.content-wrapp .content-main .content-manage-section .content-details{
+    padding:2px;
+    background-color: #f1efef;
+    height: 70px;
+    overflow: hidden;
+}
+.content-wrapp .content-main .content-manage-section .content-details.cient-services{
+    height: auto;
+}
+.content-details .content-padding{
+    padding-left: 0;
+}
+
+.content-details .logo-img{
+    padding-right: 0;
+}
+.content-details .logo-img img{
+    padding:2px;
+    background-color: #fff;
+}
+.content-wrapp .content-main .content-manage-section .content-details .content-title{
+    padding-left:5px;
+}
+.content-wrapp .content-main .content-manage-section .content-details .content-title li{
+    margin:0;
+    display: block;
+}
+.content-wrapp .content-main .content-manage-section .content-details .content-title li .company_title{
+    text-decoration: none;
+    color:#3db946;
+    font-weight: bold;
+}
+.content-wrapp .content-main .content-manage-section .content-details .content-title li .company_address{
+    text-decoration: none;
+    color:#000c;
+    font-size: 12px;
+    line-height: 1rem;
+}
+.content-wrapp .content-main .content-manage-section .content-details .content-title li a:hover{
+    color:Red;
+}
+
+.content-wrapp.login{
+    background-color:transparent;
+    border: none;
+}
+.content-wrapp .content-covered.login{
+    border: 1px solid lightgrey;
+    padding:10px;
+    background-color: #fff;
+}
+.overview-listing li{
+    display: block !important;
+    text-align: left;
+}
+.overview-listing {
+    padding: 10px 0;
+}
+.overview-listing.info-detail {
+    padding: 10px 0 0 0;
+    margin-left: -15px;
+}
+.overview-listing a{
+    color: #2a9631;
+}
+.overview-listing a:hover{
+    color: Red;
+    text-decoration: none;
+}
+.navbar-sidbar{
+    padding:5px;
+}
+.navbar-sidbar li{
+    display: block !important;
+    padding: 10px;
+}
+.navbar-sidbar a:hover{
+    text-decoration: none;
+}
+.navbar-sidbar li:hover{
+    background-color: #0000008c;
+    color: #fff;
+}
+li.nav_title.active {
+    background-color: #0000008c;
+    color: #fff;
+}
+
+/*===================== Footer Section ==================*/
+.footer-section{
+    padding:20px 0;
+    background-color: #2a9631;
+    color:#fff;
+}
+.footer-section li{
+    display: block;
+}
+.footer-section .footer-tags li{
+    line-height: 1.7rem;
+}
+.footer-section img{
+    width: 50%;
+    margin-bottom: 10px;
+}
+.footer-section h6{
+    text-transform: uppercase;
+}
+.footer-section p{
+    text-align: justify;
+}
+.footer-section a:hover{
+    text-decoration: none;
+}
+.footer-section small:hover, .popular-search small:hover{
+    color:#fff;
+    background-color: Red;
+}
+.footer-section small{
+    font-size: 12px !important;
+
+}
+.popular-search{
+    text-align: justify;
+}
+.popular-search  small{
+    font-size: 12px !important;
+}
+.popular-search .content-main .popular-cat-text{
+    margin-bottom:10px;
+}
+.popular-search .content-main .popular-cat-text:hover{
+    text-decoration: none;
+}
+
+/*===================== Footer Section ==================*/

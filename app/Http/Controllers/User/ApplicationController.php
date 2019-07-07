@@ -3,13 +3,18 @@
 namespace App\Http\Controllers\User;
 
 use App\Advertisement;
+use App\Alphabate;
 use App\BuySell\Product;
 use App\BuySell\ProductCategory;
 use App\BuySell\ProductWiseSuppliers;
 use App\Category;
 use App\CategoryWiseClient;
 use App\Client\Client;
+use App\Client\ClientNotice;
+use App\Client\ClientService;
+use App\ClientGallery;
 use App\District;
+use App\Menufacture\MenuCategory;
 use App\Place\location;
 use App\User;
 use Illuminate\Http\Request;
@@ -28,10 +33,43 @@ class ApplicationController extends Controller
         return view('frontend.pages.product.index',compact('title','clients','category'));
     }
     public function search(){
-        $title ='Search Profile';
-        $clients =Client::orderBy('id','DESC');
+        $title ='Search Company Listing - Khojbiz.com';
+        $feature_ads = Advertisement::where('status','active')->where('type','feature')->where('status','active')->get();
+        $search =Client::orderBy('id','DESC');
         if (\request('cat')){
             $categories = Category::where('slug',\request('cat'))->firstOrFail();
+            $title =$categories->name.' - Khojbiz.com';
+            $search->whereIn('id',$categories->getClientIds());
+        }
+        if (\request('keyword')){
+            $search->where('company_name','like','%'.\request('keyword').'%');
+        }
+        if (\request('location')){
+            $disticts = District::where('name',\request('keyword'))->orWhere('name',\request('location'))->get();
+            if (count($disticts)>0)
+            {
+                $distict = District::where('name',\request('keyword'))->orWhere('name',\request('location'))->first();
+                $search->where('district_id',$distict->id);
+            }else{
+                $search->where('company_address','like','%'.\request('location').'%');
+            }
+
+        }
+        if (\request('alphabate')){
+            $alpha = Alphabate::where('name',\request('alphabate'))->first();
+            $search->where('alpha_id',$alpha->id);
+        }
+        $clients =$search->paginate(10);
+        $category =Category::orderBy('id','DESC');
+        return view('new.search.index',compact('title','clients','category','feature_ads'));
+//        return view('frontend.listing',compact('title','clients','category'));
+    }
+    public function search_manufacture(){
+        $title ='Search Company Listing - Khojbiz.com';
+        $feature_ads = Advertisement::where('status','active')->where('type','feature')->where('status','active')->get();
+        $clients =Client::where('company_nature','manufacture')->orderBy('id','DESC');
+        if (\request('cat')){
+            $categories = MenuCategory::where('slug',\request('cat'))->firstOrFail();
             $title =$categories->name.' - Khojbiz.com';
                 $clients->whereIn('id',$categories->getClientIds());
         }
@@ -45,16 +83,21 @@ class ApplicationController extends Controller
                 $distict = District::where('name',\request('keyword'))->orWhere('name',\request('location'))->first();
                 $clients->where('district_id',$distict->id);
             }else{
-                $clients->where('district_id',\request('location'));
+                $clients->where('company_address','like','%'.\request('location').'%');
             }
 
         }
-        $clients =$clients->get();
-        $category =Category::orderBy('id','DESC');
-        return view('frontend.listing',compact('title','clients','category'));
+        if (\request('alphabate')){
+            $alpha = Alphabate::where('name',\request('alphabate'))->first();
+            $clients->where('alpha_id',$alpha->id);
+        }
+        $clients =$clients->paginate(10);
+        $category =MenuCategory::orderBy('id','DESC');
+        return view('new.search.search_manufacture',compact('title','clients','category','feature_ads'));
+//        return view('frontend.listing',compact('title','clients','category'));
     }
     public function search_product(){
-        $title ='Search Profile';
+        $title ='Product Listing - Khojbiz.com';
         $top_product = Product::orderBy('id','ASC')->where('product_type','diamond')->get();
         $feature_ads = Advertisement::where('status','active')->where('type','feature')->where('status','active')->get();
         $products =Product::orderBy('id','ASC');
@@ -63,21 +106,18 @@ class ApplicationController extends Controller
             $title =$categories->name;
             $products->whereIn('id',$categories->getProductIds());
             }
-        if (\request('keyword') || \request('location')){
-            $disticts = District::where('name',\request('keyword'))->orWhere('name',\request('location'))->get();
-            $products->where('company_name','like','%'.\request('keyword').'%')
-            ->orWhere('company_address',\request('keyword'))->orWhere('company_address',\request('location'));
-            if (count($disticts)>0){
-                foreach ($disticts as $distict){
-                    $products->orWhere('district_id',$distict->id);
-                }
-            }else{
-                $products->orWhere('district_id',\request('keyword'));
-            }
+        if (\request('keyword')){
+            $products->where('product_name','like','%'.\request('keyword').'%')
+            ->orWhere('address',\request('keyword'));
         }
-        $products =$products->get();
+        if (\request('alphabate')){
+            $alpha = Alphabate::where('name',\request('alphabate'))->first();
+            $products->where('alpha_id',$alpha->id);
+        }
+        $clients =$products->paginate(10);
         $category =ProductCategory::orderBy('id','DESC');
-        return view('frontend.pages.product.listing',compact('title','products','category','feature_ads','top_product'));
+        return view('new.search.product',compact('title','clients','category','feature_ads','top_product'));
+//        return view('frontend.pages.product.listing',compact('title','products','category','feature_ads','top_product'));
     }
 
     public function overview($UserName){
@@ -86,12 +126,16 @@ class ApplicationController extends Controller
         $ads = Advertisement::where('status','active')->where('type','top')->where('status','active')->get();
         $side_ads = Advertisement::where('status','active')->where('type','general')->where('status','active')->get();
         $category =Category::all();
+        $galleries = ClientGallery::where('client_id',$client->id)->orderBy('id','DESC')->get();
+        $services = ClientService::where('client_id',$client->id)->orderBy('id','DESC')->get();
+        $notices = ClientNotice::where('client_id',$client->id)->where('start_at','<=',date('Y-m-d'))->where('end_at','>=',date('Y-m-d'))->orderBy('id','DESC')->get();
         $title = $client->company_name.' - Khojbiz.com';
         $discription = str_limit($client->company_profile,150);
         if (isset($client->banner)){
             $image = '/public/uploads/banners'.'/'.$client->banner;
         }
-        return view('frontend.pages.client.pages.index',compact('title','client','ads','side_ads','category','discription','image'));
+            return view('new.business.overview',compact('title','client','services','galleries','ads','side_ads','category','discription','image','notices'));
+//        return view('frontend.pages.client.pages.index',compact('title','client','ads','side_ads','category','discription','image'));
     }
     public function about_us($UserName){
         $user = User::where('name',$UserName)->firstOrFail();
@@ -164,10 +208,11 @@ class ApplicationController extends Controller
         $title =  $products->product_name.' - Khojbiz.com';
         $top_product = Product::orderBy('id','ASC')->where('product_type','diamond')->get();
         $discription = str_limit($products->company_profile,150);
-        if (isset($client->banner)){
+        if (isset($products->banner)){
             $image = '/public/uploads/banners'.'/'.$products->banner;
         }
-        return view('frontend.pages.product.index',compact('title','client','ads','side_ads','category','discription','image','products','top_product'));
+        return view('new.product.overview',compact('title','client','ads','side_ads','category','discription','image','products','top_product'));
+//        return view('frontend.pages.product.index',compact('title','client','ads','side_ads','category','discription','image','products','top_product'));
     }
     public function location_details($slug){
         $locations =location::where('slug',$slug)->firstOrFail();
@@ -186,17 +231,30 @@ class ApplicationController extends Controller
     }
 
     /*manufacture company Details view*/
-    public function menu_overview($UserName){
+    public function view_service($UserName, $id){
         $user = User::where('name',$UserName)->firstOrFail();
         $client =Client::where('user_id',$user->id)->firstOrFail();
-        $ads = Advertisement::where('status','active')->where('type','top')->where('status','active')->get();
-        $side_ads = Advertisement::where('status','active')->where('type','general')->where('status','active')->get();
-        $category =Category::all();
-        $title = $client->company_name.' - Khojbiz.com';
-        $discription = str_limit($client->company_profile,155);
+        $galleries = ClientGallery::where('client_id',$client->id)->orderBy('id','DESC')->get();
+        $service = ClientService::findOrFail($id);
+        $title = $service->name.' | '.$client->company_name .' | Khojbiz.com';
+        $discription = str_limit($service->details,155);
         if (isset($client->banner)){
             $image = '/public/uploads/banners'.'/'.$client->banner;
         }
-        return view('frontend.pages.client.pages.index',compact('title','client','ads','side_ads','category','discription','image'));
+
+        return view('new.business.service-details',compact('title','client','galleries','service','image','discription'));
+    }
+    public function view_notice($UserName, $id){
+        $user = User::where('name',$UserName)->firstOrFail();
+        $client =Client::where('user_id',$user->id)->firstOrFail();
+        $galleries = ClientGallery::where('client_id',$client->id)->orderBy('id','DESC')->get();
+        $notice = ClientNotice::findOrFail($id);
+        $title = $notice->name.' | '.$client->company_name .' | Khojbiz.com';
+        $discription = str_limit($notice->details,155);
+        if (isset($client->banner)){
+            $image = '/public/uploads/banners'.'/'.$client->banner;
+        }
+
+        return view('new.business.notice-details',compact('title','client','galleries','notice','image','discription'));
     }
 }

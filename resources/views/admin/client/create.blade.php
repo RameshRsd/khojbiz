@@ -133,12 +133,12 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <select name="client_type" id="client_type" value="{{old('client_type')}}" class="form-control select2" style="width: 100%;">
+                                                            <option value="free_listing">Free Listing</option>
                                                             <option value="bronze">Bronze</option>
                                                             <option value="silver">Silver</option>
                                                             <option value="gold">Gold</option>
                                                             <option value="diamond">Diamond</option>
                                                             <option value="platinum">Platinum</option>
-                                                            <option value="free_listing">Free Listing</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -167,15 +167,15 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Data Collect By:</label>
+                                                        <label>Data Collect By</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
                                                         <select name="entry_by" class="form-control select2" style="width: 100%;">
-                                                            <option value="">Select Staff Name</option>
+                                                            <option value="">Choose Staff..</option>
                                                             @foreach($staffs as $staff)
-                                                                <option value="{{$staff->user_id}}">{{$staff->f_name}} {{$staff->m_name}} {{$staff->l_name}}</option>
+                                                                <option value="{{$staff->user_id}}">{{$staff->f_name}} {{$staff->l_name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -205,10 +205,28 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Choose Category</label>
+                                                        <label>Payment Status</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <select name="status" class="form-control select2" style="width: 100%;">
+                                                            <option value="Pending">Pending</option>
+                                                            <option value="Paid">Paid</option>
+                                                            <option value="Unpaid">Unpaid</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label>Choose Category</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-10">
                                                     <div class="form-group">
                                                         <select name="cat_id[]" class="form-control select2" multiple="multiple" value="{{old('cat_id')}}" data-placeholder="Select Category"
                                                                 style="width: 100%;">
@@ -367,6 +385,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-sm">Submit</button>

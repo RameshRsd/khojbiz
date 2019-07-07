@@ -13,4 +13,10 @@ class UserController extends Controller
         $users = User::all();
         return view('admin.users.index',compact('title','users'));
     }
+    public function update_user_account(Request $request, $id){
+        $user = User::findOrFail($id);
+        $user->status= $request->status;
+        $user->save();
+        return redirect()->back()->with('success','User Account Updated');
+    }
 }

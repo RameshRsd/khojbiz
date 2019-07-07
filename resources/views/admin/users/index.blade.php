@@ -81,9 +81,17 @@
                                         </td>
                                         <td>
                                             @if($user->status=='active')
-                                                <button class="btn btn-success btn-xs">Active</button>
+                                                <form action="{{url('admin/user_account_update').'/'.$user->id}}" method="post">
+                                                    {{csrf_field()}}
+                                                    <input type="hidden" name="status" value="inactive">
+                                                    <button type="submit" class="btn btn-success btn-xs" title="Click here to In-Active">Active</button>
+                                                </form>
                                                 @else
-                                                <button class="btn btn-warning btn-xs">In-Active</button>
+                                                <form action="{{url('admin/user_account_update').'/'.$user->id}}" method="post">
+                                                    {{csrf_field()}}
+                                                    <input type="hidden" name="status" value="active">
+                                                    <button type="submit" class="btn btn-warning btn-xs">In-Active</button>
+                                                </form>
                                             @endif
                                         </td>
                                         <td>

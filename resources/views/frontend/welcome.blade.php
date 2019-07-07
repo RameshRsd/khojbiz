@@ -3,11 +3,14 @@
 
     <!-- Main Container -->
     <div class="js-slider slick-nav-hover" data-dots="true" data-autoplay="true" data-arrows="true">
-        @foreach($ads as $advertise)
             <div class="block">
-                <img class="img-fluid kb_banners" src="{{url('public/uploads/adverts/').'/'.$advertise->image}}" alt="">
+                <img class="img-fluid kb_banners" src="{{url('public/uploads/default-banner.jpg')}}" alt="">
             </div>
-        @endforeach
+        {{--@foreach($ads as $advertise)--}}
+            {{--<div class="block">--}}
+                {{--<img class="img-fluid kb_banners" src="{{url('public/uploads/adverts/').'/'.$advertise->image}}" alt="">--}}
+            {{--</div>--}}
+        {{--@endforeach--}}
     </div>
     <div class="container">
         <div class="row">

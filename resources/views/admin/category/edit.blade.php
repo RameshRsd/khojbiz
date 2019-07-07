@@ -10,8 +10,8 @@
             </h1>
             <ol class="breadcrumb">
                 <li><a href="{{url('admin')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-                <li><a href="{{url('admin/company-nature')}}"><i class="fa fa-briefcase"></i> Company Nature</a></li>
-                <li class="active">Edit Company Nature</li>
+                <li><a href="{{url('admin/add-category')}}"><i class="fa fa-briefcase"></i> Categories</a></li>
+                <li class="active">Edit Category</li>
             </ol>
         </section>
 
@@ -57,15 +57,29 @@
                                 <thead>
                                 <tr>
                                     <th>Company Nature</th>
+                                    <th>Choose Alphabate</th>
+                                    <th>Upload Icon</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <form action="" method="post">
+                                <form action="" method="post" enctype="multipart/form-data">
                                     {{csrf_field()}}
                                     <tr>
                                         <td>
-                                            <input type="text" value="{{$company_nature->name}}" name="name" class="form-control" placeholder="Company Nature Name">
+                                            <input type="text" value="{{$category->name}}" name="name" class="form-control" placeholder="Company Nature Name">
+                                        </td>
+                                        <td>
+                                            <select name="alphabate_id" id="alphabate_id" class="form-control">
+                                                <option value="">Choose..</option>
+                                                @foreach($alphabates as $alphabate)
+                                                    <option value="{{$alphabate->id}}" @if($alphabate->id == $category->alphabate_id) selected @endif>{{$alphabate->name}}</option>
+                                                    @endforeach
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <img src="{{url('public/uploads/icon/').'/'.$category->icon}}" alt="" style="width: 50px;">
+                                            <input type="file" name="icon" class="form-control">
                                         </td>
                                         <td>
                                             <button type="submit" class="btn btn-primary btn-sm">Update</button>

@@ -120,7 +120,7 @@
                                         <td>{{$categories->slug}}</td>
                                         <td><img src="{{url('public/uploads/icon/').'/'.$categories->icon}}" alt="" style="width:50px;"></td>
                                         <td>
-                                            <a href="{{url('admin/company-nature/nature_id=').$categories->id.'/edit'}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="{{url('admin/add-category/nature_id=').$categories->id.'/edit'}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
                                             <a href="{{url('admin/company-nature/nature_id=').$categories->id.'/trash'}}" onclick="return confirm('Are you sure to delete this record?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>

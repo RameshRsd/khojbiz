@@ -57,9 +57,10 @@
                                     <th>Name</th>
                                     <th>Address</th>
                                     <th>Mobile</th>
-                                    <th>No of Client</th>
+                                    <th>No of Data</th>
                                     <th>Email</th>
                                     <th>PW</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -70,9 +71,24 @@
                                         <td>{{$staff->f_name}} {{$staff->m_name}} {{$staff->l_name}}</td>
                                         <td>{{$staff->address}}</td>
                                         <td>{{$staff->mobile}}</td>
-                                        <td>{{$staff->mobile}}</td>
+                                        <td>@if(isset($staff->user->clients)){{count($staff->user->clients)}} @else 0 @endif</td>
                                         <td>{{$staff->user->email}}</td>
                                         <td>{{$staff->password}}</td>
+                                        <td>
+                                            @if($staff->user->status=='active')
+                                                <form action="{{url('admin/user_account_update').'/'.$staff->user->id}}" method="post">
+                                                    {{csrf_field()}}
+                                                    <input type="hidden" name="status" value="inactive">
+                                                    <button type="submit" class="btn btn-success btn-xs" title="Click here to In-Active">Active</button>
+                                                </form>
+                                            @else
+                                                <form action="{{url('admin/user_account_update').'/'.$staff->user->id}}" method="post">
+                                                    {{csrf_field()}}
+                                                    <input type="hidden" name="status" value="active">
+                                                    <button type="submit" class="btn btn-warning btn-xs">In-Active</button>
+                                                </form>
+                                            @endif
+                                        </td>
                                         <td>
                                             <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
                                             <a href="{{url('admin/staff/staff_id=').$staff->id.'/edit'}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
