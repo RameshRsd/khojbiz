@@ -63,11 +63,6 @@
                         </button>
                         <!-- END Apps Modal -->
 
-                        <!-- Open Search Section (visible on smaller screens) -->
-                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-
-                        <!-- END Open Search Section -->
-
                         <!-- Search Form (visible on larger screens) -->
                         <ul class="header_nav_pro">
                             {{----}}
@@ -128,92 +123,7 @@
                                 </div>
                             </div>
                             <!-- END User Dropdown -->
-                            <!-- Notifications Dropdown -->
-                            <div class="dropdown d-inline-block ml-2">
-                                <button type="button" class="btn btn-sm btn-dual" id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="si si-bell"></i>
-                                    <span class="badge badge-primary badge-pill">6</span>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-notifications-dropdown">
-                                    <div class="p-2 bg-primary text-center">
-                                        <h5 class="dropdown-header text-uppercase text-white">Notifications</h5>
-                                    </div>
-                                    <ul class="nav-items mb-0">
-                                        <li>
-                                            <a class="text-dark media py-2" href="javascript:void(0)">
-                                                <div class="mr-2 ml-3">
-                                                    <i class="fa fa-fw fa-check-circle text-success"></i>
-                                                </div>
-                                                <div class="media-body pr-2">
-                                                    <div class="font-w600">You have a new follower</div>
-                                                    <small class="text-muted">15 min ago</small>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="text-dark media py-2" href="javascript:void(0)">
-                                                <div class="mr-2 ml-3">
-                                                    <i class="fa fa-fw fa-plus-circle text-info"></i>
-                                                </div>
-                                                <div class="media-body pr-2">
-                                                    <div class="font-w600">1 new sale, keep it up</div>
-                                                    <small class="text-muted">22 min ago</small>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="text-dark media py-2" href="javascript:void(0)">
-                                                <div class="mr-2 ml-3">
-                                                    <i class="fa fa-fw fa-times-circle text-danger"></i>
-                                                </div>
-                                                <div class="media-body pr-2">
-                                                    <div class="font-w600">Update failed, restart server</div>
-                                                    <small class="text-muted">26 min ago</small>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="text-dark media py-2" href="javascript:void(0)">
-                                                <div class="mr-2 ml-3">
-                                                    <i class="fa fa-fw fa-plus-circle text-info"></i>
-                                                </div>
-                                                <div class="media-body pr-2">
-                                                    <div class="font-w600">2 new sales, keep it up</div>
-                                                    <small class="text-muted">33 min ago</small>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="text-dark media py-2" href="javascript:void(0)">
-                                                <div class="mr-2 ml-3">
-                                                    <i class="fa fa-fw fa-user-plus text-success"></i>
-                                                </div>
-                                                <div class="media-body pr-2">
-                                                    <div class="font-w600">You have a new subscriber</div>
-                                                    <small class="text-muted">41 min ago</small>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="text-dark media py-2" href="javascript:void(0)">
-                                                <div class="mr-2 ml-3">
-                                                    <i class="fa fa-fw fa-check-circle text-success"></i>
-                                                </div>
-                                                <div class="media-body pr-2">
-                                                    <div class="font-w600">You have a new follower</div>
-                                                    <small class="text-muted">42 min ago</small>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <div class="p-2 border-top">
-                                        <a class="btn btn-sm btn-light btn-block text-center" href="javascript:void(0)">
-                                            <i class="fa fa-fw fa-arrow-down mr-1"></i> Load More..
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- END Notifications Dropdown -->
+
                     @else
                         <!-- User Dropdown -->
                             <a href="{{url('login')}}" class="btn btn-sm btn-dual" style="margin:0 10px;">
@@ -225,12 +135,6 @@
                             </a>
                             <!-- END User Dropdown -->
                     @endif
-                    <!-- Toggle Side Overlay -->
-                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                        <button type="button" class="btn btn-sm btn-dual ml-2" data-toggle="layout" data-action="side_overlay_toggle">
-                            <i class="fa fa-fw fa-list-ul fa-flip-horizontal"></i>
-                        </button>
-                        <!-- END Toggle Side Overlay -->
                     </div>
                     <!-- END Right Section -->
                 </div>
@@ -258,7 +162,7 @@
                         <div class="col-md-3 col-xl-3">
                            @include('business.layouts.aside')
                         </div>
-                        <div class="col-md-6 col-xl-6">
+                        <div class="col-md-9 col-xl-9">
                             <div class="profile_kb_b">
                                 <!-- Hero -->
                                 @if(is_file(public_path('uploads/banners/').'/'.$client->banner) && file_exists(public_path('uploads/banners/').'/'.$client->banner))
@@ -361,97 +265,8 @@
                         </div>
                     </div>
                     <!-- END Page Content -->
-                    <!-- Stats -->
-                    <div class="bg-white border-bottom">
-                        <div class="content content-boxed">
-                            <div class="row items-push text-center">
-                                <div class="pro_kd_a">
-                                    <a href="#"><i class="fa fa-location-arrow"></i> Like Us</a>
-                                    <a href="#">Claimed</a>
-                                    <a href="#"><i class="fa fa-envelope"></i> Send SMS</a>
-                                    <a href="#">Improve Listing</a>
-                                    <a href="#"><i class="fa fa-eye"></i> 3232</a>
-                                    <a href="#"><i class="fa fa-search"></i> 858585</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END Stats -->
-
             </main>
             <!-- END Main Container -->
-
-            <!-- Apps Modal -->
-            <!-- Opens from the modal toggle button in the header -->
-            <div class="modal fade" id="one-modal-apps" tabindex="-1" role="dialog" aria-labelledby="one-modal-apps" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-top modal-sm" role="document">
-                    <div class="modal-content">
-                        <div class="block block-themed block-transparent mb-0">
-                            <div class="block-header bg-primary-dark">
-                                <h3 class="block-title">Apps</h3>
-                                <div class="block-options">
-                                    <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                                        <i class="si si-close"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="block-content block-content-full">
-                                <div class="row gutters-tiny">
-                                    <div class="col-6">
-                                        <!-- CRM -->
-                                        <a class="block block-rounded block-themed bg-default" href="javascript:void(0)">
-                                            <div class="block-content text-center">
-                                                <i class="si si-speedometer fa-2x text-white-75"></i>
-                                                <p class="font-w600 font-size-sm text-white mt-2 mb-3">
-                                                    CRM
-                                                </p>
-                                            </div>
-                                        </a>
-                                        <!-- END CRM -->
-                                    </div>
-                                    <div class="col-6">
-                                        <!-- Products -->
-                                        <a class="block block-rounded block-themed bg-danger" href="javascript:void(0)">
-                                            <div class="block-content text-center">
-                                                <i class="si si-rocket fa-2x text-white-75"></i>
-                                                <p class="font-w600 font-size-sm text-white mt-2 mb-3">
-                                                    Products
-                                                </p>
-                                            </div>
-                                        </a>
-                                        <!-- END Products -->
-                                    </div>
-                                    <div class="col-6">
-                                        <!-- Sales -->
-                                        <a class="block block-rounded block-themed bg-success mb-0" href="javascript:void(0)">
-                                            <div class="block-content text-center">
-                                                <i class="si si-plane fa-2x text-white-75"></i>
-                                                <p class="font-w600 font-size-sm text-white mt-2 mb-3">
-                                                    Sales
-                                                </p>
-                                            </div>
-                                        </a>
-                                        <!-- END Sales -->
-                                    </div>
-                                    <div class="col-6">
-                                        <!-- Payments -->
-                                        <a class="block block-rounded block-themed bg-warning mb-0" href="javascript:void(0)">
-                                            <div class="block-content text-center">
-                                                <i class="si si-wallet fa-2x text-white-75"></i>
-                                                <p class="font-w600 font-size-sm text-white mt-2 mb-3">
-                                                    Payments
-                                                </p>
-                                            </div>
-                                        </a>
-                                        <!-- END Payments -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- END Apps Modal -->
         </div>
     </div>
 @endsection
