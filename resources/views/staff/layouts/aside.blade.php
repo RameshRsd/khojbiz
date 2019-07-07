@@ -19,7 +19,7 @@
                     @endif
                 </div>
                 <div class="pull-left info">
-                    <p>{{$photo->f_name}} {{$photo->l_name}} ddd</p>
+                    <p>{{$photo->f_name}} {{$photo->l_name}}</p>
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
@@ -49,9 +49,11 @@
                     <ul class="treeview-menu">
                         <li class=" <?php if(request()->segment('2') =='list-clients'){ echo 'active' ;} ?>"><a href="{{url('staff/list-clients')}}"><i class="fa fa-circle-o"></i> Client Listing</a></li>
                         <li class="<?php if(request()->segment('2') =='create-client'){ echo 'active' ;} ?>"><a href="{{url('staff/create-client')}}"><i class="fa fa-circle-o"></i> Create New Client</a></li>
-                        <li class="<?php if(request()->segment('2') =='category-wise-client'){ echo 'active' ;} ?>"><a href="{{url('staff/category-wise-client')}}"><i class="fa fa-circle-o"></i>Category Wise Client</a></li>
+                       <!-------- <li class="<?php if(request()->segment('2') =='category-wise-client'){ echo 'active' ;} ?>"><a href="{{url('staff/category-wise-client')}}"><i class="fa fa-circle-o"></i>Category Wise Client</a></li> --->
                     </ul>
                 </li>
+            <!---------------------
+
                 <li class="treeview  <?php if(request()->segment('2') =='list-manufacturers' || request()->segment('2') =='create-manufacture' || request()->segment('2') =='category-wise-manufacture'){ echo 'active menu-open' ;} ?>">
                     <a href="#"><i class="fa fa-home"></i> <span>Manufacture Clients</span>
                         <span class="pull-right-container">
@@ -101,6 +103,7 @@
                         <li class=" <?php if(request()->segment('2') =='contacts'){ echo 'active' ;} ?>"><a href="{{url('staff/contacts')}}"><i class="fa fa-circle-o"></i> Contacts</a></li>
                     </ul>
                 </li>
+                ------------>
             </ul>
             <!-- /.sidebar-menu -->
         </section>

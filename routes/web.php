@@ -12,20 +12,27 @@
 */
 
 Route::get('','HomeController@index');
+Route::get('top-companies-ajax','AjaxController@top_company');
+Route::get('top-manufacture-companies-ajax','AjaxController@top_manufacture');
+Route::get('top-products-ajax','AjaxController@top_products');
+Route::get('popular_category-ajax','AjaxController@popular_category');
 Route::get('profile','User\ApplicationController@profile');
 Route::get('search','User\ApplicationController@search');
+Route::get('search-manufacture','User\ApplicationController@search_manufacture');
 Route::get('search_product','User\ApplicationController@search_product');
 Route::get('product','User\ApplicationController@product');
 Route::get('buying-selling','User\ApplicationController@buying_selling');
 Route::get('places','Place\LocationController@index');
 Route::get('place_name', array('as' => 'place_name', 'uses'=>'HomeController@place_name'));
+Route::any('companyinfo/{slug}','User\ApplicationController@product_details');
 
-Route::get('update_client_about','HomeController@update_about');
 //Auth::routes();
 //Browse by alphabates //
 Route::group(['middleware'=>'guest'],function(){
     Route::get('login','HomeController@getLogin')->name('login');
     Route::post('login','HomeController@postLogin');
+    Route::get('register','HomeController@getregister');
+    Route::post('register','HomeController@postregister');
     Route::get('business/register','HomeController@get_business_register');
     Route::post('business/register','HomeController@post_business_register');
     /*manufacture*/
@@ -42,6 +49,8 @@ Route::get('manufacturers-browse-by-alphabet/list_{alpha}','AlphabateController@
 Route::get('browse-by-category/{slug}','AlphabateController@category');
 Route::get('browse-by-category/list/{id}','CategoryController@list_category');
 
+
+Route::post('client/get_enquiry/{id}','Client\\ClientController@get_enquiry');
 
 Route::any('logout', 'Auth\LoginController@logout')->name('logout');
 
@@ -197,6 +206,8 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::post('list-candidates/candidate_id={id}/edit','CandidateController@update');
     /* ============================== Candidate-Section ========================================= */
 
+    Route::post('update_payment/{id}','PaymentController@update_payment');
+    Route::post('user_account_update/{id}','UserController@update_user_account');
 
 
 });
@@ -205,6 +216,38 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
 /* ================================================ Client CONTROL Start============================================================== */
 Route::group(['middleware'=>['client','verified'],'prefix'=>'client','namespace'=>'Client'],function(){
     Route::get('','ClientController@index');
+
+    Route::get('edit-profile/business-details','ProfileController@business_details');
+    Route::post('edit-profile/business-details','ProfileController@update_business_details');
+    Route::get('edit-profile/contact-details','ProfileController@contact_details');
+    Route::post('edit-profile/contact-details','ProfileController@update_contact_details');
+    Route::get('edit-profile/about-company','ProfileController@about_company');
+    Route::post('edit-profile/about-company','ProfileController@update_about_company');
+
+    Route::get('service-manage/new-service','ServiceController@create');
+    Route::post('service-manage/new-service','ServiceController@store');
+    Route::get('service-manage/list-service','ServiceController@index');
+    Route::get('service-manage/list-service/{id}/edit','ServiceController@edit');
+    Route::post('service-manage/list-service/{id}/edit','ServiceController@update');
+    Route::get('service-manage/list-service/{id}/delete','ServiceController@delete');
+
+    Route::get('gallery-manage/list-images','GalleryController@index');
+    Route::get('gallery-manage/new-images','GalleryController@create');
+    Route::post('gallery-manage/new-images','GalleryController@store');
+    Route::get('gallery-manage/list-images/{id}/edit','GalleryController@edit');
+    Route::post('gallery-manage/list-images/{id}/edit','GalleryController@update');
+    Route::get('gallery-manage/list-images/{id}/delete','GalleryController@delete');
+
+    Route::get('notice/list-notice','NoticeController@index');
+    Route::get('notice/new-notice','NoticeController@create');
+    Route::post('notice/new-notice','NoticeController@store');
+    Route::get('notice/list-notice/{id}/edit','NoticeController@edit');
+    Route::post('notice/list-notice/{id}/edit','NoticeController@update');
+    Route::get('notice/list-notice/{id}/delete','NoticeController@delete');
+
+
+    Route::get('enquiry','ClientController@enquiry');
+
 });
 /* ================================================ Client CONTROL Start============================================================== */
 Route::group(['middleware'=>['users','verified'],'prefix'=>'users','namespace'=>'User'],function(){
@@ -296,7 +339,9 @@ Route::group(['middleware'=>['staff','verified'],'prefix'=>'staff','namespace'=>
 
 
 
-Route::any('{UserName}','User\ApplicationController@overview');
+Route::get('{UserName}','User\ApplicationController@overview');
+Route::get('{UserName}/view-service={id}','User\ApplicationController@view_service');
+Route::get('{UserName}/view-notice={id}','User\ApplicationController@view_notice');
 Route::any('{UserName}/about-us','User\ApplicationController@about_us');
 Route::any('{UserName}/profile','User\ApplicationController@client_profile');
 Route::any('{UserName}/image-gallery','User\ApplicationController@image_gallery');
@@ -305,12 +350,9 @@ Route::any('{UserName}/contact-us','User\ApplicationController@contact_us');
 Route::any('manufacturers/{slug}','Admin\ManufactureCompany\ManufactureCompanyController@manufacturing');
 
 
-Route::any('companyinfo/{slug}','User\ApplicationController@product_details');
-
-
-/*=====================Manufacture ========================*/
-Route::any('{UserName}','User\ApplicationController@menu_overview');
-/*=====================Manufacture end========================*/
+///*=====================Manufacture ========================*/
+//Route::any('{UserName}','User\ApplicationController@menu_overview');
+///*=====================Manufacture end========================*/
 /*===================== Product  ========================*/
 Route::any('top-location/{slug}','User\ApplicationController@location_details');
 /*===================== Product end========================*/

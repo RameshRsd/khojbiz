@@ -75,6 +75,44 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
+                                                        <label>Data Collect By</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <select name="entry_by" class="form-control select2" style="width: 100%;">
+                                                            <option value="">Choose Staff..</option>
+                                                            @foreach($staffs as $staff)
+                                                                <option value="{{$staff->user_id}}" @if($staff->user_id == $client->entry_by) selected @endif>{{$staff->f_name}} {{$staff->l_name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Payment Status</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <select name="status" class="form-control select2" style="width: 100%;">
+                                                            <option value="Pending" @if($client->status=='Pending') selected @endif>Pending</option>
+                                                            <option value="Paid" @if($client->status=='Paid') selected @endif>Paid</option>
+                                                            <option value="Unpaid" @if($client->status=='Unpaid') selected @endif>Unpaid</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
                                                         <label>Alphabate Name</label>
                                                     </div>
                                                 </div>
@@ -83,7 +121,7 @@
                                                         <select name="alpha_id" class="form-control select2" style="width: 100%;">
                                                             <option value="">Choose Alphabate</option>
                                                             @foreach($alpha as $alphabates)
-                                                                <option value="{{$alphabates->id}}" @if($alphabates->id == $client->cat_id)selected @endif>{{$alphabates->name}}</option>
+                                                                <option value="{{$alphabates->id}}" @if($alphabates->id == $client->alpha_id)selected @endif>{{$alphabates->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -195,8 +233,24 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label>Choose Category</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <div class="form-group">
+                                                        <select name="cat_id[]" class="form-control select2" multiple="multiple" data-placeholder="Select Category"
+                                                                style="width: 100%;">
+                                                            @foreach($categories as $category)
+                                                                <option value="{{$category->id}}" @if('['.$client->id.']' == $category->getClientIds()) selected @endif>{{$category->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -214,7 +268,7 @@
                                                     <div class="form-group">
                                                         <select name="district_id" class="form-control select2" style="width: 100%;">
                                                             @foreach($districts as $district)
-                                                                <option value="{{$district->id}}" @if($district->name == $district->id) selected @endif>{{$district->name}}</option>
+                                                                <option value="{{$district->id}}" @if($district->id == $client->district_id) selected @endif>{{$district->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>

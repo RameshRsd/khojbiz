@@ -212,6 +212,25 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label>Choose Category</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <div class="form-group">
+                                                        <select name="cat_id[]" class="form-control select2" multiple="multiple" data-placeholder="Select Category"
+                                                                style="width: 100%;">
+                                                            @foreach($categories as $category)
+                                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -272,7 +291,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="number" class="form-control" name="mobile" placeholder="Mobile No.">
+                                                        <input type="text" class="form-control" name="mobile" placeholder="Mobile No.">
                                                     </div>
                                                 </div>
                                             </div>
@@ -286,7 +305,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="number" class="form-control" name="ofc_tel_no" placeholder="Office Tel No.">
+                                                        <input type="text" class="form-control" name="ofc_tel_no" placeholder="Office Tel No.">
                                                     </div>
                                                 </div>
                                             </div>
@@ -329,6 +348,19 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-12">
+                                    <label for="" style="border-bottom: 1px solid grey;">Payment Status</label>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <input type="radio" name="status" value="Paid">Paid
+                                                <input type="radio" name="status" value="Unpaid">Unpaid
+                                                <input type="radio" name="status" value="Pendig">Pending
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-sm">Submit</button>

@@ -37,12 +37,12 @@ class CategoryController extends Controller
     public function edit($id){
         $title = 'Edit Category - Admin-Panel | khojbiz.com';
         $category = Category::findOrFail($id);
-        return view('admin.category.edit',compact('title','category'));
+        $alphabates = Alphabate::orderBy('name')->get();
+        return view('admin.category.edit',compact('title','category','alphabates'));
     }
     public function update(Request $request,$id){
         $this->validate($request, [
-            'name'=> 'required|unique:categories,name',
-            'slug'=> 'unique:categories,slug',
+            'name'=> 'required|unique:categories,name,'.$id,
         ]);
         $category = Category::findOrFail($id);
         $category->name = $request->name;

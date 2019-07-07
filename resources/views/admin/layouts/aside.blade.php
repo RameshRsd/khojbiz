@@ -67,7 +67,7 @@
                         <li class="<?php if(request()->segment('2') =='create-client'){ echo 'active' ;} ?>"><a href="{{url('admin/create-client')}}"><i class="fa fa-circle-o"></i> Create New Client</a></li>
                         <li class="<?php if(request()->segment('2') =='claim-listing'){ echo 'active' ;} ?>"><a href="{{url('admin/claim-listing')}}"><i class="fa fa-circle-o"></i> Claim Listing <span style="padding:5px; font-size: 10px; color:deepskyblue;">(10)</span></a></li>
                         <li class="<?php if(request()->segment('2') =='company-nature'){ echo 'active' ;} ?>"><a href="{{url('admin/company-nature')}}"><i class="fa fa-circle-o"></i> Company Nature</a></li>
-                        <li class="<?php if(request()->segment('2') =='add-category'){ echo 'active' ;} ?>"><a href="{{url('admin/add-category')}}"><i class="fa fa-circle-o"></i> Add Category</a></li>
+                        <li class="<?php if(request()->segment('2') =='add-category'){ echo 'active' ;} ?>"><a href="{{url('admin/add-category')}}"><i class="fa fa-circle-o"></i> Categories List</a></li>
                         <li class="<?php if(request()->segment('2') =='add-sub-category'){ echo 'active' ;} ?>"><a href="{{url('admin/add-sub-category')}}"><i class="fa fa-circle-o"></i> Add Sub Category</a></li>
                         <li class="<?php if(request()->segment('2') =='category-wise-client'){ echo 'active' ;} ?>"><a href="{{url('admin/category-wise-client')}}"><i class="fa fa-circle-o"></i>Category Wise Client</a></li>
                     </ul>
@@ -83,7 +83,7 @@
                         <li class="<?php if(request()->segment('2') =='create-manufacturers'){ echo 'active' ;} ?>"><a href="{{url('admin/create-manufacturers')}}"><i class="fa fa-circle-o"></i> Create New Manufacture</a></li>
                         <li class="<?php if(request()->segment('2') =='claim-manufacturers'){ echo 'active' ;} ?>"><a href="{{url('admin/claim-manufacturers')}}"><i class="fa fa-circle-o"></i> Claim Listing of manufacturers <span style="padding:5px; font-size: 10px; color:deepskyblue;">(10)</span></a></li>
                         <li class="<?php if(request()->segment('2') =='company-nature-of-manufacturers'){ echo 'active' ;} ?>"><a href="{{url('admin/company-nature-of-manufacturers')}}"><i class="fa fa-circle-o"></i> Company Nature</a></li>
-                        <li class="<?php if(request()->segment('2') =='add-category-of-manufacturers'){ echo 'active' ;} ?>"><a href="{{url('admin/add-category-of-manufacturers')}}"><i class="fa fa-circle-o"></i> Add Category</a></li>
+                        <li class="<?php if(request()->segment('2') =='add-category-of-manufacturers'){ echo 'active' ;} ?>"><a href="{{url('admin/add-category-of-manufacturers')}}"><i class="fa fa-circle-o"></i> Categories List</a></li>
                         <li class="<?php if(request()->segment('2') =='add-sub-category-of-manufacturers'){ echo 'active' ;} ?>"><a href="{{url('admin/add-sub-category-of-manufacturers')}}"><i class="fa fa-circle-o"></i> Add Sub Category</a></li>
                         <li class="<?php if(request()->segment('2') =='category-wise-manufactures'){ echo 'active' ;} ?>"><a href="{{url('admin/category-wise-manufactures')}}"><i class="fa fa-circle-o"></i>Category Wise Manufacturers</a></li>
                     </ul>

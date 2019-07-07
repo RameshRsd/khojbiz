@@ -17,16 +17,19 @@ class ClientController extends Controller
     public function index(){
         $title = 'Client Listing - Admin-Panel | khojbiz.com';
         $clients = Client::where('entry_by',Auth::user()->id)->orderBy('company_name','ASC')->get();
-        $category = Category::orderBy('name','ASC')->get();
+        $category = Category::where('status','active')->orderBy('name','ASC')->get();
         return view('staff.pages.index',compact('title','clients','category'));
-
     }
     public function create(){
         $title = 'Create New Client - Admin-Panel | khojbiz.com';
         $districts = District::orderBy('name','ASC')->get();
-        $category = Category::orderBy('name','ASC')->get();
+        $categories = Category::where('status','active')->orderBy('name','ASC')->get();
         $alpha = Alphabate::orderBy('name')->get();
-        return view('staff.pages.create',compact('title','districts','category','alpha'));
+        if (Auth::user()->status=='active'){
+            return view('staff.pages.create',compact('title','districts','categories','alpha'));
+        }else{
+            return redirect('staff/list-clients')->with('error','Access Denined!');
+        }
     }
     public function store(Request $request){
         $this->validate($request, [
@@ -36,6 +39,8 @@ class ClientController extends Controller
             'name'=> 'required|unique:users,name',
             'email'=> 'required|unique:users,email',
             'password' =>'required|confirmed',
+            'cat_id'=>'required',
+            'mobile'=>'min:10',
         ]);
         /*=========== Creating User ============ */
         $user = New User();
@@ -61,6 +66,7 @@ class ClientController extends Controller
             $client->alpha_id = $request->alpha_id;
             $client->password = $request->password;
             $client->user_id = $user->id;
+            $client->status = $request->status;
             $client->entry_by = Auth::user()->id;
             if ($request->hasFile('logo')){
                 $filename = time().'.'.request()->file('logo')->getClientOriginalExtension();
@@ -80,22 +86,36 @@ class ClientController extends Controller
             }
 
             $client->save();
-            return redirect('admin/category-wise-client')->with('success','Client Created Successfully !');
+            foreach(\request('cat_id') as $key => $value){
+                if ((CategoryWiseClient::where('cat_id',$value)->where('client_id',$client->id)->count())==0){
+                    $client_category = CategoryWiseClient::firstOrNew(['cat_id'=>$value,'client_id'=>$client->id]);
+                    $client_category->save();
+                }else{
+                    return redirect()->back()->with('error', 'Already Uses');
+                }
+            }
+            return redirect('staff/list-clients')->with('success','Client Created Successfully !');
         }
     }
     public function edit($id){
         $title = 'Edit Client - Admin-Panel | khojbiz.com';
         $districts = District::orderBy('name','ASC')->get();
         $alpha = Alphabate::orderBy('name','ASC')->get();
-        $category = Category::orderBy('name','ASC')->get();
+        $categories = Category::where('status','active')->orderBy('name','ASC')->get();
         $client = Client::findOrFail($id);
-        return view('staff.pages.edit',compact('title','districts','category','alpha','client'));
+        if ($client->entry_by == Auth::user()->id && Auth::user()->status=='active'){
+            return view('staff.pages.edit',compact('title','districts','categories','alpha','client'));
+        }else{
+            return redirect('staff/list-clients')->with('error','Access Denined !');
+        }
     }
     public function update(Request $request, $id){
         $this->validate($request, [
             'company_name'=> 'required',
             'district_id'=> 'required',
             'client_type'=> 'required',
+            'mobile'=>'min:10',
+
         ]);
         $client = Client::findOrFail($id);
         $client->company_name = $request->company_name;
@@ -110,6 +130,7 @@ class ClientController extends Controller
         $client->alpha_id = $request->alpha_id;
         $client->website = $request->website;
         $client->map_link = $request->map_link;
+        $client->status = $request->status;
         $client->office_contact = $request->office_contact;
         if ($request->hasFile('logo')){
             if (is_file(public_path('uploads/logos/').'/'.$client->logo) && file_exists(public_path('uploads/logos/').'/'.$client->logo)){
@@ -137,14 +158,25 @@ class ClientController extends Controller
         }
 
         $client->save();
-        return redirect('staff/category-wise-client')->with('success','Client Updated Successfully !');
+
+        if ($request->cat_id){
+            foreach(\request('cat_id') as $key => $value){
+                $client_category = CategoryWiseClient::firstOrNew(['cat_id'=>$value,'client_id'=>$client->id]);
+                $client_category->save();
+            }
+        }else{
+            foreach ($client->client_category as $category){
+                $category->delete();
+            }
+        }
+        return redirect('staff/list-clients')->with('success','Client Updated Successfully !');
 
     }
 
     public function cat_wise_client(){
         $title = 'Category Wise Client';
         $client = Client::where('entry_by',Auth::user()->id)->orderBy('id','DESC')->get();
-        $categories = Category::all();
+        $categories = Category::where('status','active')->orderBy('name','ASC')->get();
         return view('staff.category.category_wise_client',compact('title','client','categories'));
     }
     public function cat_wise_client_store(Request $request){

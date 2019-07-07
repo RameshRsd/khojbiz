@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Advertisement;
+use App\Alphabate;
 use App\BuySell\Product;
 use App\Category;
 use App\Client\Client;
@@ -19,8 +20,9 @@ class HomeController extends Controller
 {
 
     public function index(){
+        $title = 'Khojbiz - Local Search Engine';
 //        $client =Client::where('client_type','diamond')->get();
-        $client =Client::where('company_nature','business')->where('client_type','diamond')->limit(8)->get();
+        $clients =Client::where('company_nature','business')->where('client_type','diamond')->limit(8)->get();
         $manufacture_client =Client::where('company_nature','manufacture')->limit(4)->get();
         $ads = Advertisement::where('status','active')->where('type','top')->where('status','active')->get();
         $side_ads = Advertisement::where('status','active')->where('type','general')->where('status','active')->get();
@@ -29,7 +31,9 @@ class HomeController extends Controller
         $location_categories = locationCategory::orderBy('name')->get();
         $locations = location::orderBy('id','ASC')->limit(4)->get();
         $products = Product::where('product_type','diamond')->limit(4)->get();
-        return view('frontend.welcome',compact('client','ads','side_ads','category','manufacture_client','location_categories','feature_ads','products','locations'));
+        $alphas = Alphabate::orderBy('name')->get();
+        return view('welcome',compact('title','clients','alphas','ads','side_ads','category','manufacture_client','location_categories','feature_ads','products','locations'));
+//        return view('frontend.welcome',compact('client','ads','side_ads','category','manufacture_client','location_categories','feature_ads','products','locations'));
     }
     public function getLogin(){
         return view('auth.login');
@@ -84,6 +88,33 @@ class HomeController extends Controller
         return view('auth.manufacture.register',compact('category'));
 
     }
+    public function postregister(Request $request){
+        $this->validate(request(),[
+            'email'=>'required|unique:users,email',
+            'username'=>'required|unique:users,name',
+            'password'=>'required|confirmed',
+            'company_nature'=>'required',
+            'company_name'=>'required',
+        ]);
+        $user = new User();
+        $user->name = \request('username');
+        $user->email = \request('email');
+        $user->type = 'client';
+        $user->status = 'active';
+        $user->password = bcrypt(\request('password'));
+        if ($user->save()){
+        $client = new Client();
+        $client->user_id = $user->id;
+        $client->company_name = $request->company_name;
+        $client->slug = str_slug($request->company_name);
+        $client->ofc_tel_no = $request->ofc_tel_no;
+        $client->password = \request('password');
+        $client->client_type = 'free_listing';
+        $client->company_nature = $request->company_nature;
+        $client->save();
+        }
+        return redirect('login')->with('success','Congratulations Your Account Successfully Created !!');
+    }
     public function post_business_register(Request $request){
         $this->validate(request(),[
             'email'=>'required|unique:users,email',
@@ -137,20 +168,6 @@ class HomeController extends Controller
             $client_about_us->save();
         }
         return redirect('login')->with('success','welcome to login pages');
-    }
-    public function update_about(){
-        $clients = Client::all();
-        foreach ($clients as $client){
-            $client_about = new ClientAboutUs();
-            $client_about->client_id = $client->id;
-            $client_about->save();
-
-//            $client_contact = new ClientContactUs();
-//            $client_contact->client_id = $client->id;
-//            $client_contact->save();
-        }
-        return redirect('');
-
     }
     public function place_name(Request $request)
     {

@@ -17,10 +17,21 @@
         <!-- Main content -->
         <section class="content container-fluid">
             <div style="clear: both;"></div>
+            @if(session('error'))
+                <div class="col-sm-12">
+                    <div role="alert" style="background-color:#d4edda; color:#155724; border-radius: 5px;" class="alert  alert-dismissible show">
+                        <span class="btn btn-danger btn-xs">Error</span> {{session('error')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <div style="clear: both;"></div>
+            @endif
             @if(session('success'))
                 <div class="col-sm-12">
                     <div role="alert" style="background-color:#d4edda; color:#155724; border-radius: 5px;" class="alert  alert-dismissible show">
-                        <span class="btn btn-success btn-xs">Success</span> Successfully
+                        <span class="btn btn-success btn-xs">Success</span> {{session('success')}}
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -71,6 +82,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="col-md-6">
                                             <div class="row">
                                                 <div class="col-md-4">
@@ -143,7 +155,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="number" class="form-control" name="mobile" value="{{$client->mobile}}">
+                                                        <input type="text" class="form-control" name="mobile" value="{{$client->mobile}}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -155,7 +167,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="number" class="form-control" name="ofc_tel_no" value="{{$client->ofc_tel_no}}">
+                                                        <input type="text" class="form-control" name="ofc_tel_no" value="{{$client->ofc_tel_no}}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -199,8 +211,24 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label>Choose Category</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <div class="form-group">
+                                                        <select name="cat_id[]" class="form-control select2" multiple="multiple" data-placeholder="Select Category"
+                                                                style="width: 100%;">
+                                                            @foreach($categories as $category)
+                                                                <option value="{{$category->id}}" @if('['.$client->id.']' == $category->getClientIds()) selected @endif>{{$category->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -218,7 +246,7 @@
                                                     <div class="form-group">
                                                         <select name="district_id" class="form-control select2" style="width: 100%;">
                                                             @foreach($districts as $district)
-                                                                <option value="{{$district->id}}" @if($district->name == $district->id) selected @endif>{{$district->name}}</option>
+                                                                <option value="{{$district->id}}" @if($district->id == $client->district_id) selected @endif>{{$district->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -239,14 +267,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="row">
-                                                <div class="col-md-4">
+                                                <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label>Location Map Link</label>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-8">
+                                                <div class="col-md-10">
                                                     <div class="form-group">
                                                         <input type="text" class="form-control" name="map_link" value="{{$client->map_link}}">
                                                     </div>
@@ -260,6 +288,18 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <textarea name="company_profile" id="editor1" cols="30" rows="10" class="form-control content">{{$client->company_profile}}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="" style="border-bottom: 1px solid grey;">Payment Status</label>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <input type="radio" name="status" value="Paid" @if($client->status=='Paid') checked @endif>Paid
+                                                <input type="radio" name="status" value="Unpaid" @if($client->status=='Unpaid') checked @endif>Unpaid
+                                                <input type="radio" name="status" value="Pendig" @if($client->status=='Pending') checked @endif>Pending
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
