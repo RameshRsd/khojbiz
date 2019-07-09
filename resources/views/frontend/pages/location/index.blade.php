@@ -85,9 +85,9 @@
                                                 <div class="font-size-sm"><i class="fa fa-mobile"></i> {{$locations->contact}}</div>
                                                 @endif
                                                 @if($locations->website == 0)
-                                                <div class="font-size-sm"><i class="fa fa-map-marker"></i> N/A</div>
+                                                <div class="font-size-sm"><i class="fa fa-globe"></i> N/A</div>
                                                 @else
-                                                <div class="font-size-sm"><i class="fa fa-map-marker"></i>{{$locations->website}}</div>
+                                                <div class="font-size-sm"><a href="{{$locations->website}}"><i class="fa fa-globe"></i> visit website</a></div>
                                                     @endif
                                             </div>
                                         </div>
@@ -127,8 +127,7 @@
                                     <a href="#">Claimed</a>
                                     <a href="#"><i class="fa fa-envelope"></i> Send SMS</a>
                                     <a href="#">Improve Listing</a>
-                                    <a href="#"><i class="fa fa-eye"></i> 3232</a>
-                                    <a href="#"><i class="fa fa-search"></i> 858585</a>
+                                    <a href="#"><i class="fa fa-eye"></i> </a>
                                 </div>
                             </div>
                         </div>

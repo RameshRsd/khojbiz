@@ -77,9 +77,7 @@ class ClientController extends Controller
             $client->status = $request->status;
             if ($request->hasFile('logo')){
                 $filename = time().'.'.request()->file('logo')->getClientOriginalExtension();
-
                 $filename = md5(microtime()) . '.' . $filename;
-
                 request()->file('logo')->move('public/uploads/logos/',$filename);
                 $client->logo =$filename;
             }
@@ -101,7 +99,6 @@ class ClientController extends Controller
                     return redirect()->back()->with('error', 'Already Uses');
                 }
             }
-
             return redirect('admin/list-clients')->with('success','Client Created Successfully !');
         }
     }

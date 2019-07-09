@@ -32,6 +32,7 @@ class CreateClientsTable extends Migration
             $table->integer('district_id')->nullable();
             $table->integer('cat_id')->nullable();
             $table->integer('alpha_id')->nullable();
+            $table->integer('staff_id')->nullable();
             $table->text('map_link')->nullable();
             $table->string('password')->nullable();
             $table->integer('entry_by')->nullable();

@@ -50,7 +50,6 @@ class ProductController extends Controller
             $filename = time().'.'.request()->file('feature')->getClientOriginalExtension();
 
             $filename = md5(microtime()) . '.' . $filename;
-
             request()->file('feature')->move('public/uploads/product/feature/',$filename);
             $product->feature =$filename;
         }

@@ -19,6 +19,14 @@ class ClientController extends Controller
        return view('new.client.index',compact('client','notices','galleries'));
 //       return view('frontend.pages.client.profile.index',compact('client'));
    }
+   public function profile(){
+       $client = Client::where('user_id',Auth::user()->id)->firstOrFail();
+       return view('frontend.pages.client.profile.client_profile',compact('client'));
+   }
+   public function contact(){
+       $client = Client::where('user_id',Auth::user()->id)->firstOrFail();
+       return view('frontend.pages.client.profile.client_profile',compact('client'));
+   }
 
    public function enquiry(){
        $client = Client::where('user_id',Auth::user()->id)->firstOrFail();
