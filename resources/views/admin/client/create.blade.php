@@ -55,23 +55,9 @@
                             <form action="" method="post" enctype="multipart/form-data">
                                 {{csrf_field()}}
                             <div class="row">
-                                <div class="col-md-9">
+                                <div class="col-md-12">
                                     <label for="" style="border-bottom: 1px solid grey;">Account Details</label>
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>User Name</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <div class="form-group">
-                                                        <input type="text" name="name" class="form-control" value="{{old('name')}}" placeholder="User Name">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="col-md-6">
                                             <div class="row">
                                                 <div class="col-md-4">
@@ -82,6 +68,27 @@
                                                 <div class="col-md-8">
                                                     <div class="form-group">
                                                         <input type="email" name="email" class="form-control" value="{{old('email')}}" placeholder="Valid Email">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Choose Package</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <select name="client_type" id="client_type" class="form-control select2" style="width: 100%;">
+                                                            <option value="free_listing">Free Listing</option>
+                                                            <option value="bronze">Bronze</option>
+                                                            <option value="silver">Silver</option>
+                                                            <option value="gold">Gold</option>
+                                                            <option value="diamond">Diamond</option>
+                                                            <option value="platinum">Platinum</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -110,36 +117,6 @@
                                                 <div class="col-md-8">
                                                     <div class="form-group">
                                                         <input type="password" class="form-control" name="password_confirmation" placeholder="Re Type Password">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="" style="border-bottom: 1px solid grey;">Package Details</label>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Choose Package</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <select name="client_type" id="client_type" value="{{old('client_type')}}" class="form-control select2" style="width: 100%;">
-                                                            <option value="free_listing">Free Listing</option>
-                                                            <option value="bronze">Bronze</option>
-                                                            <option value="silver">Silver</option>
-                                                            <option value="gold">Gold</option>
-                                                            <option value="diamond">Diamond</option>
-                                                            <option value="platinum">Platinum</option>
-                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -175,7 +152,7 @@
                                                         <select name="entry_by" class="form-control select2" style="width: 100%;">
                                                             <option value="">Choose Staff..</option>
                                                             @foreach($staffs as $staff)
-                                                                <option value="{{$staff->user_id}}">{{$staff->f_name}} {{$staff->l_name}}</option>
+                                                                <option value="{{$staff->user_id}}" @if($staff->user_id == old('entry_by')) selected @endif>{{$staff->f_name}} {{$staff->l_name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -194,7 +171,7 @@
                                                         <select name="alpha_id" class="form-control select2" style="width: 100%;">
                                                             <option value="">Choose Alphabate</option>
                                                             @foreach($alpha as $alphabate)
-                                                                <option value="{{$alphabate->id}}">{{$alphabate->name}}</option>
+                                                                <option value="{{$alphabate->id}}" @if($alphabate->id == old('alpha_id')) selected @endif>{{$alphabate->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -211,9 +188,9 @@
                                                 <div class="col-md-8">
                                                     <div class="form-group">
                                                         <select name="status" class="form-control select2" style="width: 100%;">
-                                                            <option value="Pending">Pending</option>
-                                                            <option value="Paid">Paid</option>
-                                                            <option value="Unpaid">Unpaid</option>
+                                                            <option value="Pending" @if(old('Pending') == 'Pending') selected @endif>Pending</option>
+                                                            <option value="Paid" @if(old('Paid') == 'Paid') selected @endif>Paid</option>
+                                                            <option value="Unpaid" @if(old('Unpaid') == 'Unpaid') selected @endif>Unpaid</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -284,7 +261,7 @@
                                                     <div class="form-group">
                                                         <select name="district_id" class="form-control select2" style="width: 100%;">
                                                             @foreach($districts as $district)
-                                                                <option value="{{$district->id}}" @if($district->name == 'Kathmandu') selected @endif>{{$district->name}}</option>
+                                                                <option value="{{$district->id}}" @if($district->id == old('district_id')) selected @elseif($district->name == 'Kathmandu') selected @endif>{{$district->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -300,7 +277,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" name="company_address" placeholder="Company Address">
+                                                        <input type="text" class="form-control" name="company_address" value="{{old('company_address')}}" placeholder="Company Address">
                                                     </div>
                                                 </div>
                                             </div>
@@ -314,7 +291,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" name="company_head" placeholder="Name of Company Head">
+                                                        <input type="text" class="form-control" name="company_head" value="{{old('company_head')}}" placeholder="Name of Company Head">
                                                     </div>
                                                 </div>
                                             </div>
@@ -328,7 +305,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="number" class="form-control" name="mobile" placeholder="Mobile No.">
+                                                        <input type="text" class="form-control" name="mobile" value="{{old('mobile')}}" placeholder="Mobile No.">
                                                     </div>
                                                 </div>
                                             </div>
@@ -342,7 +319,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="number" class="form-control" name="ofc_tel_no" placeholder="Office Tel No.">
+                                                        <input type="number" class="form-control" name="ofc_tel_no" value="{{old('ofc_tel_no')}}" placeholder="Office Tel No.">
                                                     </div>
                                                 </div>
                                             </div>
@@ -356,7 +333,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="url" class="form-control" name="website" placeholder="Exp: www.khojbiz.com">
+                                                        <input type="url" class="form-control" name="website" value="{{old('website')}}" placeholder="Exp: www.khojbiz.com">
                                                     </div>
                                                 </div>
                                             </div>
@@ -370,7 +347,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" name="map_link" placeholder="Copy Paste Map Embed link">
+                                                        <input type="text" class="form-control" name="map_link" value="{{old('map_link')}}" placeholder="Copy Paste Map Embed link">
                                                     </div>
                                                 </div>
                                             </div>
@@ -381,7 +358,9 @@
                                     <label for="" style="border-bottom: 1px solid grey;">Short Description</label>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <textarea name="company_profile" id="editor1" cols="30" rows="10" class="form-control content" placeholder="Describe about company"></textarea>
+                                            <textarea name="company_profile" id="editor1" cols="30" rows="10" class="form-control content" placeholder="Describe about company">
+                                                {{old('company_profile')}}
+                                            </textarea>
                                         </div>
                                     </div>
                                 </div>

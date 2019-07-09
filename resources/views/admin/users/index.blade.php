@@ -56,6 +56,8 @@
                                 <tr>
                                     <th>SN</th>
                                     <th>User Name</th>
+                                    <th>ID</th>
+                                    <th>PW</th>
                                     <th>User Type (Role)</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -65,7 +67,15 @@
                                 @foreach($users as $key=>$user)
                                     <tr>
                                         <td>{{++$key}}</td>
-                                        <td>{{$user->name}}</td>
+                                        <td>{{$user->name}} @if(isset($user->client)) <b>({{$user->client->company_name}})</b> @endif</td>
+                                        <td>{{$user->email}}</td>
+                                        <td>
+                                            @if(isset($user->client))
+                                                {{$user->client->password}}
+                                                @elseif(isset($user->staff))
+                                                {{$user->staff->password}}
+                                            @endif
+                                        </td>
                                         <td>
                                             @if($user->type=='admin')
                                                 <button class="btn btn-success btn-xs">Admin</button>

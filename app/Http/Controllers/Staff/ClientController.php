@@ -36,20 +36,22 @@ class ClientController extends Controller
             'company_name'=> 'required|unique:clients,company_name',
             'district_id'=> 'required',
             'client_type'=> 'required',
-            'name'=> 'required|unique:users,name',
+//            'name'=> 'required|unique:users,name',
             'email'=> 'required|unique:users,email',
             'password' =>'required|confirmed',
             'cat_id'=>'required',
             'mobile'=>'min:10',
         ]);
         /*=========== Creating User ============ */
+        $username = str_slug($request->company_name);
         $user = New User();
-        $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->type = 'client';
         $user->status = 'active';
         if ($user->save()){
+            $user->name = $username.'-'.$user->id;
+            $user->save();
             /*=========== Creating Clients ============ */
             $client = New Client();
             $client->company_name = $request->company_name;

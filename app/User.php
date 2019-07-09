@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Client\Client;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -37,4 +38,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function client(){
+        return $this->hasOne(Client::class,'user_id');
+    }
+    public function staff(){
+        return $this->hasOne(Staff::class,'user_id');
+    }
+    public function entry_by(){
+        return $this->hasMany(Client::class,'entry_by');
+    }
+
 }

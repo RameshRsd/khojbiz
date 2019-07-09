@@ -18,9 +18,14 @@ class ClientController extends Controller
 {
     public function index(){
         $title = 'Client Listing - Admin-Panel | khojbiz.com';
-        $clients = Client::orderBy('id','DESC')->paginate(50);
+        $count_clients = Client::all()->count();
         $category = Category::orderBy('name','ASC')->get();
-        return view('admin.client.index',compact('title','clients','category'));
+        $client = Client::orderBy('id','DESC');
+        if (\request('search_company_name')){
+            $client->where('company_name','LIKE','%'.\request('search_company_name').'%');
+        }
+        $clients = $client->paginate(50);
+        return view('admin.client.index',compact('title','clients','category','count_clients'));
 
     }
     public function create(){
@@ -36,18 +41,21 @@ class ClientController extends Controller
             'company_name'=> 'required|unique:clients,company_name',
             'district_id'=> 'required',
             'client_type'=> 'required',
-            'name'=> 'required|unique:users,name',
+//            'name'=> 'required|unique:users,name',
             'email'=> 'required|unique:users,email',
             'password' =>'required|confirmed',
         ]);
         /*=========== Creating User ============ */
+        $username = str_slug($request->company_name);
         $user = New User();
-        $user->name = strtolower($request->name);
+//        $user->name = strtolower($request->name);
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->type = 'client';
         $user->status = 'active';
         if ($user->save()){
+            $user->name = $username.'-'.$user->id;
+            $user->save();
             /*=========== Creating Clients ============ */
             $client = New Client();
             $client->company_name = $request->company_name;

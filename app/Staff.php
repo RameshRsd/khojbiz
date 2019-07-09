@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Client\Client;
 use Illuminate\Database\Eloquent\Model;
 
 class Staff extends Model
