@@ -27,6 +27,17 @@
                 </div>
                 <div style="clear: both;"></div>
             @endif
+            @if(session('error'))
+                <div class="col-sm-12">
+                    <div role="alert" style="background-color:#d4edda; color:#155724; border-radius: 5px;" class="alert  alert-dismissible show">
+                        <span class="btn btn-danger btn-xs">Error</span> {{session('error')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <div style="clear: both;"></div>
+            @endif
             @if($errors->any())
                 <div class="col-sm-12">
                     <div role="alert" style="background-color:#d4edda; color:#155724; border-radius: 5px;" class="alert  alert-dismissible show">
@@ -105,7 +116,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="{{url('admin/users/uid=').$user->id.'/edit'}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach

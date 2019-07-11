@@ -231,7 +231,25 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Job Type</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <select name="position_id" id="position_id" class="form-control">
+                                                            <option value="">Choose One..</option>
+                                                            @foreach($positions as $position)
+                                                                <option value="{{$position->id}}" @if($position->id == $staffs->position_id) selected @endif>{{$position->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">

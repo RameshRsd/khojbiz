@@ -159,8 +159,8 @@
                                         {{--<td>{{$client->user->email}}</td>--}}
                                         {{--<td>{{$client->password}}</td>--}}
                                         <td>
-                                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
                                             <a href="{{url('admin/list-clients/client_id=').$client->id.'/edit'}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="{{url('admin/list-clients/client_id=').$client->id.'/delete'}}" onclick="return confirm('Are you sure to delete this client? Deleted data can not be restore.')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

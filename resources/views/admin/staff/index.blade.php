@@ -55,6 +55,7 @@
                                 <tr>
                                     <th>SN</th>
                                     <th>Name</th>
+                                    <th>Title</th>
                                     <th>Address</th>
                                     <th>Mobile</th>
                                     <th>No of Data</th>
@@ -69,6 +70,7 @@
                                     <tr>
                                         <td>{{++$key}}</td>
                                         <td>{{$staff->f_name}} {{$staff->m_name}} {{$staff->l_name}}</td>
+                                        <td>{{$staff->position->name}}</td>
                                         <td>{{$staff->address}}</td>
                                         <td>{{$staff->mobile}}</td>
                                         <td>@if(isset($staff->user->entry_by)){{count($staff->user->entry_by)}} @else 0 @endif</td>

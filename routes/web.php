@@ -60,6 +60,9 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
 
     /* ============================== User Managment ========================================= */
     Route::get('users','UserController@index');
+    Route::get('users/uid={id}/edit','UserController@edit');
+    Route::post('users/update-email/{id}','UserController@update_email');
+    Route::post('users/update-password/{id}','UserController@update_password');
     /* ============================== User Managment ========================================= */
 
     /* ============================== Staff Managment ========================================= */
@@ -144,6 +147,7 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::post('create-client','ClientController@store');
     Route::get('list-clients/client_id={id}/edit','ClientController@edit');
     Route::post('list-clients/client_id={id}/edit','ClientController@update');
+    Route::get('list-clients/client_id={id}/delete','ClientController@delete');
     /* ============================== Client-Section ========================================= */
     /* ============================== Client-Profile-Section ========================================= */
     Route::get('{name}/edit-about','ClientProfile\ClientAboutUsController@edit_about');

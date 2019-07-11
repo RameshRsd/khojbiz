@@ -6,13 +6,20 @@ use App\Alphabate;
 use App\Category;
 use App\CategoryWiseClient;
 use App\Client\Client;
+use App\Client\ClientContactUs;
+use App\Client\ClientNotice;
+use App\Client\ClientService;
+use App\ClientGallery;
+use App\ClientProfile;
 use App\District;
 use App\Menufacture\ManufactureWiseCategory;
 use App\Staff;
 use App\User;
+use App\WelcomeMail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ClientController extends Controller
 {
@@ -53,6 +60,8 @@ class ClientController extends Controller
         $user->password = bcrypt($request->password);
         $user->type = 'client';
         $user->status = 'active';
+        $login_email = $request->email;
+        $login_password = $request->password;
         if ($user->save()){
             $user->name = $username.'-'.$user->id;
             $user->save();
@@ -91,6 +100,8 @@ class ClientController extends Controller
             }
 
             $client->save();
+            Mail::to($request->email)->send(new WelcomeMail($login_email, $login_password));
+
             foreach(\request('cat_id') as $key => $value){
                 if ((CategoryWiseClient::where('cat_id',$value)->where('client_id',$client->id)->count())==0){
                     $client_category = CategoryWiseClient::firstOrNew(['cat_id'=>$value,'client_id'=>$client->id]);
@@ -173,5 +184,52 @@ class ClientController extends Controller
         }
         return redirect('admin/list-clients')->with('success','Client Updated Successfully !');
 
+    }
+    public function delete($id){
+        $client = Client::findOrFail($id);
+        $cat_clients = CategoryWiseClient::where('client_id',$id)->get();
+        $client_contacts = ClientContactUs::where('client_id',$id)->get();
+        $client_galleries = ClientGallery::where('client_id',$id)->get();
+        $client_notices = ClientNotice::where('client_id',$id)->get();
+        $client_services = ClientService::where('client_id',$id)->get();
+        if (count($cat_clients)>0){
+            foreach ($cat_clients as $cat){
+                $cat->delete();
+            }
+        }
+        if (count($client_contacts)>0){
+            foreach ($client_contacts as $contact){
+                $contact->delete();
+            }
+        }
+        if (count($client_galleries)>0){
+            foreach ($client_galleries as $gallery){
+                if (is_file(public_path('uploads/client-gallery/').'/'.$gallery->image) && file_exists(public_path('uploads/client-gallery/').'/'.$gallery->image)){
+                    unlink(public_path('uploads/client-gallery/').'/'.$gallery->image);
+                }
+                $gallery->delete();
+            }
+        }
+        if (count($client_notices)>0){
+            foreach ($client_notices as $notice){
+                $notice->delete();
+            }
+        }
+        if (count($client_services)>0){
+            foreach ($client_services as $service){
+                if (is_file(public_path('uploads/client-service/').'/'.$service->file) && file_exists(public_path('uploads/client-service/').'/'.$service->file)){
+                    unlink(public_path('uploads/client-service/').'/'.$service->file);
+                }
+                $service->delete();
+            }
+        }
+        if (is_file(public_path('uploads/logos/').'/'.$client->logo) && file_exists(public_path('uploads/logos/').'/'.$client->logo)){
+            unlink(public_path('uploads/logos/').'/'.$client->logo);
+        }
+        if (is_file(public_path('uploads/banners/').'/'.$client->banner) && file_exists(public_path('uploads/banners/').'/'.$client->banner)){
+            unlink(public_path('uploads/banners/').'/'.$client->banner);
+        }
+        $client->delete();
+        return redirect('admin/list-clients')->with('success','Client Deleted Successfully !!');
     }
 }

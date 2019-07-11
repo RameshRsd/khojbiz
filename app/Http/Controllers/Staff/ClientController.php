@@ -8,9 +8,11 @@ use App\CategoryWiseClient;
 use App\Client\Client;
 use App\District;
 use App\User;
+use App\WelcomeMail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ClientController extends Controller
 {
@@ -49,6 +51,8 @@ class ClientController extends Controller
         $user->password = bcrypt($request->password);
         $user->type = 'client';
         $user->status = 'active';
+        $login_email = $request->email;
+        $login_password = $request->password;
         if ($user->save()){
             $user->name = $username.'-'.$user->id;
             $user->save();
@@ -88,6 +92,8 @@ class ClientController extends Controller
             }
 
             $client->save();
+            Mail::to($request->email)->send(new WelcomeMail($login_email, $login_password));
+
             foreach(\request('cat_id') as $key => $value){
                 if ((CategoryWiseClient::where('cat_id',$value)->where('client_id',$client->id)->count())==0){
                     $client_category = CategoryWiseClient::firstOrNew(['cat_id'=>$value,'client_id'=>$client->id]);

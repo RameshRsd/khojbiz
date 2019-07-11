@@ -13,8 +13,10 @@ use App\Place\locationCategory;
 use App\Client\ClientAboutUs;
 use App\ClientContactUs;
 use App\User;
+use App\WelcomeMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -102,6 +104,8 @@ class HomeController extends Controller
         $user->type = 'client';
         $user->status = 'active';
         $user->password = bcrypt(\request('password'));
+        $login_email = $request->email;
+        $login_password = $request->password;
         if ($user->save()){
         $client = new Client();
         $client->user_id = $user->id;
@@ -112,6 +116,7 @@ class HomeController extends Controller
         $client->client_type = 'free_listing';
         $client->company_nature = $request->company_nature;
         $client->save();
+        Mail::to($request->email)->send(new WelcomeMail($login_email, $login_password));
         }
         return redirect('login')->with('success','Congratulations Your Account Successfully Created !!');
     }
