@@ -24,7 +24,7 @@ class AjaxController extends Controller
         return \response()->view('ajax.homepage.top-products',compact('clients'));
     }
     public function popular_category(){
-        $category =Category::withCount('client_cat')->orderBy('client_cat_count','DESC')->where('status','active')->limit(20)->get();
+        $category =Category::withCount('client_cat')->orderBy('client_cat_count','DESC')->where('status','active')->limit(18)->get();
         return \response()->view('ajax.homepage.popular_category',compact('category'));
     }
 }

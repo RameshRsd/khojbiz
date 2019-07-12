@@ -292,13 +292,22 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
+                                    <label for="" style="border-bottom: 1px solid grey;">Tags/Keywords</label>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="text" name="tag" class="form-control" value="{{$client->tag}}" placeholder="Write Tags/Keyword, Ex, Printing, Digital, Garment, Computer etc.">
+                                            <i style="color:Red; font-weight: bolder;"><small>Note: These Tags/Keword are helps to find easily while searching directory.</small></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
                                     <label for="" style="border-bottom: 1px solid grey;">Payment Status</label>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <input type="radio" name="status" value="Paid" @if($client->status=='Paid') checked @endif>Paid
-                                                <input type="radio" name="status" value="Unpaid" @if($client->status=='Unpaid') checked @endif>Unpaid
-                                                <input type="radio" name="status" value="Pendig" @if($client->status=='Pending') checked @endif>Pending
+                                                <input type="radio" disabled value="Paid" @if($client->status=='Paid') checked @endif>Paid
+                                                <input type="radio" disabled value="Unpaid" @if($client->status=='Unpaid') checked @endif>Unpaid
+                                                <input type="radio" disabled value="Pendig" @if($client->status=='Pending') checked @endif>Pending
                                             </div>
                                         </div>
                                     </div>

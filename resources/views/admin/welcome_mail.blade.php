@@ -196,19 +196,19 @@
     <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
 
         <!-- Hero Image, Flush : BEGIN -->
-        {{--<tr>--}}
-            {{--<td bgcolor="#ffffff">--}}
-                {{--<img src="https://sajhajob.com/public/uploads/logo_for_email.jpg" aria-hidden="true" width="600" height="" alt="alt_text" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">--}}
-            {{--</td>--}}
-        {{--</tr>--}}
-        <!-- Hero Image, Flush : END -->
+    {{--<tr>--}}
+    {{--<td bgcolor="#ffffff">--}}
+    {{--<img src="https://sajhajob.com/public/uploads/logo_for_email.jpg" aria-hidden="true" width="600" height="" alt="alt_text" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">--}}
+    {{--</td>--}}
+    {{--</tr>--}}
+    <!-- Hero Image, Flush : END -->
 
         <!-- 1 Column Text + Button : BEGIN -->
         <tr>
             <td bgcolor="#ffffff" style="padding: 20px; text-align: center; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555;">
                 <br><b><p style="text-align: left;">Hello and welcome to khojbiz.com!</p></b></br>
 
-                <br>A warm greeting from sajhajob team and thank you for register.</br>
+                <br>A warm greeting from khojbiz team and thank you for listing.</br>
                 <br></br>
                 <br> <b>Please find your account details below:</b></br>
                 <br><b>Email :</b> {{$login_email}}</br>
@@ -229,7 +229,7 @@
         <tr>
             <!-- Bulletproof Background Images c/o https://backgrounds.cm -->
             <td bgcolor="#222222" valign="middle" style="text-align: center; background-position: center center !important; background-size: cover !important;">
-            {{--<td background="https://sajhajob.com/public/uploads/logo_for_email.jpg" bgcolor="#222222" valign="middle" style="text-align: center; background-position: center center !important; background-size: cover !important;">--}}
+                {{--<td background="https://sajhajob.com/public/uploads/logo_for_email.jpg" bgcolor="#222222" valign="middle" style="text-align: center; background-position: center center !important; background-size: cover !important;">--}}
 
                 <!--[if gte mso 9]>
                 <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:600px;height:175px; background-position: center center !important;">

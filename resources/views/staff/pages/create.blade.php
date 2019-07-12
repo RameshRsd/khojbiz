@@ -340,13 +340,22 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
+                                    <label for="" style="border-bottom: 1px solid grey;">Tags/Keywords</label>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="text" multiple name="tag" class="form-control" value="{{old('tag')}}" placeholder="Write Tags/Keyword, Ex, Printing, Digital, Garment, Computer etc.">
+                                            <i style="color:Red; font-weight: bolder;"><small>Note: These Tags/Keword are helps to find easily while searching directory.</small></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
                                     <label for="" style="border-bottom: 1px solid grey;">Payment Status</label>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <input type="radio" name="status" value="Paid" @if(old('status') == 'Paid') checked @endif>Paid
-                                                <input type="radio" name="status" value="Unpaid" @if(old('status') == 'Unpaid') checked @endif>Unpaid
-                                                <input type="radio" name="status" value="Pending" @if(old('status') == 'Pending') checked @endif>Pending
+                                                {{--<input type="radio" name="status" value="Paid" @if(old('status') == 'Paid') checked @endif>Paid--}}
+                                                {{--<input type="radio" name="status" value="Unpaid" @if(old('status') == 'Unpaid') checked @endif>Unpaid--}}
+                                                <input type="radio" name="status"  value="Pending" checked >Pending
                                             </div>
                                         </div>
                                     </div>

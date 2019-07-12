@@ -30,8 +30,10 @@ class ClientController extends Controller
         $client = Client::orderBy('id','DESC');
         if (\request('search_company_name')){
             $client->where('company_name','LIKE','%'.\request('search_company_name').'%');
+            $clients = $client->paginate(50);
+        }else{
+            $clients = $client->whereBetween("created_at",[date('Y-m-d 00:00:00', strtotime("-1 days")),  date('Y-m-t 11:11:59')])->paginate(50);
         }
-        $clients = $client->paginate(50);
         return view('admin.client.index',compact('title','clients','category','count_clients'));
 
     }
@@ -84,6 +86,7 @@ class ClientController extends Controller
             $client->user_id = $user->id;
             $client->entry_by = $request->entry_by;
             $client->status = $request->status;
+            $client->tag = $request->tag;
             if ($request->hasFile('logo')){
                 $filename = time().'.'.request()->file('logo')->getClientOriginalExtension();
                 $filename = md5(microtime()) . '.' . $filename;
@@ -145,6 +148,7 @@ class ClientController extends Controller
         $client->entry_by = $request->entry_by;
         $client->status = $request->status;
         $client->office_contact = $request->office_contact;
+        $client->tag = $request->tag;
         if ($request->hasFile('logo')){
             if (is_file(public_path('uploads/logos/').'/'.$client->logo) && file_exists(public_path('uploads/logos/').'/'.$client->logo)){
                 unlink(public_path('uploads/logos/').'/'.$client->logo);
@@ -229,7 +233,11 @@ class ClientController extends Controller
         if (is_file(public_path('uploads/banners/').'/'.$client->banner) && file_exists(public_path('uploads/banners/').'/'.$client->banner)){
             unlink(public_path('uploads/banners/').'/'.$client->banner);
         }
+        $user = User::where('id',$client->user_id)->first();
+        $user->delete();
+
         $client->delete();
+
         return redirect('admin/list-clients')->with('success','Client Deleted Successfully !!');
     }
 }

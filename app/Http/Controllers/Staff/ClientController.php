@@ -74,6 +74,7 @@ class ClientController extends Controller
             $client->user_id = $user->id;
             $client->status = $request->status;
             $client->entry_by = Auth::user()->id;
+            $client->tag = $request->tag;
             if ($request->hasFile('logo')){
                 $filename = time().'.'.request()->file('logo')->getClientOriginalExtension();
 
@@ -140,6 +141,7 @@ class ClientController extends Controller
         $client->map_link = $request->map_link;
         $client->status = $request->status;
         $client->office_contact = $request->office_contact;
+        $client->tag = $request->tag;
         if ($request->hasFile('logo')){
             if (is_file(public_path('uploads/logos/').'/'.$client->logo) && file_exists(public_path('uploads/logos/').'/'.$client->logo)){
                 unlink(public_path('uploads/logos/').'/'.$client->logo);

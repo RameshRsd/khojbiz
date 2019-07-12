@@ -42,7 +42,7 @@ class ApplicationController extends Controller
             $search->whereIn('id',$categories->getClientIds());
         }
         if (\request('keyword')){
-            $search->where('company_name','like','%'.\request('keyword').'%');
+            $search->where('company_name','like','%'.\request('keyword').'%')->orWhere('tag','like','%'.\request('keyword').'%');
         }
         if (\request('location')){
             $disticts = District::where('name',\request('keyword'))->orWhere('name',\request('location'))->get();
