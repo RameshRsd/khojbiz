@@ -70,7 +70,7 @@
                                     <tr>
                                         <td>{{++$key}}</td>
                                         <td>{{$staff->f_name}} {{$staff->m_name}} {{$staff->l_name}}</td>
-                                        <td>{{$staff->position->name}}</td>
+                                        <td>@if(isset($staff->position->name)){{$staff->position->name}}@endif</td>
                                         <td>{{$staff->address}}</td>
                                         <td>{{$staff->mobile}}</td>
                                         <td>@if(isset($staff->user->entry_by)){{count($staff->user->entry_by)}} @else 0 @endif</td>

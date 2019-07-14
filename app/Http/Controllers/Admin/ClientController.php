@@ -50,6 +50,7 @@ class ClientController extends Controller
             'company_name'=> 'required|unique:clients,company_name',
             'district_id'=> 'required',
             'client_type'=> 'required',
+            'tag'=> 'required',
 //            'name'=> 'required|unique:users,name',
             'email'=> 'required|unique:users,email',
             'password' =>'required|confirmed',
@@ -130,6 +131,7 @@ class ClientController extends Controller
             'company_name'=> 'required',
             'district_id'=> 'required',
             'client_type'=> 'required',
+            'tag'=> 'required',
         ]);
         $client = Client::findOrFail($id);
         $client->company_name = $request->company_name;

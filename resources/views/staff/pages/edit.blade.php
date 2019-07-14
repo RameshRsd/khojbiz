@@ -307,7 +307,7 @@
                                             <div class="form-group">
                                                 <input type="radio" disabled value="Paid" @if($client->status=='Paid') checked @endif>Paid
                                                 <input type="radio" disabled value="Unpaid" @if($client->status=='Unpaid') checked @endif>Unpaid
-                                                <input type="radio" disabled value="Pendig" @if($client->status=='Pending') checked @endif>Pending
+                                                <input type="radio" disabled value="Pendig" @if($client->status=='Pending' || $client->status=='') checked @endif>Pending
                                             </div>
                                         </div>
                                     </div>

@@ -25,7 +25,7 @@ class StaffController extends Controller
         $this->validate($request, [
             'f_name'=> 'required',
             'l_name'=> 'required',
-            'type'=> 'required',
+            'position_id'=> 'required',
             'ctn_no'=> 'required',
             'mobile'=> 'required',
             'name'=> 'required|unique:users,name',
