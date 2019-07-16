@@ -24,7 +24,12 @@
                         <ul class="overview-listing">
                             <li><b><i class="fa fa-building-o"></i> {{$client->company_name}}</b></li>
                             <li><a href="{{url('search?location=').$client->company_address}}"><i class="fa fa-map-marked"></i> {{$client->company_address}}</a></li>
-                            @if(isset($client->ofc_tel_no))<li><b><i class="fa fa-phone"></i> {{$client->ofc_tel_no}}</b></li>@endif
+                            @if(isset($client->ofc_tel_no))
+                                <li><b><i class="fa fa-phone"></i> {{$client->ofc_tel_no}}</b></li>
+                            @endif
+                            @if(isset($client->mobile))
+                                <li><b><i class="fa fa-phone"></i> {{$client->mobile}}</b></li>
+                            @endif
                             @if($client->user->email)<li><b><i class="fa fa-envelope-o"></i> {{$client->user->email}}</b></li>@endif
                             @if($client->website)<li><a href="{{$client->website}}" target="_blank"><i class="fa fa-globe"></i> Visit Website</a></li>@endif
                         </ul>

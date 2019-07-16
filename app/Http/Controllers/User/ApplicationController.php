@@ -33,6 +33,8 @@ class ApplicationController extends Controller
         return view('frontend.pages.product.index',compact('title','clients','category'));
     }
     public function search(){
+//        $letter = \request('keyword');
+//        dd(mb_strtoupper($letter[0]));
         $title ='Search Company Listing - Khojbiz.com';
         $feature_ads = Advertisement::where('status','active')->where('type','feature')->where('status','active')->get();
         $search =Client::orderBy('id','DESC');
@@ -42,7 +44,7 @@ class ApplicationController extends Controller
             $search->whereIn('id',$categories->getClientIds());
         }
         if (\request('keyword')){
-            $search->where('company_name','like','%'.\request('keyword').'%')->orWhere('tag','like','%'.\request('keyword').'%');
+            $search->where('tag','like','%'.\request('keyword').'%')->orWhere('company_name','like','%'.\request('keyword').'%');
         }
         if (\request('location')){
             $disticts = District::where('name',\request('keyword'))->orWhere('name',\request('location'))->get();
@@ -71,7 +73,7 @@ class ApplicationController extends Controller
         if (\request('cat')){
             $categories = MenuCategory::where('slug',\request('cat'))->firstOrFail();
             $title =$categories->name.' - Khojbiz.com';
-                $clients->whereIn('id',$categories->getClientIds());
+            $clients->whereIn('id',$categories->getClientIds());
         }
         if (\request('keyword')){
             $clients->where('company_name','like','%'.\request('keyword').'%');
@@ -105,10 +107,10 @@ class ApplicationController extends Controller
             $categories = ProductCategory::where('slug',\request('cat'))->firstOrFail();
             $title =$categories->name;
             $products->whereIn('id',$categories->getProductIds());
-            }
+        }
         if (\request('keyword')){
             $products->where('product_name','like','%'.\request('keyword').'%')
-            ->orWhere('address',\request('keyword'));
+                ->orWhere('address',\request('keyword'));
         }
         if (\request('alphabate')){
             $alpha = Alphabate::where('name',\request('alphabate'))->first();
@@ -134,7 +136,7 @@ class ApplicationController extends Controller
         if (isset($client->banner)){
             $image = '/public/uploads/banners'.'/'.$client->banner;
         }
-            return view('new.business.overview',compact('title','client','services','galleries','ads','side_ads','category','discription','image','notices'));
+        return view('new.business.overview',compact('title','client','services','galleries','ads','side_ads','category','discription','image','notices'));
 //        return view('frontend.pages.client.pages.index',compact('title','client','ads','side_ads','category','discription','image'));
     }
     public function about_us($UserName){

@@ -373,7 +373,19 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="col-md-12">
+                                    <label for="" style="border-bottom: 1px solid grey;">Send Mail To Client ? <i>(for id & password)</i></label>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                {{--<input type="radio" name="status" value="Paid" @if(old('status') == 'Paid') checked @endif>Paid--}}
+                                                <input type="radio" name="send_mail" value="Yes" required>Yes
+                                                <input type="radio" name="send_mail"  value="No" required>No<br>
+                                                <i>Note: If Client's Mail address Valid Then Click Yes</i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-sm">Submit</button>

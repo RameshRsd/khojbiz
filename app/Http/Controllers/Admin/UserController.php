@@ -13,7 +13,17 @@ class UserController extends Controller
 {
     public function index(){
         $title = 'User Management - Admin Panel | khojbiz.com';
-        $users = User::all();
+        $user = User::orderBy('id','DESC');
+        if (\request('name')){
+            $user->where('name','LIKE','%'.\request('name').'%');
+            $users = $user->paginate(50);
+        }elseif(\request('email')){
+            $user->where('email','LIKE','%'.\request('email').'%');
+            $users = $user->paginate(50);
+        }else{
+            $users = $user->whereBetween("created_at",[date('Y-m-d 00:00:00'),  date('Y-m-t 11:11:59')])->paginate(50);
+        }
+
         return view('admin.users.index',compact('title','users'));
     }
     public function edit($id){

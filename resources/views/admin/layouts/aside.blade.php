@@ -149,6 +149,19 @@
                         <li class=" <?php if(request()->segment('2') =='list-candidates'){ echo 'active' ;} ?>"><a href="{{url('admin/list-candidates')}}"><i class="fa fa-circle-o"></i> Candidate Listing</a></li>
                     </ul>
                 </li>
+                <li class="header">PACKAGE MANAGEMENT</li>
+                <li class="treeview  <?php if(request()->segment('2') =='list-package' || request()->segment('2') =='add-package' || request()->segment('2') =='package-feature'){ echo 'active menu-open' ;} ?>">
+                    <a href="#"><i class="fa fa-adn"></i><span>Package</span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class=" <?php if(request()->segment('2') =='list-package'){ echo 'active' ;} ?>"><a href="{{url('admin/list-package')}}"><i class="fa fa-circle-o"></i> Package Listing</a></li>
+                        <li class=" <?php if(request()->segment('2') =='add-package'){ echo 'active' ;} ?>"><a href="{{url('admin/add-package')}}"><i class="fa fa-circle-o"></i> Add Package</a></li>
+                        <li class=" <?php if(request()->segment('2') =='package-feature'){ echo 'active' ;} ?>"><a href="{{url('admin/package-feature')}}"><i class="fa fa-circle-o"></i> Package Wise Feature</a></li>
+                    </ul>
+                </li>
                 <li class="header">ADVERTISEMENT MANAGEMENT</li>
                 <li class="treeview  <?php if(request()->segment('2') =='list-advets' || request()->segment('2') =='advets-request'  || request()->segment('2') =='create-advets'){ echo 'active menu-open' ;} ?>">
                     <a href="#"><i class="fa fa-adn"></i><span>Advertisement</span>

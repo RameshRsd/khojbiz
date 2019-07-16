@@ -141,7 +141,7 @@
                                                             <ul class="content-title">
                                                                 <li><a href="{{url('').'/'.$client->user->name}}" class="company_title"><i class="fa fa-building-o"></i> {{str_limit($client->company_name,20)}}</a></li>
                                                                 <li><a href="#" class="company_address"><i class="fa fa-map-marked"></i> {{str_limit($client->company_address,29)}}</a></li>
-                                                                @if(count($client->client_category)>0)<li><a href="#" class="company_address"><i class="fa fa-briefcase"></i> {{str_limit($client->client_category[0]->category->name,29)}}</a></li>@endif
+                                                                @if(isset($client->client_category[0]->category->name))<li><a href="#" class="company_address"><i class="fa fa-briefcase"></i> {{str_limit($client->client_category[0]->category->name,29)}}</a></li>@endif
                                                             </ul>
                                                         </div>
                                                     </div>

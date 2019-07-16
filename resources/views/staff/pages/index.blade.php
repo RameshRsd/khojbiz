@@ -11,6 +11,18 @@
                 <li><a href="{{url('login')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
                 <li class="active">Client Listing</li>
             </ol>
+            <div class="box-header">
+                <form action="" method="get">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="">Company Name</label>
+                            <input type="text" name="search_company_name" value="{{request('search_company_name')}}" onchange="javascript:this.form.submit();" class="form-control" placeholder="Search By Company Name">
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                </form>
+            </div>
+
         </section>
 
         <!-- Main content -->
@@ -61,7 +73,7 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table  class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>SN</th>
@@ -114,6 +126,9 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                <tr>
+                                    <td colspan="9">{{$clients->links()}}</td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>

@@ -32,7 +32,7 @@ class ClientController extends Controller
             $client->where('company_name','LIKE','%'.\request('search_company_name').'%');
             $clients = $client->paginate(50);
         }else{
-            $clients = $client->whereBetween("created_at",[date('Y-m-d 00:00:00', strtotime("-1 days")),  date('Y-m-t 11:11:59')])->paginate(50);
+            $clients = $client->whereBetween("created_at",[date('Y-m-d 00:00:00'),  date('Y-m-t 11:11:59')])->paginate(100);
         }
         return view('admin.client.index',compact('title','clients','category','count_clients'));
 
@@ -49,6 +49,7 @@ class ClientController extends Controller
         $this->validate($request, [
             'company_name'=> 'required|unique:clients,company_name',
             'district_id'=> 'required',
+            'send_mail'=> 'required',
             'client_type'=> 'required',
             'tag'=> 'required',
 //            'name'=> 'required|unique:users,name',
@@ -104,7 +105,9 @@ class ClientController extends Controller
             }
 
             $client->save();
-            Mail::to($request->email)->send(new WelcomeMail($login_email, $login_password));
+            if (\request('send_mail')=='Yes'){
+                Mail::to($request->email)->send(new WelcomeMail($login_email, $login_password));
+            }
 
             foreach(\request('cat_id') as $key => $value){
                 if ((CategoryWiseClient::where('cat_id',$value)->where('client_id',$client->id)->count())==0){

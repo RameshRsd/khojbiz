@@ -138,7 +138,7 @@
                                                             <form action="{{url('admin/update_payment').'/'.$client->id}}" method="post">
                                                                 {{csrf_field()}}
                                                                 <input type="hidden" name="status" value="Unpaid">
-                                                                <button type="submit" class="btn btn-warning btn-xs">Unpaid</button>
+                                                                <button type="submit" class="btn btn-danger btn-xs">Unpaid</button>
                                                             </form>
                                                         </li>
                                                     @endif

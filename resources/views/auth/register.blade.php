@@ -32,6 +32,23 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                                     <span class="input-group-text">
+                                                        <i class="fa fa-briefcase"></i>
+                                                    </span>
+                                        </div>
+                                        <select name="package_id" id="package_id" class="form-control" required>
+                                            <option value="">Choose Package..</option>
+                                            @foreach($packages as $package)
+                                                <option value="{{$package->id}}" @if(request('package_id') == $package->id) selected @endif>{{$package->name}}</option>
+                                                @endforeach
+                                        </select>
+                                        {{ $errors->first('company_nature') }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                                    <span class="input-group-text">
                                                         <i class="far fa-building"></i>
                                                     </span>
                                         </div>

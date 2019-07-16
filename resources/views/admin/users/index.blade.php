@@ -60,6 +60,21 @@
                             <h3 class="box-title">User Listing</h3>
                             {{--<h3 class="box-title pull-right"><a href="{{url('admin/create-events')}}" class="btn btn-primary btn-xs">Create New Event</a></h3>--}}
                         </div>
+                        <div class="box-header">
+                            <form action="" method="get">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="">User Name</label>
+                                        <input type="text" name="name" value="{{request('name')}}" onchange="javascript:this.form.submit();" class="form-control" placeholder="Search By User Name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="">Email</label>
+                                        <input type="text" name="email" value="{{request('email')}}" onchange="javascript:this.form.submit();" class="form-control" placeholder="Search By Email">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
                         <!-- /.box-header -->
                         <div class="box-body">
                             <table id="example1" class="table table-bordered table-striped">
@@ -120,6 +135,9 @@
                                         </td>
                                     </tr>
                                     @endforeach
+                                <tr>
+                                    <td colspan="7">{{$users->links()}}</td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>

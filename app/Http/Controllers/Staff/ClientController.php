@@ -18,7 +18,14 @@ class ClientController extends Controller
 {
     public function index(){
         $title = 'Client Listing - Admin-Panel | khojbiz.com';
-        $clients = Client::where('entry_by',Auth::user()->id)->orderBy('company_name','ASC')->get();
+        $client = Client::where('entry_by',Auth::user()->id)->orderBy('company_name','ASC');
+        if (\request('search_company_name')){
+            $client->where('company_name','LIKE','%'.\request('search_company_name').'%');
+            $clients = $client->paginate(50);
+        }else{
+            $clients = $client->whereBetween("created_at",[date('Y-m-d 00:00:00'),  date('Y-m-t 11:11:59')])->paginate(100);
+        }
+
         $category = Category::where('status','active')->orderBy('name','ASC')->get();
         return view('staff.pages.index',compact('title','clients','category'));
     }
@@ -38,6 +45,7 @@ class ClientController extends Controller
             'company_name'=> 'required|unique:clients,company_name',
             'district_id'=> 'required',
             'client_type'=> 'required',
+            'send_mail'=> 'required',
             'tag'=> 'required',
 //            'name'=> 'required|unique:users,name',
             'email'=> 'required|unique:users,email',
@@ -94,7 +102,9 @@ class ClientController extends Controller
             }
 
             $client->save();
-            Mail::to($request->email)->send(new WelcomeMail($login_email, $login_password));
+            if (\request('send_mail')=='Yes'){
+                Mail::to($request->email)->send(new WelcomeMail($login_email, $login_password));
+            }
 
             foreach(\request('cat_id') as $key => $value){
                 if ((CategoryWiseClient::where('cat_id',$value)->where('client_id',$client->id)->count())==0){
