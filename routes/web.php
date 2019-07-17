@@ -53,6 +53,7 @@ Route::get('browse-by-category/list/{id}','CategoryController@list_category');
 
 
 Route::post('client/get_enquiry/{id}','Client\\ClientController@get_enquiry');
+Route::get('email-checker','AjaxController@emailChecker')->name('email-checker');
 
 Route::any('logout', 'Auth\LoginController@logout')->name('logout');
 

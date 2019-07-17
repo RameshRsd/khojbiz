@@ -81,7 +81,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="email" name="email" class="form-control" value="{{old('email')}}" placeholder="Valid Email">
+                                                        <input type="email" name="email" id="email-address" class="form-control emailaddress" value="{{old('email')}}" placeholder="Valid Email">
                                                     </div>
                                                 </div>
                                             </div>
@@ -399,5 +399,14 @@
 
 @endsection
 @section('script')
-
+    <script type="text/javascript">
+        var path = "{{ route('email-checker') }}";
+        $('input.emailaddress').typeahead({
+            source:  function (query, process) {
+                return $.get(path, { query: query }, function (data) {
+                    return process(data);
+                });
+            }
+        });
+    </script>
 @endsection

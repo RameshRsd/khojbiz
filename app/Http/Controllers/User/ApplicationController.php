@@ -37,7 +37,7 @@ class ApplicationController extends Controller
 //        dd(mb_strtoupper($letter[0]));
         $title ='Search Company Listing - Khojbiz.com';
         $feature_ads = Advertisement::where('status','active')->where('type','feature')->where('status','active')->get();
-        $search =Client::orderBy('id','DESC');
+        $search =Client::orderBy('status','ASC');
         if (\request('cat')){
             $categories = Category::where('slug',\request('cat'))->firstOrFail();
             $title =$categories->name.' - Khojbiz.com';

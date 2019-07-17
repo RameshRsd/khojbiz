@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Mail;
 class ClientController extends Controller
 {
     public function index(){
-        $title = 'Client Listing - Admin-Panel | khojbiz.com';
+        $title = 'Client Listing - Staff-Panel | khojbiz.com';
         $client = Client::where('entry_by',Auth::user()->id)->orderBy('company_name','ASC');
         if (\request('search_company_name')){
             $client->where('company_name','LIKE','%'.\request('search_company_name').'%');
@@ -30,7 +30,7 @@ class ClientController extends Controller
         return view('staff.pages.index',compact('title','clients','category'));
     }
     public function create(){
-        $title = 'Create New Client - Admin-Panel | khojbiz.com';
+        $title = 'Create New Client - Staff-Panel | khojbiz.com';
         $districts = District::orderBy('name','ASC')->get();
         $categories = Category::where('status','active')->orderBy('name','ASC')->get();
         $alpha = Alphabate::orderBy('name')->get();
@@ -42,7 +42,7 @@ class ClientController extends Controller
     }
     public function store(Request $request){
         $this->validate($request, [
-            'company_name'=> 'required|unique:clients,company_name',
+            'company_name'=> 'required',
             'district_id'=> 'required',
             'client_type'=> 'required',
             'send_mail'=> 'required',
@@ -51,8 +51,12 @@ class ClientController extends Controller
             'email'=> 'required|unique:users,email',
             'password' =>'required|confirmed',
             'cat_id'=>'required',
-            'mobile'=>'min:10',
         ]);
+        if (\request('moblie')){
+            $this->validate($request,[
+                'mobile'=>'min:10',
+            ]);
+        }
         /*=========== Creating User ============ */
         $username = str_slug($request->company_name);
         $user = New User();
@@ -118,7 +122,7 @@ class ClientController extends Controller
         }
     }
     public function edit($id){
-        $title = 'Edit Client - Admin-Panel | khojbiz.com';
+        $title = 'Edit Client - Staff-Panel | khojbiz.com';
         $districts = District::orderBy('name','ASC')->get();
         $alpha = Alphabate::orderBy('name','ASC')->get();
         $categories = Category::where('status','active')->orderBy('name','ASC')->get();
