@@ -28,6 +28,8 @@ Route::get('place_name', array('as' => 'place_name', 'uses'=>'HomeController@pla
 Route::any('companyinfo/{slug}','User\ApplicationController@product_details');
 
 Route::get('client-area','PackageController@index');
+Route::get('blogs','BlogController@index');
+Route::get('blog/{id}','BlogController@detail');
 //Auth::routes();
 //Browse by alphabates //
 Route::group(['middleware'=>'guest'],function(){
@@ -171,6 +173,14 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::post('package-feature','PackageController@package_feature_store');
     Route::post('package-feature/{id}/update','PackageController@package_feature_update');
     /* ============================== Package-Section ========================================= */
+
+    /* ============================== Blog-Section ============================================ */
+    Route::get('list-blog','BlogController@index');
+    Route::get('add-blog','BlogController@create');
+    Route::post('add-blog','BlogController@store');
+    Route::get('list-blog/{id}/edit','BlogController@edit');
+    Route::post('list-blog/{id}/edit','BlogController@update');
+    /* ============================== Blog-Section ============================================ */
 
     /* ============================== Ads-Section ========================================= */
     Route::get('list-advets','AdsController@index');

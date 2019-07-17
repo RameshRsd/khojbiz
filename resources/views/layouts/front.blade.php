@@ -227,7 +227,7 @@
                                         <li><a href="#"><small>Book An Appointment</small></a></li>
                                         <li><a href="#"><small>Privacy Policy</small></a></li>
                                         <li><a href="#"><small>Terms & Conditions</small></a></li>
-                                        <li><a href="#"><small>FAQ</small></a></li>
+                                        <li><a href="{{url('blogs')}}"><small>BLOGS</small></a></li>
                                         <li><a href="#"><small>Feedback</small></a></li>
                                         <li><a href="#"><small>Get Enquiry</small></a></li>
                                     </ul>

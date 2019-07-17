@@ -162,6 +162,17 @@
                         <li class=" <?php if(request()->segment('2') =='package-feature'){ echo 'active' ;} ?>"><a href="{{url('admin/package-feature')}}"><i class="fa fa-circle-o"></i> Package Wise Feature</a></li>
                     </ul>
                 </li>
+                <li class="treeview  <?php if(request()->segment('2') =='list-blog' || request()->segment('2') =='add-blog'){ echo 'active menu-open' ;} ?>">
+                    <a href="#"><i class="fa fa-adn"></i><span>Blogs</span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class=" <?php if(request()->segment('2') =='list-blog'){ echo 'active' ;} ?>"><a href="{{url('admin/list-blog')}}"><i class="fa fa-circle-o"></i> Blog List</a></li>
+                        <li class=" <?php if(request()->segment('2') =='add-blog'){ echo 'active' ;} ?>"><a href="{{url('admin/add-blog')}}"><i class="fa fa-circle-o"></i> Add Blog</a></li>
+                    </ul>
+                </li>
                 <li class="header">ADVERTISEMENT MANAGEMENT</li>
                 <li class="treeview  <?php if(request()->segment('2') =='list-advets' || request()->segment('2') =='advets-request'  || request()->segment('2') =='create-advets'){ echo 'active menu-open' ;} ?>">
                     <a href="#"><i class="fa fa-adn"></i><span>Advertisement</span>
