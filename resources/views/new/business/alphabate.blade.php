@@ -60,7 +60,7 @@
                     @foreach($categories as $category)
                         <div class="col-md-4">
                             <div class="media-body">
-                                <div class="font-w500"><a href="{{url('search?cat=').$category->slug}}" class="alphabate"><i class="fa fa-check-circle"></i> {{str_limit($category->name,45)}} <span class="badge badge-pill badge-info"></span></a></div>
+                                <div class="font-w500"><a href="{{url('search?cat=').$category->slug}}" class="alphabate"><i class="fa fa-check-circle"></i> {{str_limit($category->name,45)}}<span class="badge badge-pill badge-info"></span></a></div>
                                 {{--@foreach($category->clients as $client)--}}
                                 {{--<li>{{$client->company_name}}</li>--}}
                                 {{--@endforeach--}}
