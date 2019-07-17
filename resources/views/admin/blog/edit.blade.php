@@ -71,7 +71,7 @@
                                             <div class="col-sm-8">
                                                 <select name="status" id="status" class="form-control">
                                                     <option value="">Choose..</option>
-                                                    <option value="active" @if($blog->status=='active') selected @endif>Publised</option>
+                                                    <option value="active" @if($blog->status=='active') selected @endif>Public</option>
                                                     <option value="inactive" @if($blog->status=='inactive') selected @endif>Draft</option>
                                                 </select>
                                             </div>

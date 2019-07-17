@@ -70,8 +70,7 @@
                                             </div>
                                             <div class="col-sm-8">
                                                 <select name="status" id="status" class="form-control">
-                                                    <option value="">Choose..</option>
-                                                    <option value="active" @if(old('status')=='active') selected @endif>Publised</option>
+                                                    <option value="active" @if(old('status')=='active') selected @endif>Public</option>
                                                     <option value="inactive" @if(old('status')=='inactive') selected @endif>Draft</option>
                                                 </select>
                                             </div>

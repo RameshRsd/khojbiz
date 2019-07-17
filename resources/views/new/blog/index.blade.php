@@ -29,7 +29,7 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     <ul class="content-title">
-                                                        <li><a href="{{url('blog').'/'.$blog->id}}" class="company_title">{{str_limit($blog->title,23)}}</a></li>
+                                                        <li><a href="{{url('blog').'/'.$blog->id}}" class="company_title">{{$blog->title}}</a></li>
                                                         <li>{{date('Y-m-d H:i:s',strtotime($blog->created_at))}}</li>
                                                     </ul>
                                                 </div>
