@@ -20,4 +20,7 @@ class MenuCategory extends Model
     public function getClientIds(){
         return $this->clients()->allRelatedIds();
     }
+    public function client_cat(){
+        return $this->hasMany(ManufactureWiseCategory::class,'cat_id');
+    }
 }
