@@ -325,6 +325,16 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-12">
+                                    <label for="" style="border-bottom: 1px solid grey;">Tags/Keywords</label>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="text" name="tag" class="form-control" value="{{$client->tag}}" placeholder="Write Tags/Keyword, Ex, Printing, Digital, Garment, Computer etc.">
+                                            <i style="color:Red; font-weight: bolder;"><small>Note: These Tags/Keword are helps to find easily while searching directory.</small></i>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-sm form-control">Submit</button>

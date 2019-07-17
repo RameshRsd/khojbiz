@@ -78,17 +78,24 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
-                <div class="collapse navbar-collapse @if(!(\Illuminate\Support\Facades\Auth::check())) only-for-none-auth @endif" id="navbarSupportedContent">
-                    <ul class="navbar-nav">
+                @if(\Illuminate\Support\Facades\Auth::check())
+                    @if(\Illuminate\Support\Facades\Auth::user()->type == 'client')
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    @else
+                    <div class="collapse navbar-collapse only-for-none-auth" id="navbarSupportedContent">
+                    @endif
+                @else
+                <div class="collapse navbar-collapse only-for-none-auth" id="navbarSupportedContent">
+                @endif
+                        <ul class="navbar-nav">
                         @if(\Illuminate\Support\Facades\Auth::check())
                             @if(\Illuminate\Support\Facades\Auth::user()->type=='staff')
                                 <li class="nav-item margin-right-custom">
-                                    <a class="nav-link btn btn-secondary-custom" href="{{url('staff/create-client')}}">Add Business</a>
+                                    <a class="nav-link" href="{{url('staff/create-client')}}">Add Business</a>
                                 </li>
                             @elseif(\Illuminate\Support\Facades\Auth::user()->type=='admin')
                                 <li class="nav-item margin-right-custom">
-                                    <a class="nav-link btn btn-secondary-custom" href="{{url('admin/create-client')}}">Add Business</a>
+                                    <a class="nav-link" href="{{url('admin/create-client')}}">Add Business</a>
                                 </li>
                             @elseif(\Illuminate\Support\Facades\Auth::user()->type=='client')
                                 <li class="nav-item">
@@ -161,7 +168,7 @@
                                 </div>
                             </li>
                             <li class="nav-item margin-right-custom">
-                                <a class="nav-link btn btn-secondary-custom" href="{{url('register')}}">Register</a>
+                                <a class="nav-link btn btn-secondary-custom" href="{{url('client-area')}}">Register</a>
                             </li>
                         @endif
                     </ul>

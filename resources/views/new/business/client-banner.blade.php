@@ -84,7 +84,7 @@
                             <ul class="overview-listing info-detail">
                                 <li><b><i class="fa fa-building-o"></i> {{$client->company_name}}</b></li>
                                 <li><a href="{{url('search?location=').$client->company_address}}"><i class="fa fa-map-marked"></i> {{$client->company_address}}</a></li>
-                                @if(count($client->client_category)>0)<li><a href="{{url('search?cat=').$client->client_category[0]->category->slug}}" class="company_address"><i class="fa fa-briefcase"></i> {{str_limit($client->client_category[0]->category->name,29)}}</a></li>@endif
+                                @if(isset($client->client_category[0]->category->name))<li><a href="{{url('search?cat=').$client->client_category[0]->category->slug}}" class="company_address"><i class="fa fa-briefcase"></i> {{str_limit($client->client_category[0]->category->name,29)}}</a></li>@endif
                             </ul>
                         </div>
                     </div>

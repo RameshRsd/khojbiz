@@ -8,20 +8,29 @@ use App\CategoryWiseClient;
 use App\Client\Client;
 use App\District;
 use App\User;
+use App\WelcomeMail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ClientController extends Controller
 {
     public function index(){
-        $title = 'Client Listing - Admin-Panel | khojbiz.com';
-        $clients = Client::where('entry_by',Auth::user()->id)->orderBy('company_name','ASC')->get();
+        $title = 'Client Listing - Staff-Panel | khojbiz.com';
+        $client = Client::where('entry_by',Auth::user()->id)->orderBy('company_name','ASC');
+        if (\request('search_company_name')){
+            $client->where('company_name','LIKE','%'.\request('search_company_name').'%');
+            $clients = $client->paginate(50);
+        }else{
+            $clients = $client->whereBetween("created_at",[date('Y-m-d 00:00:00'),  date('Y-m-t 11:11:59')])->paginate(100);
+        }
+
         $category = Category::where('status','active')->orderBy('name','ASC')->get();
         return view('staff.pages.index',compact('title','clients','category'));
     }
     public function create(){
-        $title = 'Create New Client - Admin-Panel | khojbiz.com';
+        $title = 'Create New Client - Staff-Panel | khojbiz.com';
         $districts = District::orderBy('name','ASC')->get();
         $categories = Category::where('status','active')->orderBy('name','ASC')->get();
         $alpha = Alphabate::orderBy('name')->get();
@@ -33,23 +42,33 @@ class ClientController extends Controller
     }
     public function store(Request $request){
         $this->validate($request, [
-            'company_name'=> 'required|unique:clients,company_name',
+            'company_name'=> 'required',
             'district_id'=> 'required',
             'client_type'=> 'required',
-            'name'=> 'required|unique:users,name',
+            'send_mail'=> 'required',
+            'tag'=> 'required',
+//            'name'=> 'required|unique:users,name',
             'email'=> 'required|unique:users,email',
             'password' =>'required|confirmed',
             'cat_id'=>'required',
-            'mobile'=>'min:10',
         ]);
+        if (\request('moblie')){
+            $this->validate($request,[
+                'mobile'=>'min:10',
+            ]);
+        }
         /*=========== Creating User ============ */
+        $username = str_slug($request->company_name);
         $user = New User();
-        $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->type = 'client';
         $user->status = 'active';
+        $login_email = $request->email;
+        $login_password = $request->password;
         if ($user->save()){
+            $user->name = $username.'-'.$user->id;
+            $user->save();
             /*=========== Creating Clients ============ */
             $client = New Client();
             $client->company_name = $request->company_name;
@@ -68,6 +87,7 @@ class ClientController extends Controller
             $client->user_id = $user->id;
             $client->status = $request->status;
             $client->entry_by = Auth::user()->id;
+            $client->tag = $request->tag;
             if ($request->hasFile('logo')){
                 $filename = time().'.'.request()->file('logo')->getClientOriginalExtension();
 
@@ -86,6 +106,10 @@ class ClientController extends Controller
             }
 
             $client->save();
+            if (\request('send_mail')=='Yes'){
+                Mail::to($request->email)->send(new WelcomeMail($login_email, $login_password));
+            }
+
             foreach(\request('cat_id') as $key => $value){
                 if ((CategoryWiseClient::where('cat_id',$value)->where('client_id',$client->id)->count())==0){
                     $client_category = CategoryWiseClient::firstOrNew(['cat_id'=>$value,'client_id'=>$client->id]);
@@ -98,7 +122,7 @@ class ClientController extends Controller
         }
     }
     public function edit($id){
-        $title = 'Edit Client - Admin-Panel | khojbiz.com';
+        $title = 'Edit Client - Staff-Panel | khojbiz.com';
         $districts = District::orderBy('name','ASC')->get();
         $alpha = Alphabate::orderBy('name','ASC')->get();
         $categories = Category::where('status','active')->orderBy('name','ASC')->get();
@@ -114,6 +138,7 @@ class ClientController extends Controller
             'company_name'=> 'required',
             'district_id'=> 'required',
             'client_type'=> 'required',
+            'tag'=> 'required',
             'mobile'=>'min:10',
 
         ]);
@@ -130,8 +155,9 @@ class ClientController extends Controller
         $client->alpha_id = $request->alpha_id;
         $client->website = $request->website;
         $client->map_link = $request->map_link;
-        $client->status = $request->status;
+//        $client->status = $request->status;
         $client->office_contact = $request->office_contact;
+        $client->tag = $request->tag;
         if ($request->hasFile('logo')){
             if (is_file(public_path('uploads/logos/').'/'.$client->logo) && file_exists(public_path('uploads/logos/').'/'.$client->logo)){
                 unlink(public_path('uploads/logos/').'/'.$client->logo);

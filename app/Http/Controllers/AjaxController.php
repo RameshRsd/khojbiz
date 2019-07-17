@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\BuySell\Product;
 use App\Category;
 use App\Client\Client;
+use App\User;
 use Illuminate\Http\Request;
 
 class AjaxController extends Controller
@@ -24,7 +25,14 @@ class AjaxController extends Controller
         return \response()->view('ajax.homepage.top-products',compact('clients'));
     }
     public function popular_category(){
-        $category =Category::withCount('client_cat')->orderBy('client_cat_count','DESC')->where('status','active')->limit(20)->get();
+        $category =Category::withCount('client_cat')->orderBy('client_cat_count','DESC')->where('status','active')->limit(18)->get();
         return \response()->view('ajax.homepage.popular_category',compact('category'));
     }
+    public function emailChecker(Request $request)
+    {
+        $data = User::where("email","LIKE","%{$request->input('query')}%")
+            ->get();
+        return response()->json($data);
+    }
+
 }

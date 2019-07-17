@@ -45,22 +45,33 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" style="display: block;">Client Listing <a href="{{url('admin/create-client')}}" class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus-circle"></i> Create New</a></h3>
+                            <h3 class="box-title" style="display: block;">Client Listing <i><small><b>(Total : {{$count_clients}} Record Listed)</b></small></i> <a href="{{url('admin/create-client')}}" class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus-circle"></i> Create New</a></h3>
                             {{--<h3 class="box-title pull-right"><a href="{{url('admin/create-events')}}" class="btn btn-primary btn-xs">Create New Event</a></h3>--}}
+                        </div>
+                        <div class="box-header">
+                            <form action="" method="get">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="">Company Name</label>
+                                        <input type="text" name="search_company_name" value="{{request('search_company_name')}}" onchange="javascript:this.form.submit();" class="form-control" placeholder="Search By Company Name">
+                                    </div>
+                                    <div class="col-md-6"></div>
+                                </div>
+                            </form>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>SN</th>
                                     <th>Name</th>
                                     <th style="width:100px;">Status</th>
-                                    <td>Post By</td>
+                                    <th>Collect By</th>
                                     <th>Contact</th>
                                     <th>Type</th>
-                                    <th>Email</th>
-                                    <th>PW</th>
+                                    {{--<th>Email</th>--}}
+                                    {{--<th>PW</th>--}}
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -127,7 +138,7 @@
                                                             <form action="{{url('admin/update_payment').'/'.$client->id}}" method="post">
                                                                 {{csrf_field()}}
                                                                 <input type="hidden" name="status" value="Unpaid">
-                                                                <button type="submit" class="btn btn-warning btn-xs">Unpaid</button>
+                                                                <button type="submit" class="btn btn-danger btn-xs">Unpaid</button>
                                                             </form>
                                                         </li>
                                                     @endif
@@ -145,11 +156,11 @@
                                                 <button class="btn btn-warning btn-xs">General</button>
                                             @endif
                                         </td>
-                                        <td>{{$client->user->email}}</td>
-                                        <td>{{$client->password}}</td>
+                                        {{--<td>{{$client->user->email}}</td>--}}
+                                        {{--<td>{{$client->password}}</td>--}}
                                         <td>
-                                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
                                             <a href="{{url('admin/list-clients/client_id=').$client->id.'/edit'}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="{{url('admin/list-clients/client_id=').$client->id.'/delete'}}" onclick="return confirm('Are you sure to delete this client? Deleted data can not be restore.')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

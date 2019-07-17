@@ -8,16 +8,23 @@ use App\BuySell\Product;
 use App\Category;
 use App\Client\Client;
 use App\District;
+use App\Package;
 use App\Place\location;
 use App\Place\locationCategory;
 use App\Client\ClientAboutUs;
-use App\ClientContactUs;
 use App\User;
+use App\WelcomeMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
+
+    public function checkmail(){
+        $request_mail = 'youramesh5@gmail.com';
+        dd($request_mail);
+    }
 
     public function index(){
         $title = 'Khojbiz - Local Search Engine';
@@ -76,7 +83,9 @@ class HomeController extends Controller
     }
 
     public function getregister(Request $request){
-        return view('auth.register');
+        $title = 'Registration Form - Khojbiz.com';
+        $packages = Package::where('status','active')->orderBy('id','ASC')->get();
+        return view('auth.register',compact('packages','title'));
     }
     public function get_business_register(Request $request){
         $category = Category::orderBy('name','ASC')->get();
@@ -94,6 +103,7 @@ class HomeController extends Controller
             'username'=>'required|unique:users,name',
             'password'=>'required|confirmed',
             'company_nature'=>'required',
+            'package_id'=>'required',
             'company_name'=>'required',
         ]);
         $user = new User();
@@ -102,6 +112,9 @@ class HomeController extends Controller
         $user->type = 'client';
         $user->status = 'active';
         $user->password = bcrypt(\request('password'));
+        $login_email = $request->email;
+        $login_password = $request->password;
+
         if ($user->save()){
         $client = new Client();
         $client->user_id = $user->id;
@@ -111,7 +124,10 @@ class HomeController extends Controller
         $client->password = \request('password');
         $client->client_type = 'free_listing';
         $client->company_nature = $request->company_nature;
+        $client->package_id = $request->package_id;
         $client->save();
+
+        Mail::to($request->email)->send(new WelcomeMail($login_email, $login_password));
         }
         return redirect('login')->with('success','Congratulations Your Account Successfully Created !!');
     }

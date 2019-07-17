@@ -2,15 +2,14 @@
 
 namespace App;
 
-use App\Client\Client;
 use Illuminate\Database\Eloquent\Model;
 
-class Staff extends Model
+class Package extends Model
 {
     public function user(){
         return $this->belongsTo(User::class,'user_id');
     }
-    public function position(){
-        return $this->belongsTo(Position::class,'position_id');
+    public function features(){
+        return $this->hasMany(PackageFeature::class,'package_id');
     }
 }

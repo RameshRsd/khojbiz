@@ -5,11 +5,11 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Staff Listing
+                Package Listing
             </h1>
             <ol class="breadcrumb">
                 <li><a href="{{url('admin')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-                <li class="active">Staff Listing</li>
+                <li class="active">Package Listing</li>
             </ol>
         </section>
 
@@ -45,7 +45,8 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" style="display: block;">Staff Listing <a href="{{url('admin/create-staff')}}" class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus-circle"></i> Create New</a></h3>
+                            <h3 class="box-title" style="display: block;">Package Listing
+                                <a href="{{url('admin/add-package')}}" class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus-circle"></i> Create New Package</a></h3>
                             {{--<h3 class="box-title pull-right"><a href="{{url('admin/create-events')}}" class="btn btn-primary btn-xs">Create New Event</a></h3>--}}
                         </div>
                         <!-- /.box-header -->
@@ -54,46 +55,28 @@
                                 <thead>
                                 <tr>
                                     <th>SN</th>
-                                    <th>Name</th>
-                                    <th>Title</th>
-                                    <th>Address</th>
-                                    <th>Mobile</th>
-                                    <th>No of Data</th>
-                                    <th>Email</th>
-                                    <th>PW</th>
+                                    <th>Package Name</th>
                                     <th>Status</th>
+                                    <th>Enter By</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($staffs as $key=>$staff)
+                                @foreach($packages as $key=>$package)
                                     <tr>
                                         <td>{{++$key}}</td>
-                                        <td>{{$staff->f_name}} {{$staff->m_name}} {{$staff->l_name}}</td>
-                                        <td>@if(isset($staff->position->name)){{$staff->position->name}}@endif</td>
-                                        <td>{{$staff->address}}</td>
-                                        <td>{{$staff->mobile}}</td>
-                                        <td>@if(isset($staff->user->entry_by)){{count($staff->user->entry_by)}} @else 0 @endif</td>
-                                        <td>{{$staff->user->email}}</td>
-                                        <td>{{$staff->password}}</td>
+                                        <td>{{$package->name}}</td>
                                         <td>
-                                            @if($staff->user->status=='active')
-                                                <form action="{{url('admin/user_account_update').'/'.$staff->user->id}}" method="post">
-                                                    {{csrf_field()}}
-                                                    <input type="hidden" name="status" value="inactive">
-                                                    <button type="submit" class="btn btn-success btn-xs" title="Click here to In-Active">Active</button>
-                                                </form>
+                                            @if($package->status=='active')
+                                                <button class="btn btn-success btn-xs">Published</button>
                                             @else
-                                                <form action="{{url('admin/user_account_update').'/'.$staff->user->id}}" method="post">
-                                                    {{csrf_field()}}
-                                                    <input type="hidden" name="status" value="active">
-                                                    <button type="submit" class="btn btn-warning btn-xs">In-Active</button>
-                                                </form>
-                                            @endif
+                                                <button class="btn btn-warning btn-xs">Unpublished</button>
+                                                @endif
                                         </td>
+                                        <td>{{$package->user->name}}</td>
                                         <td>
-                                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
-                                            <a href="{{url('admin/staff/staff_id=').$staff->id.'/edit'}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="{{url('admin/list-package').'/'.$package->id.'/edit'}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                                            {{--<a href="{{url('admin/list-adverts/').$advert->id.'/delete'}}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>--}}
                                         </td>
                                     </tr>
                                 @endforeach

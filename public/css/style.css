@@ -1,5 +1,6 @@
 iframe{
     width: 100%;
+    height:300px; overflow: hidden;
 }
 .margin-bottom{
     margin-bottom:10px;
@@ -48,4 +49,22 @@ small{
 }
 .media-body .font-w500{
     margin-bottom: 15px;
+}
+.package-details{
+    margin-top:20px;
+}
+.listing_plan1 table{
+    background-color: lightblue;
+}
+.listing_plan2 table{
+    background-color: #7ce8ad;
+}
+.listing_plan3 table{
+    background-color: #87d640;
+}
+.listing_plan4 table{
+    background-color: #f18d53;
+}
+.listing_plan table td, .listing_plan table th {
+   text-align: center;
 }

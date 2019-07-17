@@ -55,23 +55,23 @@
                             <form action="" method="post" enctype="multipart/form-data">
                                 {{csrf_field()}}
                             <div class="row">
-                                <div class="col-md-9">
+                                <div class="col-md-12">
                                     <label for="" style="border-bottom: 1px solid grey;">Account Details</label>
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>User Name</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <div class="form-group">
-                                                        <input type="text" name="name" class="form-control" placeholder="User Name">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {{--<div class="col-md-6">--}}
+                                            {{--<div class="row">--}}
+                                                {{--<div class="col-md-4">--}}
+                                                    {{--<div class="form-group">--}}
+                                                        {{--<label>User Name</label>--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                                {{--<div class="col-md-8">--}}
+                                                    {{--<div class="form-group">--}}
+                                                        {{--<input type="text" name="name" class="form-control" placeholder="User Name">--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
                                         <div class="col-md-6">
                                             <div class="row">
                                                 <div class="col-md-4">
@@ -81,7 +81,28 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="email" name="email" class="form-control" placeholder="Valid Email">
+                                                        <input type="email" name="email" id="email-address" class="form-control emailaddress" value="{{old('email')}}" placeholder="Valid Email">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Package Details</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <select name="client_type" id="client_type" class="form-control select2" style="width: 100%;">
+                                                            <option value="free_listing">Free Listing</option>
+                                                            <option value="bronze">Bronze</option>
+                                                            <option value="silver">Silver</option>
+                                                            <option value="gold">Gold</option>
+                                                            <option value="diamond">Diamond</option>
+                                                            <option value="platinum">Platinum</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -116,36 +137,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <label for="" style="border-bottom: 1px solid grey;">Package Details</label>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Choose Package</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <select name="client_type" id="client_type" class="form-control select2" style="width: 100%;">
-                                                            <option value="bronze">Bronze</option>
-                                                            <option value="silver">Silver</option>
-                                                            <option value="gold">Gold</option>
-                                                            <option value="diamond">Diamond</option>
-                                                            <option value="platinum">Platinum</option>
-                                                            <option value="free_listing">Free Listing</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="col-md-12">
                                     <label for="" style="border-bottom: 1px solid grey;">Business Details</label>
                                     <div class="row">
@@ -158,7 +149,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="text" name="company_name" class="form-control" placeholder="Full Company Name">
+                                                        <input type="text" name="company_name" value="{{old('company_name')}}" class="form-control" placeholder="Full Company Name">
                                                     </div>
                                                 </div>
                                             </div>
@@ -224,7 +215,7 @@
                                                         <select name="cat_id[]" class="form-control select2" multiple="multiple" data-placeholder="Select Category"
                                                                 style="width: 100%;">
                                                             @foreach($categories as $category)
-                                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                                                <option value="{{$category->id}}" @if($category->id == old('cat_id')) selected @endif >{{$category->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -247,7 +238,7 @@
                                                     <div class="form-group">
                                                         <select name="district_id" class="form-control select2" style="width: 100%;">
                                                             @foreach($districts as $district)
-                                                                <option value="{{$district->id}}" @if($district->name == 'Kathmandu') selected @endif>{{$district->name}}</option>
+                                                                <option value="{{$district->id}}"  @if($district->id == old('district_id')) selected @elseif($district->name == 'Kathmandu') selected @endif>{{$district->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -263,7 +254,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" name="company_address" placeholder="Company Address">
+                                                        <input type="text" class="form-control" name="company_address" value="{{old('company_address')}}" placeholder="Company Address">
                                                     </div>
                                                 </div>
                                             </div>
@@ -277,7 +268,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" name="company_head" placeholder="Name of Company Head">
+                                                        <input type="text" class="form-control" name="company_head" value="{{old('company_head')}}" placeholder="Name of Company Head">
                                                     </div>
                                                 </div>
                                             </div>
@@ -291,7 +282,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" name="mobile" placeholder="Mobile No.">
+                                                        <input type="text" class="form-control" name="mobile"  value="{{old('mobile')}}" placeholder="Mobile No.">
                                                     </div>
                                                 </div>
                                             </div>
@@ -305,7 +296,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" name="ofc_tel_no" placeholder="Office Tel No.">
+                                                        <input type="text" class="form-control" name="ofc_tel_no" value="{{old('ofc_tel_no')}}" placeholder="Office Tel No.">
                                                     </div>
                                                 </div>
                                             </div>
@@ -319,7 +310,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="url" class="form-control" name="website" placeholder="Exp: www.khojbiz.com">
+                                                        <input type="url" class="form-control" name="website" value="{{old('website')}}" placeholder="Exp: www.khojbiz.com">
                                                     </div>
                                                 </div>
                                             </div>
@@ -333,7 +324,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" name="map_link" placeholder="Copy Paste Map Embed link">
+                                                        <input type="text" class="form-control" name="map_link"  value="{{old('map_link')}}" placeholder="Copy Paste Map Embed link">
                                                     </div>
                                                 </div>
                                             </div>
@@ -344,7 +335,16 @@
                                     <label for="" style="border-bottom: 1px solid grey;">Short Description</label>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <textarea name="company_profile" id="editor1" cols="30" rows="10" class="form-control content" placeholder="Describe about company"></textarea>
+                                            <textarea name="company_profile" id="editor1" cols="30" rows="10" class="form-control content" placeholder="Describe about company">{{old('company_profile')}}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="" style="border-bottom: 1px solid grey;">Tags/Keywords</label>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="text" multiple name="tag" class="form-control" value="{{old('tag')}}" placeholder="Write Tags/Keyword, Ex, Printing, Digital, Garment, Computer etc.">
+                                            <i style="color:Red; font-weight: bolder;"><small>Note: These Tags/Keword are helps to find easily while searching directory.</small></i>
                                         </div>
                                     </div>
                                 </div>
@@ -353,9 +353,23 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <input type="radio" name="status" value="Paid">Paid
-                                                <input type="radio" name="status" value="Unpaid">Unpaid
-                                                <input type="radio" name="status" value="Pendig">Pending
+                                                {{--<input type="radio" name="status" value="Paid" @if(old('status') == 'Paid') checked @endif>Paid--}}
+                                                <input type="radio" name="status" value="Unpaid" @if(old('status') == 'Unpaid') checked @endif>Unpaid
+                                                <input type="radio" name="status"  value="Pending"  @if(old('status') == 'Pending') checked @endif >Pending
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label for="" style="border-bottom: 1px solid grey;">Send Mail To Client ? <i>(for id & password)</i></label>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                {{--<input type="radio" name="status" value="Paid" @if(old('status') == 'Paid') checked @endif>Paid--}}
+                                                <input type="radio" name="send_mail" value="Yes" required>Yes
+                                                <input type="radio" name="send_mail"  value="No" required>No<br>
+                                                <i>Note: If Client's Mail address Valid Then Click Yes</i>
                                             </div>
                                         </div>
                                     </div>
@@ -385,5 +399,14 @@
 
 @endsection
 @section('script')
-
+    <script type="text/javascript">
+        var path = "{{ route('email-checker') }}";
+        $('input.emailaddress').typeahead({
+            source:  function (query, process) {
+                return $.get(path, { query: query }, function (data) {
+                    return process(data);
+                });
+            }
+        });
+    </script>
 @endsection

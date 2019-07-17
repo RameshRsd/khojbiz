@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Position;
 use App\Staff;
 use App\User;
 use Illuminate\Http\Request;
@@ -16,13 +17,15 @@ class StaffController extends Controller
     }
     public function create(){
         $title = 'Create New Staff - Khojbiz';
+        $positions = Position::all();
 //        $staffs = Staff::orderBy('id','DESC')->get();
-        return view('admin.staff.create',compact('title'));
+        return view('admin.staff.create',compact('title','positions'));
     }
     public function store(Request $request){
         $this->validate($request, [
             'f_name'=> 'required',
             'l_name'=> 'required',
+            'position_id'=> 'required',
             'ctn_no'=> 'required',
             'mobile'=> 'required',
             'name'=> 'required|unique:users,name',
@@ -49,6 +52,7 @@ class StaffController extends Controller
             $client->ref_person_address = $request->ref_person_address;
             $client->ctn_no = $request->ctn_no;
             $client->password = $request->password;
+            $client->position_id = $request->position_id;
             $client->user_id = $user->id;
             if ($request->hasFile('photo')){
                 $filename = time().'.'.request()->file('photo')->getClientOriginalExtension();
@@ -83,7 +87,8 @@ class StaffController extends Controller
     public function edit($id){
         $title ='Staff Edit';
         $staffs = Staff::findOrFail($id);
-        return view('admin.staff.edit',compact('title','staffs'));
+        $positions = Position::all();
+        return view('admin.staff.edit',compact('title','staffs','positions'));
     }
     public function update(Request $request, $id){
         $this->validate($request, [
@@ -101,6 +106,7 @@ class StaffController extends Controller
         $staffs->ref_person_no = $request->ref_person_no;
         $staffs->ref_person_address = $request->ref_person_address;
         $staffs->ctn_no = $request->ctn_no;
+        $staffs->position_id = $request->position_id;
         if ($request->hasFile('photo')){
             if (is_file(public_path('uploads/staff/photo/').'/'.$staffs->photo) && file_exists(public_path('uploads/staff/photo/').'/'.$staffs->photo)){
                 unlink(public_path('uploads/staff/photo/').'/'.$staffs->photo);
@@ -135,7 +141,7 @@ class StaffController extends Controller
         }
 
         $staffs->save();
-        return redirect('admin/staffs')->with('success','Staff Created Successfully !');
+        return redirect('admin/staffs')->with('success','Staff Updated Successfully !');
     }
 
 

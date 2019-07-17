@@ -11,6 +11,7 @@
 |
 */
 
+Route::get('checkmail','HomeController@checkmail');
 Route::get('','HomeController@index');
 Route::get('top-companies-ajax','AjaxController@top_company');
 Route::get('top-manufacture-companies-ajax','AjaxController@top_manufacture');
@@ -26,6 +27,7 @@ Route::get('places','Place\LocationController@index');
 Route::get('place_name', array('as' => 'place_name', 'uses'=>'HomeController@place_name'));
 Route::any('companyinfo/{slug}','User\ApplicationController@product_details');
 
+Route::get('client-area','PackageController@index');
 //Auth::routes();
 //Browse by alphabates //
 Route::group(['middleware'=>'guest'],function(){
@@ -51,6 +53,7 @@ Route::get('browse-by-category/list/{id}','CategoryController@list_category');
 
 
 Route::post('client/get_enquiry/{id}','Client\\ClientController@get_enquiry');
+Route::get('email-checker','AjaxController@emailChecker')->name('email-checker');
 
 Route::any('logout', 'Auth\LoginController@logout')->name('logout');
 
@@ -60,6 +63,9 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
 
     /* ============================== User Managment ========================================= */
     Route::get('users','UserController@index');
+    Route::get('users/uid={id}/edit','UserController@edit');
+    Route::post('users/update-email/{id}','UserController@update_email');
+    Route::post('users/update-password/{id}','UserController@update_password');
     /* ============================== User Managment ========================================= */
 
     /* ============================== Staff Managment ========================================= */
@@ -144,6 +150,7 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::post('create-client','ClientController@store');
     Route::get('list-clients/client_id={id}/edit','ClientController@edit');
     Route::post('list-clients/client_id={id}/edit','ClientController@update');
+    Route::get('list-clients/client_id={id}/delete','ClientController@delete');
     /* ============================== Client-Section ========================================= */
     /* ============================== Client-Profile-Section ========================================= */
     Route::get('{name}/edit-about','ClientProfile\ClientAboutUsController@edit_about');
@@ -153,6 +160,17 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::get('list-clients/client_id={id}/edit_contact','ClientProfile\ClientContactUsController@edit_contact');
     Route::post('list-clients/client_id={id}/edit_contact','ClientProfile\ClientContactUsController@update_contact');
     /* ============================== Client-Profile-Section ========================================= */
+
+    /* ============================== Package-Section ========================================= */
+    Route::get('list-package','PackageController@index');
+    Route::get('add-package','PackageController@create');
+    Route::post('add-package','PackageController@store');
+    Route::get('list-package/{id}/edit','PackageController@edit');
+    Route::post('list-package/{id}/edit','PackageController@update');
+    Route::get('package-feature','PackageController@package_feature');
+    Route::post('package-feature','PackageController@package_feature_store');
+    Route::post('package-feature/{id}/update','PackageController@package_feature_update');
+    /* ============================== Package-Section ========================================= */
 
     /* ============================== Ads-Section ========================================= */
     Route::get('list-advets','AdsController@index');

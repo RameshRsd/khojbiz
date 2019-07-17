@@ -8,7 +8,7 @@
                     </div>
                     <div class="content-main">
                         @if(isset($client->map_link))
-                            {{$client->map_link}}
+                            {!! $client->map_link !!}
                         @else
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.609443762013!2d85.29854621506188!3d27.698463482795606!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1920d9df3e31%3A0xa170e3082e86566c!2sAsian+Technology+Pvt.+Ltd.!5e0!3m2!1sen!2snp!4v1562136322765!5m2!1sen!2snp" width="600" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
                         @endif
@@ -24,7 +24,12 @@
                         <ul class="overview-listing">
                             <li><b><i class="fa fa-building-o"></i> {{$client->company_name}}</b></li>
                             <li><a href="{{url('search?location=').$client->company_address}}"><i class="fa fa-map-marked"></i> {{$client->company_address}}</a></li>
-                            @if(isset($client->ofc_tel_no))<li><b><i class="fa fa-phone"></i> {{$client->ofc_tel_no}}</b></li>@endif
+                            @if(isset($client->ofc_tel_no))
+                                <li><b><i class="fa fa-phone"></i> {{$client->ofc_tel_no}}</b></li>
+                            @endif
+                            @if(isset($client->mobile))
+                                <li><b><i class="fa fa-phone"></i> {{$client->mobile}}</b></li>
+                            @endif
                             @if($client->user->email)<li><b><i class="fa fa-envelope-o"></i> {{$client->user->email}}</b></li>@endif
                             @if($client->website)<li><a href="{{$client->website}}" target="_blank"><i class="fa fa-globe"></i> Visit Website</a></li>@endif
                         </ul>

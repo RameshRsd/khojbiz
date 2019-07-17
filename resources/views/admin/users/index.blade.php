@@ -27,6 +27,17 @@
                 </div>
                 <div style="clear: both;"></div>
             @endif
+            @if(session('error'))
+                <div class="col-sm-12">
+                    <div role="alert" style="background-color:#d4edda; color:#155724; border-radius: 5px;" class="alert  alert-dismissible show">
+                        <span class="btn btn-danger btn-xs">Error</span> {{session('error')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <div style="clear: both;"></div>
+            @endif
             @if($errors->any())
                 <div class="col-sm-12">
                     <div role="alert" style="background-color:#d4edda; color:#155724; border-radius: 5px;" class="alert  alert-dismissible show">
@@ -49,6 +60,21 @@
                             <h3 class="box-title">User Listing</h3>
                             {{--<h3 class="box-title pull-right"><a href="{{url('admin/create-events')}}" class="btn btn-primary btn-xs">Create New Event</a></h3>--}}
                         </div>
+                        <div class="box-header">
+                            <form action="" method="get">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="">User Name</label>
+                                        <input type="text" name="name" value="{{request('name')}}" onchange="javascript:this.form.submit();" class="form-control" placeholder="Search By User Name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="">Email</label>
+                                        <input type="text" name="email" value="{{request('email')}}" onchange="javascript:this.form.submit();" class="form-control" placeholder="Search By Email">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
                         <!-- /.box-header -->
                         <div class="box-body">
                             <table id="example1" class="table table-bordered table-striped">
@@ -56,6 +82,8 @@
                                 <tr>
                                     <th>SN</th>
                                     <th>User Name</th>
+                                    <th>ID</th>
+                                    <th>PW</th>
                                     <th>User Type (Role)</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -65,7 +93,15 @@
                                 @foreach($users as $key=>$user)
                                     <tr>
                                         <td>{{++$key}}</td>
-                                        <td>{{$user->name}}</td>
+                                        <td>{{$user->name}} @if(isset($user->client)) <b>({{$user->client->company_name}})</b> @endif</td>
+                                        <td>{{$user->email}}</td>
+                                        <td>
+                                            @if(isset($user->client))
+                                                {{$user->client->password}}
+                                                @elseif(isset($user->staff))
+                                                {{$user->staff->password}}
+                                            @endif
+                                        </td>
                                         <td>
                                             @if($user->type=='admin')
                                                 <button class="btn btn-success btn-xs">Admin</button>
@@ -95,10 +131,13 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="{{url('admin/users/uid=').$user->id.'/edit'}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach
+                                <tr>
+                                    <td colspan="7">{{$users->links()}}</td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
